@@ -42,7 +42,7 @@ const navItems: { key: Key; href: string }[] = [
 ]
 ---
 
-<header class="site-header" data-motion="m-fade-in" data-bordered="false">
+<header class="site-header" data-bordered="false">
   <div class="container">
     <a class="wordmark t-wordmark" href={localizePath('/', locale)}>
       {t('brand.wordmark', locale)}
@@ -139,7 +139,6 @@ const navItems: { key: Key; href: string }[] = [
     if (!header) return () => {}
     const onScroll = () => {
       header.dataset.bordered = window.scrollY > 64 ? 'true' : 'false'
-      header.toggleAttribute('data-in-view', window.scrollY > 64)
     }
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
