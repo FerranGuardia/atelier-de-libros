@@ -1,0 +1,175 @@
+---
+/* T08 — PendingImage. The placeholder surface for every image-pending
+ * slot in this site (per Ferran's directive: build everything, leave
+ * images as prompts for him to render externally and drop in).
+ *
+ * Renders a paper-tone rectangle with the correct aspect ratio so the
+ * surrounding composition is visually accurate, plus a small editorial
+ * caption that names which prompt MD will produce the asset. Reads on
+ * the page like a museum object label, not like a missing-image box.
+ *
+ * Replace usage with a real <Image>, <Picture>, or inline SVG once the
+ * generated asset lands in src/assets/. Search the codebase for
+ * `<PendingImage` to find every slot.
+ */
+
+interface Props {
+  /** Prompt-file slug under .claude/image-prompts/ (without .md). */
+  prompt: string
+  /** Aspect ratio as `'w/h'`, e.g. `'16/9'`, `'4/5'`. Default: `'16/9'`. */
+  aspect?: string
+  /** Editorial label visible inside the placeholder. */
+  label?: string
+  /** Short note shown below the label, ≤ 1 line. */
+  hint?: string
+  /** `true` for the line-illustration kind (transparent + green stroke);
+   * `false` for photographic kind (paper-deep fill). */
+  illustration?: boolean
+  /** ARIA label for screen readers. Falls back to `label`. */
+  ariaLabel?: string
+  /** Class hook for layout placement (column spans, etc.). */
+  class?: string
+}
+
+const {
+  prompt,
+  aspect = '16/9',
+  label = 'Imagen pendiente',
+  hint,
+  illustration = false,
+  ariaLabel,
+  class: className = ''
+} = Astro.props
+
+const promptHref = `.claude/image-prompts/${prompt}.md`
+---
+
+<figure
+  class:list={[
+    'pending-image',
+    illustration ? 'is-illustration' : 'is-photograph',
+    className
+  ]}
+  style={`--aspect: ${aspect};`}
+  role="img"
+  aria-label={ariaLabel ?? label}
+  data-prompt={prompt}
+>
+  <div class="frame">
+    {
+      illustration ? (
+        <svg viewBox="0 0 60 60" aria-hidden="true">
+          <circle
+            cx="30"
+            cy="30"
+            r="22"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="0.6"
+            stroke-dasharray="2 3"
+          />
+          <line x1="30" y1="14" x2="30" y2="46" stroke="currentColor" stroke-width="0.6" />
+          <line x1="14" y1="30" x2="46" y2="30" stroke="currentColor" stroke-width="0.6" />
+        </svg>
+      ) : (
+        <svg viewBox="0 0 60 60" aria-hidden="true" preserveAspectRatio="none">
+          <line x1="0" y1="0" x2="60" y2="60" stroke="currentColor" stroke-width="0.4" />
+          <line x1="60" y1="0" x2="0" y2="60" stroke="currentColor" stroke-width="0.4" />
+        </svg>
+      )
+    }
+    <figcaption class="legend">
+      <span class="kind">{illustration ? 'Ilustración' : 'Fotografía'}</span>
+      <span class="label">{label}</span>
+      {hint && <span class="hint">{hint}</span>}
+      <span class="prompt-ref">
+        <code>{promptHref}</code>
+      </span>
+    </figcaption>
+  </div>
+</figure>
+
+<style>
+  .pending-image {
+    margin: 0;
+    width: 100%;
+  }
+
+  .frame {
+    position: relative;
+    aspect-ratio: var(--aspect);
+    width: 100%;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+  }
+
+  .is-photograph .frame {
+    background: var(--paper-deep);
+    color: var(--ink-whisper);
+  }
+
+  .is-illustration .frame {
+    background: transparent;
+    color: var(--library-green);
+    border: 1px dashed var(--paper-deep);
+  }
+
+  .frame > svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+  }
+  .is-illustration .frame > svg {
+    width: 30%;
+    height: 30%;
+    inset: auto;
+    position: relative;
+    opacity: 0.5;
+  }
+
+  .legend {
+    position: relative;
+    z-index: 1;
+    background: var(--paper);
+    color: var(--ink-soft);
+    padding: var(--space-3) var(--space-4);
+    display: grid;
+    gap: var(--space-1);
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    text-align: center;
+    max-width: 36ch;
+  }
+
+  .kind {
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-whisper);
+  }
+
+  .label {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: var(--step-1);
+    line-height: 1.2;
+    color: var(--ink);
+  }
+
+  .hint {
+    color: var(--ink-soft);
+  }
+
+  .prompt-ref {
+    margin-top: var(--space-2);
+    color: var(--ink-whisper);
+  }
+  .prompt-ref code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.86em;
+  }
+</style>

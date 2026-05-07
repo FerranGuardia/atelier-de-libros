@@ -16,7 +16,7 @@ Each task .md addresses one focused concern. Heavy surfaces (hero, home, portfol
 - ☑ **T05** — Motion language · `impeccable` + `frontend-design`
 - ☑ **T06** — Grid & whitespace doctrine · `impeccable`
 - ☑ **T07** — Responsive doctrine · `impeccable`
-- ☐ **T08** — Image system · `impeccable`
+- ☑ **T08** — Image system · `impeccable`
 - ☐ **T09** — Navigation & scroll system · `impeccable` + `frontend-design`
 - ☐ **T10** — Accessibility doctrine · `impeccable`
 - ☐ **T11** — Base layout shell (assembly of T09 + T10) · `frontend-design`

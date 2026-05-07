@@ -184,6 +184,34 @@ Doctrine: [`responsive-doctrine.md`](responsive-doctrine.md). Three breakpoint t
 4. **Touch targets ≥ 44 × 44px** on every interactive element.
 5. **Hover states are absent on mobile.** `:focus-visible` and tap feedback replace them.
 
+## Images
+
+Doctrine: [`image-system.md`](image-system.md). Component: `src/components/PendingImage.astro` (placeholder until real assets land — see *Prompt-only placeholder workflow*).
+
+### Hard rules
+
+1. **Four kinds only:** line SVG illustrations, atmospheric photographs, the paper-grain texture, and functional graphics (OG, favicon). Anything else is rejected.
+2. **No stock photography.** Per Ferran's directive (T08 update): no Unsplash, no shutterstock. Photographs are commissioned; until they land, slots use `<PendingImage>` with a prompt MD adjacent.
+3. **Aspect ratios: 16:9, 4:5, 1:1 only.**
+4. **One illustration per scroll-screen.**
+5. **Photographs full-bleed allowed; illustrations live on the grid.**
+6. **`<Image>` or `<PendingImage>`, never raw `<img>`.**
+7. **Per-image budget 200KB at largest size; per-page total 600KB.**
+
+### Pending image syntax
+
+```astro
+<PendingImage
+  prompt="T13-hero"
+  aspect="9/16"
+  illustration
+  label="Estanteria, lomo abierto"
+  hint="…"
+/>
+```
+
+The `prompt` slug points at `.claude/image-prompts/<slug>.md`. Both must land in the same commit as the page that uses them.
+
 ## Motion
 
 Source: `src/styles/motion.css`. Doctrine: [`motion-catalog.md`](motion-catalog.md). Build tasks reference catalog names only — no inline durations, no inline curves.
