@@ -1,0 +1,67 @@
+/* T10 — Accessibility wiring. Focus rings, sr-only utility, smooth-scroll
+ * gate, scroll-margin for anchor targets. */
+
+/* ─── Focus rings ───────────────────────────────────────────────────── */
+
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--library-green);
+  outline-offset: 2px;
+  border-radius: 1px;
+}
+
+/* Form inputs use a bottom-border focus state instead of a double ring;
+ * components opt in by setting their own :focus-visible rule and
+ * inheriting outline:none from above. */
+
+/* ─── Screen-reader-only utility ────────────────────────────────────── */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ─── Smooth scroll, motion-aware ───────────────────────────────────── */
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* ─── Anchor offset for sticky header ───────────────────────────────── */
+
+[id]:not(html, body) {
+  scroll-margin-top: calc(72px + var(--space-12));
+}
+@media (max-width: 47.99rem) {
+  [id]:not(html, body) {
+    scroll-margin-top: calc(56px + var(--space-8));
+  }
+}
+
+/* ─── Honeypot + decorative SVG ─────────────────────────────────────── */
+
+[aria-hidden='true'] {
+  /* Defensive — decorative SVGs and honeypots should not capture focus
+   * even if a stray tabindex slips in. */
+  pointer-events: none;
+}
+[aria-hidden='true'] input,
+[aria-hidden='true'] button,
+[aria-hidden='true'] a {
+  pointer-events: auto;
+  /* But form fields inside an aria-hidden subtree (the honeypot) still
+   * need to function — the outer wrapper hides them visually but they
+   * are submitted with the form. */
+}

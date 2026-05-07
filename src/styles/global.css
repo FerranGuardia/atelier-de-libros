@@ -3,6 +3,7 @@
 @import './motion.css';
 @import './grid.css';
 @import './breakpoints.css';
+@import './a11y.css';
 
 /* T03 — Global reset (Andy Bell, slimmed) + paper-and-ink wiring.
  * T04 layers typography. T05 layers motion. */

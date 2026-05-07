@@ -235,6 +235,19 @@ Doctrine: [`navigation-system.md`](navigation-system.md). T11 implements; pages 
 - Anchor jumps respect `scroll-margin-top` for sticky-header offset.
 - Smooth scroll only when `prefers-reduced-motion: no-preference`.
 
+## Accessibility
+
+Doctrine: [`accessibility-doctrine.md`](accessibility-doctrine.md). CSS: `src/styles/a11y.css`. Audit checklist: [`audits/a11y-checklist.md`](audits/a11y-checklist.md) (T36 fills it).
+
+### Hard rules
+
+1. **`:focus-visible` always replaces** the removed default ring — 2px library-green outline, 2px offset.
+2. **Native HTML first.** ARIA only when no semantic alternative.
+3. **Tab order matches visual order** on every page.
+4. **Touch targets ≥ 44 × 44px.**
+5. **Color floors:** `--ink-soft` body-only, `--ink-whisper` fine-print-only, never on display type.
+6. **Reduced-motion contract** from [`motion-catalog.md`](motion-catalog.md) is honoured per-motion.
+
 ## Motion
 
 Source: `src/styles/motion.css`. Doctrine: [`motion-catalog.md`](motion-catalog.md). Build tasks reference catalog names only — no inline durations, no inline curves.
