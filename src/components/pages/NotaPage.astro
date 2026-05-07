@@ -1,0 +1,132 @@
+---
+/* T27 — La Nota de la Autora. Drop-cap on first paragraph, italic
+ * Cormorant lead, Inter body essay (M04 lorem), portrait (PendingImage,
+ * 4:5), signature (PendingImage SVG-style placeholder until M04
+ * delivers). */
+
+import PendingImage from '../PendingImage.astro'
+import { t } from '../../i18n/t'
+import type { Locale } from '../../i18n/config'
+
+interface Props {
+  locale: Locale
+}
+const { locale } = Astro.props
+---
+
+<article class="nota" data-motion="m-rise">
+  <header class="container intro">
+    <p class="eyebrow t-caption">{t('nota.eyebrow', locale)}</p>
+    <h1 class="t-page-title">{t('nota.page_title', locale)}</h1>
+  </header>
+
+  <div class="container layout">
+    <div class="body measure-letter">
+      <p class="drop-cap">{t('nota.body_1', locale)}</p>
+      <p>{t('nota.body_2', locale)}</p>
+      <p>{t('nota.body_3', locale)}</p>
+      <p>{t('nota.body_4', locale)}</p>
+      <p>{t('nota.body_5', locale)}</p>
+      <p>{t('nota.body_6', locale)}</p>
+      <p class="signature">
+        <span class="signature-img" aria-label={t('aria.pending_signature', locale)}>
+          <!-- M04-signature PENDING — src/assets/illustrations/signature.svg -->
+          <svg viewBox="0 0 200 60" aria-hidden="true">
+            <path
+              d="M10 40 Q 30 12 60 30 T 110 30 T 160 28"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-dasharray="2 4"
+            />
+          </svg>
+        </span>
+        <span class="signature-credit">{t('nota.signature_credit', locale)}</span>
+      </p>
+      <!-- M04 LOREM (essay text) — tasks-mireia/M04 -->
+    </div>
+
+    <aside class="portrait">
+      <PendingImage
+        prompt="M04-portrait"
+        aspect="4/5"
+        label="Mireia"
+        hint="Retrato del estudio · 4/5"
+        ariaLabel={t('aria.pending_image', locale)}
+      />
+      <p class="portrait-caption t-caption">{t('nota.portrait_caption', locale)}</p>
+      <!-- M04-portrait PENDING — src/assets/portrait/mireia.{webp,jpg} -->
+    </aside>
+  </div>
+</article>
+
+<style>
+  .nota {
+    margin-top: var(--space-24);
+    margin-bottom: var(--space-32);
+  }
+
+  .intro {
+    margin-bottom: var(--space-16);
+  }
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-whisper);
+    margin-bottom: var(--space-3);
+  }
+
+  .layout {
+    display: grid;
+    gap: var(--space-12);
+  }
+  @media (min-width: 64rem) {
+    .layout {
+      grid-template-columns: 1fr 22rem;
+      gap: var(--space-16);
+      align-items: start;
+    }
+    .body {
+      grid-column: 1;
+    }
+    .portrait {
+      grid-column: 2;
+      position: sticky;
+      top: calc(72px + var(--space-12));
+    }
+  }
+
+  .body p {
+    margin-bottom: var(--space-6);
+    line-height: 1.7;
+  }
+
+  .signature {
+    margin-top: var(--space-12);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  .signature-img {
+    display: block;
+    color: var(--library-green);
+  }
+  .signature-img svg {
+    width: 200px;
+    height: 60px;
+  }
+  .signature-credit {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: var(--step-1);
+    color: var(--ink);
+  }
+
+  .portrait .portrait-caption {
+    margin-top: var(--space-3);
+    color: var(--ink-soft);
+  }
+</style>

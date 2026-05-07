@@ -1,0 +1,16 @@
+---
+import Base from '../layouts/Base.astro'
+import NotaPage from '../components/pages/NotaPage.astro'
+import { t } from '../i18n/t'
+
+const locale = 'es' as const
+---
+
+<Base
+  locale={locale}
+  pathname="/nota"
+  title={t('meta.nota.title', locale)}
+  description={t('meta.nota.description', locale)}
+>
+  <NotaPage locale={locale} />
+</Base>
