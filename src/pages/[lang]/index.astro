@@ -1,11 +1,9 @@
 ---
-/* Localized home routes: /ca/, /fr/, /en/, /it/. Real composition lands
- * with T15-T22; until then this mirrors the ES stub via the i18n
- * resolver (which falls back to ES when the locale dict is empty). */
+/* Localized home routes: /ca/, /fr/, /en/, /it/. */
 
 import Base from '../../layouts/Base.astro'
+import Hero from '../../components/sections/Hero.astro'
 import { locales, defaultLocale, type Locale } from '../../i18n/config'
-import { t } from '../../i18n/t'
 
 export function getStaticPaths() {
   return locales
@@ -17,17 +15,5 @@ const lang = Astro.params.lang as Locale
 ---
 
 <Base locale={lang} pathname="/">
-  <section class="container intro">
-    <h1 class="t-hero">{t('home.hero.headline_part_1', lang)}</h1>
-    <p class="t-lead measure-body">{t('home.hero.subheadline', lang)}</p>
-  </section>
+  <Hero locale={lang} />
 </Base>
-
-<style>
-  .intro {
-    margin-block: var(--space-24);
-  }
-  .intro h1 {
-    margin-bottom: var(--space-6);
-  }
-</style>

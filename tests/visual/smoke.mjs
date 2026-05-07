@@ -21,6 +21,8 @@ for (const route of ROUTES) {
     process.stdout.write(`  ${vp.name.padEnd(8)} ${url} … `)
     try {
       await page.goto(url, { waitUntil: 'networkidle', timeout: 15000 })
+      /* Settle: hero entrance choreography ends at t=1800ms (T14 timeline). */
+      await page.waitForTimeout(2200)
       await page.screenshot({ path: `screenshots/${slug}-${vp.name}.png`, fullPage: true })
       console.log('ok')
     } catch (e) {

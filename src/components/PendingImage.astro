@@ -93,6 +93,7 @@ const promptHref = `.claude/image-prompts/${prompt}.md`
   .pending-image {
     margin: 0;
     width: 100%;
+    container-type: inline-size;
   }
 
   .frame {
@@ -135,13 +136,27 @@ const promptHref = `.claude/image-prompts/${prompt}.md`
     z-index: 1;
     background: var(--paper);
     color: var(--ink-soft);
-    padding: var(--space-3) var(--space-4);
+    padding: var(--space-2) var(--space-3);
     display: grid;
     gap: var(--space-1);
     font-family: var(--font-body);
     font-size: var(--step--1);
     text-align: center;
-    max-width: 36ch;
+    max-width: min(36ch, calc(100% - var(--space-4)));
+  }
+
+  @container (max-width: 240px) {
+    .legend {
+      font-size: 0.72rem;
+      padding: var(--space-2);
+    }
+    .legend .label {
+      font-size: 0.95rem;
+    }
+    .legend .hint,
+    .legend .prompt-ref {
+      display: none;
+    }
   }
 
   .kind {
