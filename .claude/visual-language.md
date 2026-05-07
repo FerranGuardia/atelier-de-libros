@@ -25,12 +25,12 @@ The site whispers, never weeps. *Lujo discreto* over loud beauty. Emotion throug
 
 | GRIS element | Atelier equivalent |
 |---|---|
-| Coloured chapter washes | Single library-green emerging at <8% surface |
+| Coloured chapter washes | Reserved to **illustration assets** (not chrome) — muted multi-tone watercolor; library-green ≤ 8% of any viewport remains the rule for the page itself |
 | Particle dust parallax | Paper grain at 6–10% opacity, drifting slow |
-| Watercolor character | Line-art SVG with subtle ink-bleed at terminations |
+| Watercolor character | **Watercolor + ink wash, baked into the illustration asset** (PNG/WebP). Layered washes — cream paper base, dusty teal, soft rose, library-green at the deepest fold. Visible paper grain. Soft brush edges, never crisp vector lines. |
 | Sweeping camera moves | Quiet crossfade + 8px translate-y |
 | Ambient soundtrack | Type rhythm + measure; silence is the score |
-| Hand-painted environment | Cropped photography — paper, linen, wood, sieved daylight |
+| Hand-painted environment | The illustration's own watercolor wash — see row above. Photographs (T20) carry the same warm-desaturated grade. |
 
 ## 5. Hard rules
 
@@ -50,7 +50,7 @@ The site whispers, never weeps. *Lujo discreto* over loud beauty. Emotion throug
 What we will *not* do, and why:
 
 - **No hero video, no autoplay carousel.** Performance announces itself; this site reads.
-- **No gradient anything.** Tonal shifts come from paper grain and ink density, not CSS.
+- **No gradient anything in CSS.** Chrome tonal shifts come from paper grain and ink density. (The watercolor washes inside an illustration asset are baked into the image — never a CSS gradient.)
 - **No coloured CTAs.** Buttons are typographic — underline, weight, ink. Verde biblioteca is a detail, never a button.
 - **No "4 servicios in 4 cards" grid.** Servicios is an index, not a feature matrix — numbered, vertical, paginated like the front matter of a book.
 - **No emoji, no icon set, no decorative SVG sprites.** One illustration system (T29–T31), used scarcely.

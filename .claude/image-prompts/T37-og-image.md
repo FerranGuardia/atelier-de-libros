@@ -14,8 +14,8 @@ A single share card for the site, used as the default OG image on every page. Pe
 - **Background:** `--paper` (`#F5F5F0`) flat. **Not** the grain overlay (the grain is for live render only; printed flat reads cleaner).
 - **Layout:** asymmetric. Wordmark + tagline on the left at ≈ 20% from the left edge, vertically centred. The right ≈ 60% holds either:
   - Option A — empty paper with a single library-green ribbon-line ≈ 80px wide.
-  - Option B — a small line illustration (`hero` or `open-book` from T13/T30 once they land), centred in the right pane.
-  - **Default until hero / open-book ships:** Option A.
+  - Option B — a small fragment of one of the watercolor illustrations (the falling pages from `hero`, or the ribbon from `bookmark`, lifted out and floated in the right pane). Watercolor on cream, soft.
+  - **Default until illustrations ship:** Option A.
 - **Wordmark:** Cormorant 400, ≈ 64px on the 1200 × 630 canvas. Uppercase, tracking +4%. Colour `--ink`.
 - **Tagline:** Cormorant 300 italic, ≈ 32px, colour `--ink-soft`. Reads *"Estilismo literario · Curaduría literaria"*.
 - **No URL.** Sharing platforms render the URL alongside the image; baking it in is redundant.

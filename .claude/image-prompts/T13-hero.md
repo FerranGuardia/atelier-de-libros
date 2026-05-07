@@ -1,57 +1,56 @@
 # T13 — Hero illustration
 
-**Kind:** illustration (line art SVG)
-**Aspect:** 3:2 (canvas), subject occupies ≈ 20%, off-centred right (golden mean)
-**Lands in:** `src/assets/illustrations/hero.svg`
-**Used by:** `src/components/sections/Hero.astro` (via inline SVG include)
+**Used by:** home page hero (`Hero.astro`).
+**Aspect:** 3:2 landscape (slot in the page expects 3:2 — see [`illustrations.md`](../illustrations.md) for where this lands and how the build replaces the placeholder).
 
-## Brief
+---
 
-A simple book lying half-open on its spine, viewed slightly from the side. The pages curve naturally; the binding is suggested rather than detailed. No text on the pages. No decoration around the subject. The illustration is the *single* coloured stroke on the home page above the fold — it must read as voice, not ornament.
+## What it looks like
 
-This prompt is the **canonical reference for the entire illustration set** (T30 will cite it five times). Every other illustration must feel drawn by the same hand: same line weight, same termination quality, same negative-space ratio.
+A single watercolor scene, in the volume of *GRIS* (Conrad Roset / Nomada Studio): a monumental open book seen from a slight aerial oblique, its two facing pages becoming a soft landscape — gentle hills of paper folding into a faint horizon. A small figure stands at the spine, looking out across the pages. From above, a slow drift of pages or paper-feathers falls across the scene, the way GRIS rains its triangles.
 
-## Direction
+The mood is **still, attentive, suspended in time**. Not melancholy. Not ornate. The kind of calm that follows reading a paragraph that mattered.
 
-- **Style:** line art only. Single stroke weight ≈ 1.25px throughout.
-- **Colour:** stroke `#2D4033` (library-green). No fill. No second colour.
-- **Edge quality:** at line terminations, a hint of ink-bleed irregularity — like a fountain pen settling on absorbent paper. Subtle. Mid-line is clean.
-- **No shadows. No gradients. No perspective shading. No texture inside the lines.**
-- **Composition:** the subject occupies ≈ 20% of the canvas area, off-centred to the right (≈ 60% across, 55% down — golden mean). The book leans slightly to the right, suggesting it has just been set down. ≈ 80% of the canvas is empty.
-- **No frame, no border, no decoration around the subject.**
-- **No surface beneath the book** — no shadow, no table line, no drop. The book floats in paper.
+## Palette
 
-## Subject justification
+Cream paper background — warm, the colour of `#F5F5F0`. Two soft watercolour washes layered on the book and landscape:
 
-A book half-open on its spine is the most generous shape: it asks the viewer to imagine the rest, leaves room for whitespace inside the pages, and reads symbolically as *the work is in process*. A closed book is too final; an open-flat book crowds the frame.
+- **Dusty teal** — like `#5A7A78` to `#7AA09D`, restrained, never electric.
+- **Soft rose** — like `#D9A8A0` to `#E8C8C0`, the breath of warmth.
 
-## Anti-references
+A deeper **library-green** (`#2D4033`) sits only at the gutter / spine fold and on the figure's silhouette — the deepest tone, sparingly. The falling pages can carry the lightest blush of rose at their edges.
 
-- No "designy" line drawing where the line varies in weight (caligraphic).
-- No "hand-drawn" look that becomes painterly — the line is precise; only the *terminations* show ink-bleed.
-- No fills, anywhere.
-- No shadows, no glows, no perspective vanishing-point dramatic angles.
-- No bookmark dangling, no light rays, no surface beneath the book.
-- Not Cormorant-italic-on-marble editorial cliché — this is a single drawn object on white space, not a magazine spread.
-- Not Klim Type Foundry specimen-page, not Stripe-minimal — those are typographic lanes, not illustration.
+No saturated colours. No neon. No black; the deepest mark is library-green or a warm dark teal, never `#000`.
 
-## Output
+## Treatment
 
-- **Format:** SVG, vector. Single `<path>` if possible; multiple paths sharing the same stroke style otherwise.
-- **ViewBox:** `0 0 1200 800`. No inline `width` / `height`.
-- **Stroke:** `currentColor` so the page can tint the illustration via CSS (default falls back to `#2D4033`).
-- **Stroke-linejoin:** `round`. **Stroke-linecap:** `round`.
-- **No `<style>` blocks** inside the SVG — every attribute set on the path elements directly so the inline include carries no orphan CSS.
-- **Optimised:** SVGO-pass; remove metadata, editor namespaces, `id`s.
-- **Filename:** `hero.svg`.
-- **Raster fallback (only if asked):** 2400 × 1600 PNG, transparent background.
+Watercolour and ink wash, **on paper**. Visible paper grain everywhere — the texture of the paper is half the image. Soft, brush-edged forms — never crisp vector lines. Wet edges can pool slightly darker, the way water collects pigment. Tiny ink-bleed flecks at termination of strokes are welcome.
 
-## Implementation note for the build agent
+No outlines, no comic-book ink linework, no flat fills, no gradients-as-CSS-gradient. The depth comes from layered washes overlapping, not from drop shadows.
 
-Once the asset lands, replace the `<PendingImage prompt="T13-hero" …>` in `Hero.astro` with an inline SVG include. The motion `m-stroke-draw` requires `pathLength="1"` plus `stroke-dasharray="1"` `stroke-dashoffset="1"` initial state — those attributes are added at integration time, not in the asset itself.
+## Composition
 
-## House-style reference
+The book occupies roughly 50–60% of the canvas, anchored slightly off-axis (golden mean — its spine sits around 60% across, 55% down). The figure at the spine is small — about 3% of the canvas height — placed so the eye finds it on the second pass.
 
-Cited by:
+The horizon (where the pages-as-landscape meet the misty distance) sits high, around 30% from the top. The bottom 25–30% of the canvas is empty cream paper — air for the page's typography to breathe into.
 
-- `T30-illustration-set.md` — five additional illustrations (book, page, shelf, bookmark, page-fold). All five must match this hero's hand.
+Falling pages drift diagonally across the upper half. Five to nine of them, scattered, none near the figure — they fall in the negative space, left of the book.
+
+## What this image is not
+
+- Not a tight detailed line drawing of a book — that's a different aesthetic the project rejected.
+- Not a cartoon or comic-book illustration; no thick black outlines.
+- Not Disney-soft or saccharine; the warmth is restrained, almost cool.
+- Not maximalist watercolor with seven colors — three soft washes is the limit.
+- Not a "fantasy book opening with magic light coming out" cliché — no glow, no sparkles, no symbols floating.
+- Not a desk still life — no coffee cup, no plant, no glasses, no quill.
+- Not photorealistic. The hand of the painter is visible.
+- No text, no letters, no titles on the pages. The pages are landscape, not type.
+
+## House style
+
+This image is the **canonical reference** for every other illustration on the site. The five companion drawings (see [`T30-illustration-set.md`](T30-illustration-set.md)) must feel painted by the same hand on the same afternoon — same palette, same paper grain, same restraint, same wash technique.
+
+## Reference
+
+Conrad Roset's work for GRIS (the video game) is the single visual reference. Watercolor + ink + cream paper + small human figure + monumental landscape + slow falling triangles. Translate that volume to the literary world — books instead of cliffs, falling pages instead of triangles, a reader instead of a wandering girl.
