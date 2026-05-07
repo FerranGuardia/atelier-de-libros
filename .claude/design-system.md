@@ -137,4 +137,33 @@ Refusals to write incorrect copy must cite a rule code (`ES-3`, `FR-NBSP`, `IT-A
 
 ## Motion
 
-<!-- T05 will append motion tokens (one easing curve, base duration 700ms, micro-interaction 300ms, no bounce). -->
+Source: `src/styles/motion.css`. Doctrine: [`motion-catalog.md`](motion-catalog.md). Build tasks reference catalog names only — no inline durations, no inline curves.
+
+### Tokens
+
+| Token | Value |
+|---|---|
+| `--ease` | `cubic-bezier(0.2, 0.6, 0.2, 1)` |
+| `--dur` | `700ms` |
+| `--dur-fast` | `300ms` |
+| `--dur-slow` | `1400ms` (hero stroke draw only) |
+
+There is **one curve, three durations**. Anything else fails the audit.
+
+### Catalog (named motions)
+
+`m-fade-in` · `m-rise` · `m-mask-wipe` · `m-stroke-draw` · `m-parallax-soft` · `m-underline-roll` · `m-row-tint` · `m-image-desat` · `m-route-cross` · `m-image-morph` · `m-form-success` · `grain-drift`.
+
+Specs and reduced-motion fallbacks: see [`motion-catalog.md`](motion-catalog.md).
+
+### Hard rules
+
+1. **No bouncy / elastic / overshoot easings.** No springs.
+2. **`prefers-reduced-motion: reduce`** clamps durations to `200ms` and disables transforms (per-motion fallback documented in the catalog).
+3. **Stagger** caps at 5 elements per group, 60–120ms interval, max one staggered group per scroll-screen.
+4. **One ambient loop only:** `grain-drift`, opacity/position-only, 24s.
+5. **No scroll-jacking, no snap, no scroll-scrubbed video, no autoplay.**
+
+### Dev QA
+
+`src/pages/dev/motion.astro` — every catalog entry triggerable by name. Delete `src/pages/dev/` before T40 deploy.

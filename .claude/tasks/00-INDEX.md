@@ -13,7 +13,7 @@ Each task .md addresses one focused concern. Heavy surfaces (hero, home, portfol
 - ☑ **T04b** — i18n pipeline (ES default · CA · FR · EN · IT) · `frontend-design` + `impeccable`
 - ☑ **T04c** — Multilingual spelling & typographic doctrine · `impeccable`
   Output: `.claude/spelling-doctrine.md` + footers on M01–M05 + `design-system.md` punctuation section.
-- ☐ **T05** — Motion language · `impeccable` + `frontend-design`
+- ☑ **T05** — Motion language · `impeccable` + `frontend-design`
 - ☐ **T06** — Grid & whitespace doctrine · `impeccable`
 - ☐ **T07** — Responsive doctrine · `impeccable`
 - ☐ **T08** — Image system · `impeccable`

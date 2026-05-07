@@ -1,0 +1,262 @@
+/* T05 — Motion tokens + named-motion utilities. Doctrine: motion-catalog.md.
+ * Build tasks reference catalog names; never invent durations or curves
+ * inline. */
+
+:root {
+  --ease: cubic-bezier(0.2, 0.6, 0.2, 1);
+  --dur: 700ms;
+  --dur-fast: 300ms;
+  --dur-slow: 1400ms; /* hero stroke draw only */
+}
+
+/* ─── Reduced motion contract ─────────────────────────────────────────
+ * Per WCAG 2.3.3. Translate-y, clip-path wipes, and parallax become
+ * opacity fades. Stroke draws become instant. Durations clamp. */
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur: 200ms;
+    --dur-fast: 200ms;
+    --dur-slow: 200ms;
+  }
+}
+
+/* ─── m-fade-in ───────────────────────────────────────────────────────
+ * Section enters viewport. opacity 0 → 1.
+ * Trigger: IntersectionObserver at 25% threshold (component-side). */
+
+[data-motion='m-fade-in'] {
+  opacity: 0;
+  transition: opacity var(--dur) var(--ease);
+}
+[data-motion='m-fade-in'][data-in-view] {
+  opacity: 1;
+}
+
+/* ─── m-rise ──────────────────────────────────────────────────────────
+ * Section enters viewport. Fade + 16px translate-y. */
+
+[data-motion='m-rise'] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity var(--dur) var(--ease),
+    transform var(--dur) var(--ease);
+}
+[data-motion='m-rise'][data-in-view] {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-motion='m-rise'] {
+    transform: none;
+    transition: opacity var(--dur) var(--ease);
+  }
+  [data-motion='m-rise'][data-in-view] {
+    transform: none;
+  }
+}
+
+/* ─── m-mask-wipe ─────────────────────────────────────────────────────
+ * Display headlines on load. clip-path wipe left → right. Line-by-line
+ * stagger applied via inline style transition-delay. */
+
+[data-motion='m-mask-wipe'] {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path var(--dur) var(--ease);
+}
+[data-motion='m-mask-wipe'][data-in-view] {
+  clip-path: inset(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-motion='m-mask-wipe'] {
+    clip-path: none;
+    opacity: 0;
+    transition: opacity var(--dur) var(--ease);
+  }
+  [data-motion='m-mask-wipe'][data-in-view] {
+    opacity: 1;
+  }
+}
+
+/* ─── m-stroke-draw ───────────────────────────────────────────────────
+ * Hero SVG line-art draw. dashoffset → 0. */
+
+[data-motion='m-stroke-draw'] {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  pathLength: 1;
+  transition: stroke-dashoffset var(--dur-slow) var(--ease);
+}
+[data-motion='m-stroke-draw'][data-in-view] {
+  stroke-dashoffset: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-motion='m-stroke-draw'] {
+    stroke-dashoffset: 0;
+    opacity: 0;
+    transition: opacity var(--dur) var(--ease);
+  }
+  [data-motion='m-stroke-draw'][data-in-view] {
+    opacity: 1;
+  }
+}
+
+/* ─── m-parallax-soft ─────────────────────────────────────────────────
+ * Scroll-linked translateY; throttled, max −24px. Component sets
+ * --parallax-y from a scroll listener. No fight with native scroll. */
+
+[data-motion='m-parallax-soft'] {
+  transform: translateY(var(--parallax-y, 0));
+  will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-motion='m-parallax-soft'] {
+    transform: none;
+  }
+}
+
+/* ─── m-underline-roll ────────────────────────────────────────────────
+ * Nav / link hover. Pseudo-element underline rolls in from the left. */
+
+[data-motion='m-underline-roll'] {
+  position: relative;
+  text-decoration: none;
+}
+[data-motion='m-underline-roll']::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform var(--dur-fast) var(--ease);
+}
+[data-motion='m-underline-roll']:hover::after,
+[data-motion='m-underline-roll']:focus-visible::after {
+  transform: scaleX(1);
+}
+
+/* ─── m-row-tint ──────────────────────────────────────────────────────
+ * Service row hover. Background fades to library-green-soft, numeral
+ * shifts +6px. */
+
+[data-motion='m-row-tint'] {
+  --tint: 0;
+  background: rgba(45, 64, 51, calc(0.08 * var(--tint)));
+  transition: background var(--dur-fast) var(--ease);
+}
+[data-motion='m-row-tint']:hover,
+[data-motion='m-row-tint']:focus-within {
+  --tint: 1;
+}
+[data-motion='m-row-tint'] [data-row-numeral] {
+  transition: transform var(--dur-fast) var(--ease);
+}
+[data-motion='m-row-tint']:hover [data-row-numeral],
+[data-motion='m-row-tint']:focus-within [data-row-numeral] {
+  transform: translateX(6px);
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-motion='m-row-tint'] [data-row-numeral] {
+    transform: none;
+  }
+}
+
+/* ─── m-image-desat ───────────────────────────────────────────────────
+ * Portfolio thumbnail hover. Saturate 0.92 → 1. */
+
+[data-motion='m-image-desat'] {
+  filter: saturate(0.92);
+  transition: filter var(--dur-fast) var(--ease);
+}
+[data-motion='m-image-desat']:hover,
+[data-motion='m-image-desat']:focus-within {
+  filter: saturate(1);
+}
+
+/* ─── m-route-cross ───────────────────────────────────────────────────
+ * Astro View Transition default. Opacity + 8px translate-y in/out. */
+
+::view-transition-old(root) {
+  animation: m-route-cross-out var(--dur) var(--ease) both;
+}
+::view-transition-new(root) {
+  animation: m-route-cross-in var(--dur) var(--ease) both;
+}
+
+@keyframes m-route-cross-out {
+  to {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes m-route-cross-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: var(--dur-fast);
+  }
+}
+
+/* ─── m-image-morph ───────────────────────────────────────────────────
+ * Portfolio thumb → detail hero. Astro view-transition-name set on the
+ * shared element by the component. CSS just inherits the default
+ * cross-fade duration. Reduced-motion fallback handled by the route
+ * cross above (no shared morph). */
+
+/* ─── m-form-success ──────────────────────────────────────────────────
+ * Form swaps to confirmation. Form fades, message fades in. */
+
+[data-motion='m-form-success'][data-state='form'] [data-form-success] {
+  display: none;
+}
+[data-motion='m-form-success'][data-state='success'] form {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-fast) var(--ease);
+}
+[data-motion='m-form-success'][data-state='success'] [data-form-success] {
+  opacity: 1;
+  transition: opacity var(--dur) var(--ease) var(--dur-fast);
+}
+
+/* ─── Stagger helper ──────────────────────────────────────────────────
+ * Apply via inline style: style="--stagger-step: 0.06s; --stagger-i: 2;"
+ * Keeps stagger per group, capped to 5 elements per scroll-screen. */
+
+[data-stagger] {
+  transition-delay: calc(var(--stagger-step, 0.08s) * var(--stagger-i, 0));
+}
+
+/* ─── Grain drift ─────────────────────────────────────────────────────
+ * The single permitted ambient loop. Opacity-only. Slow. */
+
+@keyframes grain-drift {
+  0%,
+  100% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 100px 60px;
+  }
+}
+
+[data-motion='grain-drift'] {
+  animation: grain-drift 24s var(--ease) infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-motion='grain-drift'] {
+    animation: none;
+  }
+}

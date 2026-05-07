@@ -1,0 +1,241 @@
+---
+/* dev/motion.astro — motion catalog QA. Trigger each named motion by
+ * pressing the buttons in each section; verify the reduced-motion
+ * fallbacks by toggling the OS preference and reloading. Delete
+ * src/pages/dev/ before T40 deploy. */
+
+import Base from '../../layouts/Base.astro'
+---
+
+<Base title="Motion QA · Atelier de Libros">
+  <main class="qa">
+    <header>
+      <p class="qa-label">T05 · motion catalog</p>
+      <p class="qa-meta">
+        One curve (<code>--ease</code>) · three durations (<code>--dur</code>,
+        <code>--dur-fast</code>, <code>--dur-slow</code>) · all motions opt-in via
+        <code>data-motion</code>.
+      </p>
+    </header>
+
+    <section>
+      <p class="qa-label">m-fade-in · m-rise</p>
+      <button class="trigger" data-target="reveal-group">Disparar</button>
+      <div class="reveal-group" id="reveal-group">
+        <div data-motion="m-fade-in">
+          <p class="t-lead measure-body">
+            <em>m-fade-in</em>. Opacity 0 → 1. Para secciones largas que entran a la vista.
+          </p>
+        </div>
+        <div data-motion="m-rise">
+          <p class="t-lead measure-body">
+            <em>m-rise</em>. Opacidad + 16px translateY. El gesto editorial por defecto.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <p class="qa-label">m-mask-wipe</p>
+      <button class="trigger" data-target="wipe-group">Disparar</button>
+      <div class="wipe-group" id="wipe-group">
+        <h2 class="t-page-title" data-motion="m-mask-wipe" data-stagger style="--stagger-i:0;">
+          Curaduría literaria
+        </h2>
+        <h2 class="t-page-title" data-motion="m-mask-wipe" data-stagger style="--stagger-i:1;">
+          el libro como identidad
+        </h2>
+      </div>
+    </section>
+
+    <section>
+      <p class="qa-label">m-stroke-draw</p>
+      <button class="trigger" data-target="stroke-group">Disparar</button>
+      <div class="stroke-group" id="stroke-group">
+        <svg viewBox="0 0 200 60" width="200" height="60" aria-hidden="true">
+          <path
+            data-motion="m-stroke-draw"
+            d="M5 30 Q 50 5 100 30 T 195 30"
+            stroke="var(--library-green)"
+            stroke-width="1.5"
+            fill="none"
+          />
+        </svg>
+      </div>
+    </section>
+
+    <section>
+      <p class="qa-label">m-underline-roll</p>
+      <p>Pasa el cursor: <a href="#" data-motion="m-underline-roll">un enlace</a>.</p>
+    </section>
+
+    <section>
+      <p class="qa-label">m-row-tint</p>
+      <ul class="rows">
+        <li data-motion="m-row-tint">
+          <span data-row-numeral>I</span>
+          <span>Curaduría de identidad</span>
+        </li>
+        <li data-motion="m-row-tint">
+          <span data-row-numeral>II</span>
+          <span>Interiorismo narrativo</span>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <p class="qa-label">m-image-desat</p>
+      <p class="qa-meta">Pasa el cursor sobre el bloque (imagen real en T15+).</p>
+      <div data-motion="m-image-desat" class="desat-demo">
+        <span>Saturate 0.92 → 1</span>
+      </div>
+    </section>
+
+    <section>
+      <p class="qa-label">m-form-success</p>
+      <div data-motion="m-form-success" data-state="form" id="form-demo">
+        <form>
+          <label>
+            Nombre
+            <input type="text" />
+          </label>
+          <button
+            type="button"
+            class="trigger"
+            onclick="document.getElementById('form-demo').dataset.state = 'success'"
+            >Enviar (demo)</button
+          >
+        </form>
+        <div data-form-success>
+          <p class="t-lead">Recibido. Volvemos en breve.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    /* Trigger buttons add data-in-view to the target's data-motion children
+     * so each motion replays without page reload. */
+    for (const btn of document.querySelectorAll<HTMLButtonElement>('.trigger[data-target]')) {
+      btn.addEventListener('click', () => {
+        const target = document.getElementById(btn.dataset.target!)
+        if (!target) return
+        const motions = target.querySelectorAll<HTMLElement>('[data-motion]')
+        for (const m of motions) m.removeAttribute('data-in-view')
+        requestAnimationFrame(() => {
+          for (const m of motions) m.setAttribute('data-in-view', '')
+        })
+      })
+    }
+  </script>
+
+  <style>
+    .qa {
+      max-width: 72ch;
+      margin: var(--space-16) auto;
+      padding: 0 var(--space-6);
+    }
+    .qa header {
+      padding-bottom: var(--space-8);
+      border-bottom: 1px solid var(--paper-deep);
+    }
+    .qa-label {
+      font-family: var(--font-body);
+      font-size: var(--step--1);
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: var(--space-4);
+    }
+    .qa-meta {
+      color: var(--ink-soft);
+      font-size: var(--step--1);
+    }
+    .qa section {
+      margin-top: var(--space-12);
+    }
+    .trigger {
+      font-family: var(--font-body);
+      font-size: var(--step--1);
+      letter-spacing: 0.04em;
+      background: transparent;
+      border: 1px solid var(--paper-deep);
+      color: var(--ink);
+      padding: var(--space-2) var(--space-4);
+      cursor: pointer;
+      margin-bottom: var(--space-6);
+    }
+    .trigger:hover,
+    .trigger:focus-visible {
+      border-color: var(--ink);
+    }
+
+    .reveal-group > div {
+      margin-bottom: var(--space-4);
+    }
+
+    .rows {
+      list-style: none;
+      padding: 0;
+    }
+    .rows li {
+      display: grid;
+      grid-template-columns: 4ch 1fr;
+      gap: var(--space-4);
+      align-items: baseline;
+      padding: var(--space-3) var(--space-4);
+      font-family: var(--font-display);
+      font-size: var(--step-2);
+    }
+    .rows [data-row-numeral] {
+      color: var(--library-green);
+      font-style: italic;
+      font-weight: 300;
+      display: inline-block;
+    }
+
+    .desat-demo {
+      width: 240px;
+      height: 160px;
+      background: linear-gradient(
+        135deg,
+        oklch(0.55 0.06 140),
+        oklch(0.7 0.04 60)
+      );
+      display: grid;
+      place-items: center;
+      color: var(--paper);
+      font-family: var(--font-body);
+      font-size: var(--step--1);
+      letter-spacing: 0.04em;
+    }
+
+    form label {
+      display: block;
+      margin-bottom: var(--space-3);
+      font-family: var(--font-body);
+      font-size: var(--step--1);
+      color: var(--ink-soft);
+    }
+    form input {
+      display: block;
+      width: 100%;
+      max-width: 24rem;
+      padding: var(--space-2);
+      margin-top: var(--space-1);
+      font-family: var(--font-body);
+      font-size: var(--step-0);
+      border: none;
+      border-bottom: 1px solid var(--paper-deep);
+      background: transparent;
+    }
+    form input:focus-visible {
+      outline: none;
+      border-bottom-color: var(--ink);
+    }
+    [data-form-success] {
+      opacity: 0;
+    }
+  </style>
+</Base>
