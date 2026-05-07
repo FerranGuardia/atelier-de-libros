@@ -12,3 +12,7 @@
 
 **Lock criteria:** Mireia signs off all three.
 **On arrival:** replace markers `<!-- M04 LOREM -->`, `<!-- M04-portrait PENDING -->`, `<!-- M04-signature PENDING -->`. Verify drop-cap renders correctly with the new opening sentence.
+
+---
+
+**Spelling doctrine:** see [`../spelling-doctrine.md`](../spelling-doctrine.md). La Nota es texto de mayor riesgo ortotipográfico: **U-1** (comillas curvas), **U-2** (em-dash), **U-3** (`…`), **ES-2** (`«…»` para cualquier cita), **ES-3** (`solo`), **ES-5** (diálogo con em-dash sin espacio interior), **ES-6** (mayúsculas con tilde si aparecen). La firma manuscrita queda fuera de doctrina (es trazo, no carácter).

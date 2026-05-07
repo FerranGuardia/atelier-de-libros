@@ -118,6 +118,23 @@ Apply `.drop-cap` to the first paragraph. First letter renders in Cormorant 300,
 
 `src/pages/dev/type.astro` — full scale + every rule. The `dev/` (no underscore) routing is deliberate: underscore-prefix would hide the page in dev too, defeating QA. Delete the whole `src/pages/dev/` directory before T40 deploy.
 
+## Typographic punctuation
+
+Universal rules every text-emitting agent follows. Full per-language doctrine in [`spelling-doctrine.md`](spelling-doctrine.md).
+
+| Rule | Glyph | Replaces |
+|---|---|---|
+| Curly quotes only | `’ ‘ ’ « » “ ”` | `"`, `'` |
+| Em-dash | `—` (U+2014) | `--` |
+| En-dash | `–` (U+2013) | hyphen for ranges |
+| Ellipsis | `…` (U+2026) | three dots `...` |
+| Apostrophe | `’` (U+2019) | `'` |
+| Non-breaking space | ` ` / `&nbsp;` | regular space between number+unit, digit+currency, display widows |
+
+**Sentence case** for headings in every locale. **No ALL CAPS** for emphasis (uppercase is reserved for the wordmark and typographic detail). **No emoji** anywhere in site copy.
+
+Refusals to write incorrect copy must cite a rule code (`ES-3`, `FR-NBSP`, `IT-ACUTE-GRAVE`).
+
 ## Motion
 
 <!-- T05 will append motion tokens (one easing curve, base duration 700ms, micro-interaction 300ms, no bounce). -->

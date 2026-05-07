@@ -7,3 +7,7 @@
 **Review surface:** Mireia revisa sobre la web, no sobre markdown. T18 pega el cuerpo actual de `M01-drafts.md` directamente en la sección (sin placeholder), con `<!-- M01 DRAFT -->` adyacente hasta que firme.
 **Lock criteria:** Mireia signs off (en directo, sobre la página renderizada).
 **On sign-off:** retirar el marcador `<!-- M01 DRAFT -->`. Verify line count + measure against the design (60ch column).
+
+---
+
+**Spelling doctrine:** see [`../spelling-doctrine.md`](../spelling-doctrine.md). Especially relevant for ES manifesto copy: **U-1** (curly quotes), **U-2** (em-dash, never `--`), **U-3** (`…`, single char), **U-7** (sentence case for headings), **ES-1** (`¿…?`, `¡…!`), **ES-2** (`«…»` for any quoted phrase, not `“…”`), **ES-3** (`solo`, no accent), **ES-5** (em-dash dialogue spacing).

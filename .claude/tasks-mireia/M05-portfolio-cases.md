@@ -21,3 +21,7 @@ See `.claude/image-prompts/T09-photography.md` (drafted in T09). Mireia or her p
 
 **Lock criteria:** Mireia signs off each case individually. Cases roll out as they're ready.
 **On arrival:** delete the corresponding `_lorem-N.mdx` and its `_lorem-N/` image folder; replace `<!-- M05 LOREM -->` markers in `src/pages/index.astro` (PortfolioTeaser) by linking to the new real case.
+
+---
+
+**Spelling doctrine:** see [`../spelling-doctrine.md`](../spelling-doctrine.md). Cada caso lleva título, localización, año y cuerpo. Relevantes: **U-1**, **U-2**, **ES-2** (`«…»` para citas del cliente o pull-quotes), **ES-7** (cifras: thin space miles), **ES-9** (fechas largas: `primavera de 2026`, `12 de mayo de 2026`).

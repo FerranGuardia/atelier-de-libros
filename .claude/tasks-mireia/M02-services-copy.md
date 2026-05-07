@@ -16,3 +16,7 @@
 
 **Lock criteria:** Mireia signs off each chapter.
 **On arrival:** replace lorem blocks marked `<!-- M02-1 LOREM -->` through `<!-- M02-4 LOREM -->`. Verify each fits the printed-index aesthetic (no marketing tone, no bullet lists).
+
+---
+
+**Spelling doctrine:** see [`../spelling-doctrine.md`](../spelling-doctrine.md). Relevant: **U-1**, **U-2**, **U-3**, **U-7**, **ES-2** (`«…»`), **ES-3** (`solo` sin acento), **ES-9** (formato de fechas largas si aparecen). Cuatro chapters comparten registro — cuidar la consistencia tonal entre los cuatro.

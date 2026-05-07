@@ -8,3 +8,7 @@
 
 **Lock criteria:** Mireia signs off.
 **On arrival:** replace lorem block marked `<!-- M03 LOREM -->`. Confirm /publishers `noindex` decision.
+
+---
+
+**Spelling doctrine:** see [`../spelling-doctrine.md`](../spelling-doctrine.md). Relevant: **U-1**, **U-2**, **ES-2** (`«…»` para el pull-quote), **ES-7** (separador decimal coma — si se incluyen cifras), **ES-8** (`12,50 €`).
