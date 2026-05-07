@@ -120,8 +120,15 @@ const { locale } = Astro.props
     min-height: 100dvh;
     display: grid;
     align-items: center;
-    padding-block: var(--space-16);
+    /* Top padding compensates for the sticky header so the optical
+     * centre of the hero matches the spec, not the viewport raw. */
+    padding-block: calc(var(--space-16) + 72px) var(--space-16);
     contain: layout paint;
+  }
+  @media (max-width: 47.99rem) {
+    .hero {
+      padding-block: calc(var(--space-12) + 56px) var(--space-12);
+    }
   }
 
   .hero > .container {

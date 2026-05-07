@@ -27,7 +27,7 @@ Each task .md addresses one focused concern. Heavy surfaces (hero, home, portfol
 - ☑ **T13** — Hero image direction + ChatGPT prompt + placeholder · `impeccable`
 - ☑ **T14** — Hero motion choreography · `impeccable`
 - ☑ **T15** — Hero build (assembles T12 + T13 + T14) · `frontend-design`
-- ☐ **T16** — Hero audit pass · `impeccable`
+- ☑ **T16** — Hero audit pass · `impeccable`
 
 ## Phase 2 — Home assembly (exploded)
 
