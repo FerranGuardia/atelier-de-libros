@@ -6,7 +6,7 @@ Each task .md addresses one focused concern. Heavy surfaces (hero, home, portfol
 
 ## Phase 0 — Doctrines (the rules of the game)
 
-- ☐ **T01** — Visual language doc · `impeccable`
+- ☑ **T01** — Visual language doc · `impeccable`
 - ☐ **T02** — Astro project init + base config · `frontend-design`
 - ☐ **T03** — Design tokens (colors, spacing scale) · `frontend-design` + `impeccable`
 - ☐ **T04** — Typography pipeline · `frontend-design` + `impeccable`
