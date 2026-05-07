@@ -32,7 +32,7 @@ Each task .md addresses one focused concern. Heavy surfaces (hero, home, portfol
 ## Phase 2 — Home assembly (exploded)
 
 - ☑ **T17** — Home composition map (sections, order, rhythm, transition cues) · `impeccable`
-- ☐ **T18** — Manifesto section · `frontend-design`
+- ☑ **T18** — Manifesto section · `frontend-design`
 - ☐ **T19** — Services teaser section · `frontend-design`
 - ☐ **T20** — Portfolio teaser + photo direction · `frontend-design` + `impeccable`
 - ☐ **T21** — Epilogue CTA section · `frontend-design`

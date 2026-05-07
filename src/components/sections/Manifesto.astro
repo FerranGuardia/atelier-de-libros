@@ -1,0 +1,98 @@
+---
+/* T18 — Manifesto. Per .claude/specs/T17-home-map.md and the M01 draft
+ * doctrine (CLAUDE.md after commit c75995b): the 4 axiomas from
+ * tasks-mireia/M01-drafts.md live on the page with <!-- M01 DRAFT -->
+ * adjacent until Mireia signs off on the rendered version.
+ *
+ * Italic Cormorant runs as body type ONLY here — deliberate exception. */
+
+import { t } from '../../i18n/t'
+import type { Locale } from '../../i18n/config'
+
+interface Props {
+  locale: Locale
+}
+
+const { locale } = Astro.props
+
+const axioms = [
+  t('home.manifesto.axiom_1', locale),
+  t('home.manifesto.axiom_2', locale),
+  t('home.manifesto.axiom_3', locale),
+  t('home.manifesto.axiom_4', locale)
+]
+---
+
+<!-- M01 DRAFT — Mireia revisa sobre la página. Source: tasks-mireia/M01-drafts.md -->
+<section
+  id="manifiesto"
+  class="manifesto"
+  aria-labelledby="manifesto-title"
+  data-motion="m-rise"
+>
+  <h2 id="manifesto-title" class="sr-only">{t('home.manifesto.eyebrow', locale)}</h2>
+  <hr class="ribbon" aria-hidden="true" />
+  <div class="column">
+    {axioms.map((line) => <p>{line}</p>)}
+  </div>
+</section>
+<!-- /M01 DRAFT -->
+
+<style>
+  .manifesto {
+    margin-top: var(--space-32);
+    margin-bottom: var(--space-24);
+    padding-inline: var(--container-pad);
+  }
+  @media (max-width: 47.99rem) {
+    .manifesto {
+      margin-top: var(--space-24);
+      margin-bottom: var(--space-16);
+    }
+  }
+
+  .ribbon {
+    width: 80px;
+    height: 1px;
+    background: var(--library-green);
+    border: none;
+    /* Off-centre toward the left — slight asymmetric pulse. */
+    margin: 0 0 var(--space-8);
+    margin-left: max(0px, calc((100% - 60ch) / 2 - 80px));
+  }
+  @media (max-width: 47.99rem) {
+    .ribbon {
+      margin-left: 0;
+    }
+  }
+
+  .column {
+    max-width: 60ch;
+    margin-inline: auto;
+    /* Italic Cormorant as body — the deliberate exception. */
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: var(--step-2);
+    line-height: 1.4;
+    letter-spacing: 0.005em;
+    color: var(--ink);
+  }
+
+  @media (max-width: 63.99rem) {
+    .column {
+      max-width: 56ch;
+      font-size: var(--step-1);
+    }
+  }
+  @media (max-width: 47.99rem) {
+    .column {
+      max-width: none;
+      font-size: var(--step-1);
+    }
+  }
+
+  .column p + p {
+    margin-top: var(--space-3);
+  }
+</style>
