@@ -35,7 +35,7 @@ Each task .md addresses one focused concern. Heavy surfaces (hero, home, portfol
 - ☑ **T18** — Manifesto section · `frontend-design`
 - ☑ **T19** — Services teaser section · `frontend-design`
 - ☑ **T20** — Portfolio teaser + photo direction · `frontend-design` + `impeccable`
-- ☐ **T21** — Epilogue CTA section · `frontend-design`
+- ☑ **T21** — Epilogue CTA section · `frontend-design`
 - ☐ **T22** — Home assembly + flow audit · `frontend-design` + `impeccable`
 
 ## Phase 3 — Inner pages
