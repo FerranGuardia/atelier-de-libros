@@ -1,0 +1,151 @@
+/* T06 — Grid + container utilities. Doctrine: .claude/grid-whitespace.md.
+ *
+ *   --col-count       12 (desktop) / 8 (tablet) / 4 (mobile)
+ *   --gutter          gutter, breakpoint-dependent
+ *   --container-pad   outer padding
+ *   --container-max   1440px desktop cap
+ *
+ * Page-task usage:
+ *   <div class="container grid">
+ *     <h2 class="col-2-7">…</h2>
+ *     <p class="col-2-5">…</p>
+ *   </div>
+ */
+
+:root {
+  --container-max: 1440px;
+  --col-count: 4;
+  --gutter: var(--space-3); /* 12px */
+  --container-pad: var(--space-8); /* 32px */
+}
+
+@media (min-width: 48rem) {
+  :root {
+    --col-count: 8;
+    --gutter: var(--space-4); /* 16px */
+    --container-pad: var(--space-12); /* 48px */
+  }
+}
+
+@media (min-width: 64rem) {
+  :root {
+    --col-count: 12;
+    --gutter: var(--space-6); /* 24px */
+    --container-pad: var(--space-16); /* 64px */
+  }
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+.container.bleed {
+  max-width: none;
+  padding-inline: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(var(--col-count), 1fr);
+  gap: var(--gutter);
+}
+
+/* Column-span utilities. Authored only for spans the design uses; new
+ * spans are added here when a component declares one. The naming is
+ * `.col-<start>-<end>` (1-indexed inclusive end). */
+
+@media (min-width: 64rem) {
+  .col-2-7 {
+    grid-column: 2 / 8;
+  }
+  .col-2-5 {
+    grid-column: 2 / 6;
+  }
+  .col-3-9 {
+    grid-column: 3 / 10;
+  }
+  .col-4-9 {
+    grid-column: 4 / 10;
+  }
+  .col-5-12 {
+    grid-column: 5 / 13;
+  }
+  .col-6-12 {
+    grid-column: 6 / 13;
+  }
+  .col-9-11 {
+    grid-column: 9 / 12;
+  }
+  .col-9-12 {
+    grid-column: 9 / 13;
+  }
+  .col-1-12 {
+    grid-column: 1 / 13;
+  }
+}
+
+@media (min-width: 48rem) and (max-width: 63.99rem) {
+  /* Tablet: most asymmetric columns reflow within 8 cols. */
+  .col-2-7,
+  .col-2-5,
+  .col-3-9,
+  .col-4-9 {
+    grid-column: 1 / 7;
+  }
+  .col-5-12,
+  .col-6-12 {
+    grid-column: 3 / 9;
+  }
+  .col-9-11,
+  .col-9-12 {
+    grid-column: 5 / 9;
+  }
+  .col-1-12 {
+    grid-column: 1 / 9;
+  }
+}
+
+@media (max-width: 47.99rem) {
+  /* Mobile: stack, don't shrink. Every span becomes full width. */
+  .col-2-7,
+  .col-2-5,
+  .col-3-9,
+  .col-4-9,
+  .col-5-12,
+  .col-6-12,
+  .col-9-11,
+  .col-9-12,
+  .col-1-12 {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Vertical rhythm helpers. Section gap is the largest beat the page
+ * has. Block gap is for sub-blocks within a section. */
+
+.section {
+  margin-block: var(--space-16);
+}
+.section + .section {
+  margin-block-start: var(--space-24);
+}
+@media (min-width: 64rem) {
+  .section {
+    margin-block: var(--space-24);
+  }
+  .section + .section {
+    margin-block-start: var(--space-32);
+  }
+}
+
+.block + .block {
+  margin-block-start: var(--space-12);
+}
+@media (min-width: 64rem) {
+  .block + .block {
+    margin-block-start: var(--space-16);
+  }
+}

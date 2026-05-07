@@ -1,0 +1,124 @@
+---
+/* dev/grid.astro — column overlay across breakpoints. Resize the
+ * window; the overlay reflows from 4 → 8 → 12 columns automatically
+ * via the same breakpoints used in src/styles/grid.css. Delete
+ * src/pages/dev/ before T40 deploy. */
+
+import Base from '../../layouts/Base.astro'
+---
+
+<Base title="Grid QA · Atelier de Libros">
+  <main class="qa">
+    <header>
+      <p class="qa-label">T06 · grid + whitespace</p>
+      <p class="qa-meta">
+        4 cols (mobile) · 8 cols (tablet) · 12 cols (desktop). Max 1440px.
+      </p>
+    </header>
+
+    <section class="container">
+      <p class="qa-label">Grid overlay (.container .grid)</p>
+      <div class="grid overlay">
+        {Array.from({ length: 12 }).map((_, i) => <span>{i + 1}</span>)}
+      </div>
+    </section>
+
+    <section class="container">
+      <p class="qa-label">Sample placements</p>
+      <div class="grid sample">
+        <h2 class="t-page-title col-2-7">Cols 2–7 — page title</h2>
+        <p class="col-2-5 measure-body">
+          Cols 2–5. El cuerpo del texto se asienta una columna a la izquierda
+          del título, no debajo, no centrado — la asimetría es la voz.
+        </p>
+        <aside class="col-9-11 t-caption">
+          Cols 9–11.<br />Caption desplazado a la derecha, fuera del eje
+          principal de lectura.
+        </aside>
+      </div>
+    </section>
+
+    <section class="container">
+      <p class="qa-label">Vertical rhythm</p>
+      <div class="rhythm-demo">
+        <div class="section block-stub">section · gap superior</div>
+        <div class="section block-stub">section</div>
+        <div class="block block-stub">block dentro de section</div>
+        <div class="block block-stub">block</div>
+      </div>
+    </section>
+  </main>
+
+  <style>
+    .qa {
+      margin: var(--space-16) 0;
+    }
+    .qa header {
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding: 0 var(--container-pad) var(--space-8);
+      border-bottom: 1px solid var(--paper-deep);
+    }
+    .qa-label {
+      font-family: var(--font-body);
+      font-size: var(--step--1);
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: var(--space-4);
+    }
+    .qa-meta {
+      color: var(--ink-soft);
+      font-size: var(--step--1);
+    }
+    section.container {
+      margin-top: var(--space-16);
+    }
+
+    .overlay span {
+      display: grid;
+      place-items: center;
+      height: 4rem;
+      background: var(--library-green-soft);
+      color: var(--library-green);
+      font-family: var(--font-body);
+      font-size: var(--step--1);
+      letter-spacing: 0.04em;
+    }
+    .overlay span:nth-child(n + 9) {
+      display: none;
+    }
+    @media (min-width: 48rem) {
+      .overlay span:nth-child(n + 9) {
+        display: grid;
+      }
+      .overlay span:nth-child(n + 13) {
+        display: none;
+      }
+    }
+    @media (min-width: 64rem) {
+      .overlay span:nth-child(n + 13) {
+        display: grid;
+      }
+    }
+
+    .sample > * {
+      padding-block: var(--space-3);
+      border-top: 1px dashed var(--paper-deep);
+    }
+
+    .rhythm-demo {
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-inline: var(--container-pad);
+    }
+    .block-stub {
+      background: var(--paper-deep);
+      padding: var(--space-4);
+      font-family: var(--font-body);
+      font-size: var(--step--1);
+      color: var(--ink-soft);
+    }
+  </style>
+</Base>

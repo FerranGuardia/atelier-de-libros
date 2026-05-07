@@ -135,6 +135,36 @@ Universal rules every text-emitting agent follows. Full per-language doctrine in
 
 Refusals to write incorrect copy must cite a rule code (`ES-3`, `FR-NBSP`, `IT-ACUTE-GRAVE`).
 
+## Grid & whitespace
+
+Source: `src/styles/grid.css`. Doctrine: [`grid-whitespace.md`](grid-whitespace.md). Composition tasks cite span classes (`.col-2-7`); they do not author raw `grid-column` values in components.
+
+### Breakpoints
+
+| Name | Range | Cols | Gutter | Outer padding |
+|---|---|---|---|---|
+| Mobile | < 768px | 4 | `--space-3` | `--space-8` |
+| Tablet | 768–1023px | 8 | `--space-4` | `--space-12` |
+| Desktop | ≥ 1024px | 12 | `--space-6` | `--space-16` |
+
+Container max-width: **1440px**.
+
+### Spans authored
+
+`.col-1-12 · .col-2-7 · .col-2-5 · .col-3-9 · .col-4-9 · .col-5-12 · .col-6-12 · .col-9-11 · .col-9-12`. Mobile collapses every span to single-column; tablet reflows to the 8-col grid; desktop honours the listed range.
+
+### Hard rules
+
+1. **At least one block per viewport sits off-axis.** Centred blocks are reserved for page titles, manifesto reading, the epilogue CTA.
+2. **Section gap ≥ `--space-24` desktop / `--space-16` mobile.** Helpers: `.section`, `.section + .section`, `.block + .block`.
+3. **≥ 35% of any above-fold viewport must be empty paper.** Hero strictest at ≥ 60%.
+4. **No element touches the viewport edge** except intentional full-bleed images.
+5. **Type lives on the grid, always.** Only photographs and the green-soft atmospheric wash are allowed off-grid.
+
+### Dev QA
+
+`src/pages/dev/grid.astro` — column overlay + sample placements + rhythm demo. Delete `src/pages/dev/` before T40 deploy.
+
 ## Motion
 
 Source: `src/styles/motion.css`. Doctrine: [`motion-catalog.md`](motion-catalog.md). Build tasks reference catalog names only — no inline durations, no inline curves.
