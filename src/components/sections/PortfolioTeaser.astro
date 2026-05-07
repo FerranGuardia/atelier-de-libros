@@ -1,0 +1,242 @@
+---
+/* T20 — Portfolio teaser. 3 historias in an asymmetric grid. The first
+ * case takes the full bleed at desktop (the visual heart of the home);
+ * cases 2 and 3 sit beneath in a 50/50 row. Tablet: top image becomes a
+ * 70%-wide hero, then 50/50. Mobile: every case stacks full-width 16:9.
+ *
+ * Each case is an <article> linking to /historias/{slug}. Photographs
+ * use <PendingImage> until the photographer brief T20-portfolio-direction
+ * has been delivered. */
+
+import PendingImage from '../PendingImage.astro'
+import { t } from '../../i18n/t'
+import { localizePath } from '../../i18n/locale'
+import type { Locale } from '../../i18n/config'
+
+interface Props {
+  locale: Locale
+}
+
+const { locale } = Astro.props
+
+const cases = [
+  { id: 'lorem_1', slug: '_lorem-1', emphasis: 'lead' as const },
+  { id: 'lorem_2', slug: '_lorem-2', emphasis: 'half' as const },
+  { id: 'lorem_3', slug: '_lorem-3', emphasis: 'half' as const }
+]
+---
+
+<section
+  id="historias"
+  class="portfolio-teaser"
+  aria-labelledby="portfolio-teaser-title"
+  data-motion="m-rise"
+>
+  <header class="container">
+    <p class="eyebrow t-caption">{t('home.portfolio_teaser.eyebrow', locale)}</p>
+    <h2 id="portfolio-teaser-title" class="t-section-title">
+      {t('home.portfolio_teaser.title', locale)}
+    </h2>
+    <p class="lead measure-body">
+      {t('home.portfolio_teaser.lead', locale)}
+    </p>
+  </header>
+
+  <ul class="cases">
+    {
+      cases.map(({ id, slug, emphasis }) => {
+        const eyebrow = t(`historias.cases.${id}.eyebrow` as any, locale)
+        const title = t(`historias.cases.${id}.title` as any, locale)
+        const location = t(`historias.cases.${id}.location` as any, locale)
+        const excerpt = t(`historias.cases.${id}.excerpt` as any, locale)
+        return (
+          <li class:list={[`case-${emphasis}`]}>
+            <article>
+              <a class="image-wrap" href={localizePath(`/historias/${slug}`, locale)}>
+                <PendingImage
+                  prompt="T20-portfolio-direction"
+                  aspect="16/9"
+                  label={title}
+                  hint={location}
+                  ariaLabel={`${title} — ${location}`}
+                />
+              </a>
+              <a class="caption" href={localizePath(`/historias/${slug}`, locale)}>
+                <p class="case-eyebrow t-caption">{eyebrow}</p>
+                <h3 class="case-title">{title}</h3>
+                <p class="case-location t-caption">{location}</p>
+                <p class="case-excerpt measure-body">{excerpt}</p>
+                <span class="read-more" data-motion="m-underline-roll">
+                  {t('cta.read_more', locale)}
+                </span>
+              </a>
+              <!-- M05 LOREM — tasks-mireia/M05 -->
+            </article>
+          </li>
+        )
+      })
+    }
+  </ul>
+
+  <div class="container cta-row">
+    <a
+      class="cta"
+      href={localizePath('/historias', locale)}
+      data-motion="m-underline-roll"
+    >
+      {t('home.portfolio_teaser.cta', locale)}
+    </a>
+  </div>
+</section>
+
+<style>
+  .portfolio-teaser {
+    margin-top: var(--space-32);
+    margin-bottom: var(--space-24);
+  }
+  @media (max-width: 47.99rem) {
+    .portfolio-teaser {
+      margin-top: var(--space-24);
+      margin-bottom: var(--space-16);
+    }
+  }
+
+  header {
+    margin-bottom: var(--space-12);
+  }
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-whisper);
+    margin-bottom: var(--space-4);
+  }
+  .lead {
+    color: var(--ink-soft);
+    margin-top: var(--space-3);
+    max-width: 56ch;
+  }
+
+  .cases {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: var(--space-16);
+  }
+
+  /* Mobile: stack all cases. Each is full-width within outer padding. */
+  .cases li {
+    padding-inline: var(--container-pad);
+  }
+
+  /* Tablet: lead case takes ≈ 70% width centred; the two halves split. */
+  @media (min-width: 48rem) {
+    .cases {
+      gap: var(--space-12);
+    }
+    .case-lead {
+      padding-inline: var(--container-pad);
+    }
+    .case-lead article > .image-wrap {
+      max-width: 72%;
+      margin-inline: auto;
+    }
+    .cases:has(.case-half + .case-half) {
+      /* The two halves form a row beneath the lead. */
+    }
+  }
+
+  /* Desktop: lead is full-bleed (no container padding); halves are
+   * 50/50 inside the container. */
+  @media (min-width: 64rem) {
+    .cases {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-16) var(--space-12);
+    }
+    .case-lead {
+      grid-column: 1 / -1;
+      padding-inline: 0;
+    }
+    .case-lead article > .image-wrap {
+      max-width: none;
+    }
+    .case-half:nth-of-type(2) {
+      grid-column: 1 / 2;
+      padding-inline: 0 var(--container-pad);
+      padding-left: var(--container-pad);
+    }
+    .case-half:nth-of-type(3) {
+      grid-column: 2 / 3;
+      padding-right: var(--container-pad);
+    }
+  }
+
+  .image-wrap {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+  .image-wrap [data-motion='m-image-desat'],
+  .image-wrap > * {
+    transition: filter var(--dur-fast) var(--ease);
+  }
+  .image-wrap:hover {
+    filter: saturate(1.04);
+  }
+
+  .caption {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    margin-top: var(--space-4);
+  }
+  .case-eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-whisper);
+  }
+  .case-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--step-2);
+    letter-spacing: 0.01em;
+    line-height: 1.15;
+    margin-top: var(--space-2);
+    color: var(--ink);
+  }
+  .case-location {
+    color: var(--ink-soft);
+    margin-top: var(--space-1);
+  }
+  .case-excerpt {
+    color: var(--ink-soft);
+    margin-top: var(--space-4);
+    line-height: 1.55;
+  }
+  .read-more {
+    display: inline-block;
+    margin-top: var(--space-4);
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+
+  .cta-row {
+    margin-top: var(--space-16);
+    text-align: center;
+  }
+  .cta {
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--library-green);
+    padding-bottom: 4px;
+  }
+</style>
