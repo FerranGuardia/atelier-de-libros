@@ -1,0 +1,16 @@
+---
+import Base from '../../layouts/Base.astro'
+import HistoriasIndex from '../../components/pages/HistoriasIndex.astro'
+import { t } from '../../i18n/t'
+
+const locale = 'es' as const
+---
+
+<Base
+  locale={locale}
+  pathname="/historias"
+  title={t('meta.historias.title', locale)}
+  description={t('meta.historias.description', locale)}
+>
+  <HistoriasIndex locale={locale} />
+</Base>

@@ -1,0 +1,163 @@
+---
+/* T25 — Historias index. List of cases, asymmetric grid. M05 lorem cases
+ * shown today; real cases land via the M05 backlog. */
+
+import PendingImage from '../PendingImage.astro'
+import { t } from '../../i18n/t'
+import { localizePath } from '../../i18n/locale'
+import type { Locale } from '../../i18n/config'
+
+interface Props {
+  locale: Locale
+}
+const { locale } = Astro.props
+
+const cases = [
+  { id: 'lorem_1', slug: '_lorem-1' },
+  { id: 'lorem_2', slug: '_lorem-2' },
+  { id: 'lorem_3', slug: '_lorem-3' }
+] as const
+---
+
+<article class="historias-index" data-motion="m-rise">
+  <header class="container intro">
+    <h1 class="t-page-title">{t('historias.page_title', locale)}</h1>
+    <p class="lead t-lead measure-body">{t('historias.intro', locale)}</p>
+  </header>
+
+  <ul class="cases container">
+    {
+      cases.map(({ id, slug }, i) => {
+        const eyebrow = t(`historias.cases.${id}.eyebrow` as any, locale)
+        const title = t(`historias.cases.${id}.title` as any, locale)
+        const location = t(`historias.cases.${id}.location` as any, locale)
+        const excerpt = t(`historias.cases.${id}.excerpt` as any, locale)
+        const orientation = i % 2 === 0 ? 'left' : 'right'
+        return (
+          <li class={`case is-${orientation}`} data-motion="m-rise">
+            <article>
+              <a class="image-wrap" href={localizePath(`/historias/${slug}`, locale)}>
+                <PendingImage
+                  prompt="T20-portfolio-direction"
+                  aspect="4/5"
+                  label={title}
+                  hint={location}
+                  ariaLabel={`${title} — ${location}`}
+                />
+              </a>
+              <a class="caption" href={localizePath(`/historias/${slug}`, locale)}>
+                <p class="case-eyebrow t-caption">{eyebrow}</p>
+                <h2 class="case-title">{title}</h2>
+                <p class="case-location t-caption">{location}</p>
+                <p class="case-excerpt measure-body">{excerpt}</p>
+                <span class="read-more" data-motion="m-underline-roll">
+                  {t('cta.read_more', locale)}
+                </span>
+              </a>
+            </article>
+            <!-- M05 LOREM -->
+          </li>
+        )
+      })
+    }
+  </ul>
+</article>
+
+<style>
+  .historias-index {
+    margin-top: var(--space-24);
+    margin-bottom: var(--space-32);
+  }
+  .intro {
+    margin-bottom: var(--space-24);
+  }
+  .intro h1 {
+    margin-bottom: var(--space-6);
+  }
+  .lead {
+    color: var(--ink-soft);
+    max-width: 56ch;
+  }
+
+  .cases {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: var(--space-32);
+  }
+
+  .case article {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  @media (min-width: 64rem) {
+    .case article {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-12);
+      align-items: center;
+    }
+    .case.is-left article > .image-wrap {
+      grid-column: 1;
+      grid-row: 1;
+    }
+    .case.is-left article > .caption {
+      grid-column: 2;
+      grid-row: 1;
+    }
+    .case.is-right article > .image-wrap {
+      grid-column: 2;
+      grid-row: 1;
+    }
+    .case.is-right article > .caption {
+      grid-column: 1;
+      grid-row: 1;
+    }
+  }
+
+  .image-wrap {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .caption {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+  .case-eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-whisper);
+    margin-bottom: var(--space-2);
+  }
+  .case-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--step-3);
+    letter-spacing: 0.01em;
+    line-height: 1.15;
+    color: var(--ink);
+  }
+  .case-location {
+    color: var(--ink-soft);
+    margin-top: var(--space-2);
+  }
+  .case-excerpt {
+    color: var(--ink);
+    margin-top: var(--space-6);
+    line-height: 1.6;
+  }
+  .read-more {
+    display: inline-block;
+    margin-top: var(--space-6);
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+</style>
