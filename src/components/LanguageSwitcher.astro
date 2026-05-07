@@ -1,0 +1,76 @@
+---
+/* T04b — Language switcher. Unstyled-ish: minimal CSS, accessible; the
+ * styled visual integration lands in T09 (navigation). Renders the 5
+ * locales in switcherOrder. Current locale marked aria-current. Others
+ * link to the equivalent path in their locale. */
+
+import { switcherOrder, localeLabels, type Locale } from '../i18n/config'
+import { localizePath } from '../i18n/locale'
+import { t } from '../i18n/t'
+
+interface Props {
+  current: Locale
+  pathname: string
+}
+
+const { current, pathname } = Astro.props
+---
+
+<nav class="lang-switcher" aria-label={t('aria.language_switcher', current)}>
+  <ul>
+    {
+      switcherOrder.map((code) => {
+        const isCurrent = code === current
+        const href = localizePath(pathname, code)
+        return (
+          <li>
+            {isCurrent ? (
+              <span aria-current="true" lang={code}>
+                {localeLabels[code]}
+              </span>
+            ) : (
+              <a href={href} hreflang={code} lang={code}>
+                {localeLabels[code]}
+              </a>
+            )}
+          </li>
+        )
+      })
+    }
+  </ul>
+</nav>
+
+<style>
+  .lang-switcher ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  .lang-switcher li {
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  .lang-switcher a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: color var(--dur-fast, 300ms) var(--ease, ease-out);
+  }
+
+  .lang-switcher a:hover,
+  .lang-switcher a:focus-visible {
+    color: var(--ink);
+  }
+
+  .lang-switcher [aria-current='true'] {
+    color: var(--ink);
+    border-bottom: 1px solid var(--library-green);
+    padding-bottom: 1px;
+  }
+</style>

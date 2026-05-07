@@ -9,6 +9,14 @@ export default defineConfig({
   prefetch: {
     defaultStrategy: 'viewport'
   },
+  i18n: {
+    defaultLocale: 'es',
+    locales: ['es', 'ca', 'fr', 'en', 'it'],
+    routing: {
+      prefixDefaultLocale: false,
+      redirectToDefaultLocale: false
+    }
+  },
   image: {
     service: sharpImageService()
   },

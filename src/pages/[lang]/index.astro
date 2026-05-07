@@ -1,0 +1,33 @@
+---
+/* Localized home routes: /ca/, /fr/, /en/, /it/. Default ES is at root.
+ * The page body is intentionally a thin smoke-test mirror until T15-T22
+ * land the real composition (which will live in a shared component
+ * imported here and from /src/pages/index.astro). */
+
+import Base from '../../layouts/Base.astro'
+import { locales, defaultLocale, type Locale } from '../../i18n/config'
+import { t } from '../../i18n/t'
+
+export function getStaticPaths() {
+  return locales
+    .filter((code) => code !== defaultLocale)
+    .map((code) => ({ params: { lang: code } }))
+}
+
+const lang = Astro.params.lang as Locale
+---
+
+<Base locale={lang} pathname="/">
+  <main id="main">
+    <h1 class="t-hero">{t('home.hero.headline_part_1', lang)}</h1>
+    <p>i18n smoke: <code>nav.home → {t('nav.home', lang)}</code></p>
+  </main>
+
+  <style>
+    main {
+      max-width: 60ch;
+      margin: var(--space-24) auto;
+      padding: 0 var(--space-6);
+    }
+  </style>
+</Base>

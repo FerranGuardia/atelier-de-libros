@@ -1,0 +1,147 @@
+---
+/* dev/i18n.astro — locale coverage report. Visible only in dev work;
+ * delete the whole src/pages/dev/ folder before T40. */
+
+import Base from '../../layouts/Base.astro'
+import { switcherOrder, localeLabels } from '../../i18n/config'
+import { allKeys, localeCoverage, rawLookup } from '../../i18n/t'
+
+const keys = allKeys()
+const coverage = localeCoverage()
+---
+
+<Base title="i18n QA · Atelier de Libros">
+  <main class="qa">
+    <header>
+      <p class="qa-label">T04b · i18n pipeline</p>
+      <p class="qa-meta">Canónico: ES. {keys.length} keys totales.</p>
+    </header>
+
+    <section>
+      <p class="qa-label">Cobertura por locale</p>
+      <table class="coverage">
+        <thead>
+          <tr>
+            <th>Locale</th>
+            <th>Traducido</th>
+            <th>Pendiente</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            switcherOrder.map((code) => (
+              <tr>
+                <td>
+                  {localeLabels[code]} <code>{code}</code>
+                </td>
+                <td>{coverage[code].translated}</td>
+                <td>{coverage[code].pending}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <p class="qa-label">Tabla de keys</p>
+      <table class="keys">
+        <thead>
+          <tr>
+            <th>Key</th>
+            {switcherOrder.map((code) => <th>{code}</th>)}
+          </tr>
+        </thead>
+        <tbody>
+          {
+            keys.map((k) => (
+              <tr>
+                <td>
+                  <code>{k}</code>
+                </td>
+                {switcherOrder.map((code) => {
+                  const v = rawLookup(k, code)
+                  if (typeof v === 'string')
+                    return (
+                      <td title={v}>
+                        <span class="ok">{v.length > 60 ? v.slice(0, 57) + '…' : v}</span>
+                      </td>
+                    )
+                  return (
+                    <td>
+                      <span class="pending">∅</span>
+                    </td>
+                  )
+                })}
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <style>
+    .qa {
+      max-width: 96rem;
+      margin: var(--space-16) auto;
+      padding: 0 var(--space-6);
+    }
+    .qa header {
+      padding-bottom: var(--space-8);
+      border-bottom: 1px solid var(--paper-deep);
+    }
+    .qa-label {
+      font-family: var(--font-body);
+      font-size: var(--step--1);
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: var(--space-4);
+    }
+    .qa-meta {
+      color: var(--ink-soft);
+      font-size: var(--step--1);
+    }
+    .qa section {
+      margin-top: var(--space-12);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-body);
+      font-size: var(--step--1);
+    }
+    th,
+    td {
+      text-align: left;
+      padding: var(--space-2) var(--space-3);
+      border-bottom: 1px solid var(--paper-deep);
+      vertical-align: top;
+    }
+    th {
+      color: var(--ink-soft);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.86em;
+      color: var(--ink-soft);
+    }
+    .ok {
+      color: var(--ink);
+    }
+    .pending {
+      color: var(--ink-whisper);
+    }
+    .keys td {
+      max-width: 18ch;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  </style>
+</Base>
