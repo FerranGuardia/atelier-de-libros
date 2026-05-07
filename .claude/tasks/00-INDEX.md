@@ -9,7 +9,9 @@ Each task .md addresses one focused concern. Heavy surfaces (hero, home, portfol
 - ☑ **T01** — Visual language doc · `impeccable`
 - ☑ **T02** — Astro project init + base config · `frontend-design`
 - ☑ **T03** — Design tokens (colors, spacing scale) · `frontend-design` + `impeccable`
-- ☐ **T04** — Typography pipeline · `frontend-design` + `impeccable`
+- ◐ **T04** — Typography pipeline · `frontend-design` + `impeccable`
+- ☐ **T04b** — i18n pipeline (ES default · CA · FR · EN · IT) · `frontend-design` + `impeccable`
+- ☐ **T04c** — Multilingual spelling & typographic doctrine · `impeccable`
 - ☐ **T05** — Motion language · `impeccable` + `frontend-design`
 - ☐ **T06** — Grid & whitespace doctrine · `impeccable`
 - ☐ **T07** — Responsive doctrine · `impeccable`
@@ -75,7 +77,7 @@ Each task .md addresses one focused concern. Heavy surfaces (hero, home, portfol
 
 ## Critical path
 
-T01 → T02 → T03 → T04 → T05 → T06 → T07 → T08 → T09 → T10 → T11 → T12 → T13 → T14 → T15 → T16 → T17 → (T18–T21 in parallel) → T22 → (T23–T28 in parallel where dependencies clear) → T29 → T30 → T31 → (T32–T38 in audit order) → T39 → T40
+T01 → T02 → T03 → T04 → T04b → T04c → T05 → T06 → T07 → T08 → T09 → T10 → T11 → T12 → T13 → T14 → T15 → T16 → T17 → (T18–T21 in parallel) → T22 → (T23–T28 in parallel where dependencies clear) → T29 → T30 → T31 → (T32–T38 in audit order) → T39 → T40
 
 ## Task template axes
 
