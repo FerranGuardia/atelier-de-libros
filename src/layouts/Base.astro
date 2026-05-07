@@ -99,6 +99,35 @@ const canonical = site + localizePath(pathname, locale)
       <slot />
     </main>
     {!bare && <SiteFooter locale={locale} pathname={pathname} />}
+
+    <script>
+      /* T11 / T05 — single IntersectionObserver for entrance motions
+       * (m-rise, m-fade-in, m-mask-wipe, m-stroke-draw). Components
+       * declare data-motion only; this observer flips data-in-view at
+       * 25% visibility, once. The hero uses its own choreography
+       * controller (Hero.astro) and ignores this observer. */
+      function mountObserver() {
+        const targets = document.querySelectorAll<HTMLElement>(
+          '[data-motion="m-rise"]:not([data-hero] [data-motion]),' +
+            '[data-motion="m-fade-in"]:not([data-hero] [data-motion]),' +
+            '[data-motion="m-stroke-draw"]:not([data-hero] [data-motion])'
+        )
+        if (!targets.length) return
+        const io = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) {
+                entry.target.setAttribute('data-in-view', '')
+                io.unobserve(entry.target)
+              }
+            }
+          },
+          { threshold: 0.25 }
+        )
+        for (const el of targets) io.observe(el)
+      }
+      document.addEventListener('astro:page-load', mountObserver)
+    </script>
   </body>
 </html>
 

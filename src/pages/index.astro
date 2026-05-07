@@ -1,14 +1,22 @@
 ---
-/* ES home — root route. T15 puts the Hero in place; T17-T22 will fill
- * the rest of the home (manifesto, services teaser, portfolio teaser,
- * epilogue CTA). */
+/* T22 — Home assembly. ES root route. Sections in spec order:
+ * Hero → Manifesto → Services teaser → Portfolio teaser → Epilogue CTA.
+ * (Footer chrome is provided by Base.astro.) */
 
 import Base from '../layouts/Base.astro'
 import Hero from '../components/sections/Hero.astro'
+import Manifesto from '../components/sections/Manifesto.astro'
+import ServicesTeaser from '../components/sections/ServicesTeaser.astro'
+import PortfolioTeaser from '../components/sections/PortfolioTeaser.astro'
+import EpilogueCTA from '../components/sections/EpilogueCTA.astro'
 
 const locale = 'es' as const
 ---
 
 <Base locale={locale} pathname="/">
   <Hero locale={locale} />
+  <Manifesto locale={locale} />
+  <ServicesTeaser locale={locale} />
+  <PortfolioTeaser locale={locale} />
+  <EpilogueCTA locale={locale} />
 </Base>
