@@ -55,7 +55,68 @@
 
 ## Typography
 
-<!-- T04 will append typography tokens (display = Cormorant Garamond, body = Inter, scale, line-heights, measure). -->
+Source: `src/styles/typography.css`. Self-hosted WOFF2, Spanish subset (~86 KB total). No CDN.
+
+### Families
+
+- **Display:** Cormorant Garamond (300, 400; italic 300, 400).
+- **Body:** Inter (400, 500).
+
+### Modular scale (ratio 1.333)
+
+| Token | Value | Use |
+|---|---|---|
+| `--step--1` | 0.844rem | small caps, fine print |
+| `--step-0` | 1rem | body |
+| `--step-1` | 1.333rem | lead-in, sub-headlines |
+| `--step-2` | 1.777rem | section title small, pull-quote |
+| `--step-3` | 2.369rem | section title (or hero on mobile) |
+| `--step-4` | 3.157rem | page title |
+| `--step-5` | 4.209rem | hero headline (desktop) |
+
+### Application classes
+
+| Class | Font | Weight | Size | Tracking | Leading |
+|---|---|---|---|---|---|
+| `.t-hero` | Cormorant | 300 italic | `--step-5` desktop / `--step-3` mobile | +1% | 1.1 |
+| `.t-page-title` | Cormorant | 400 | `--step-4` | +3% | 1.15 |
+| `.t-section-title` | Cormorant | 400 | `--step-3` | +2% | 1.2 |
+| `.t-lead` | Cormorant | 300 italic | `--step-2` | +1% | 1.3 |
+| body (default) | Inter | 400 | `--step-0` | 0 | 1.55 |
+| `<em>` | Inter | 400 italic | `--step-0` | 0 | 1.55 |
+| `.t-caption` | Inter | 400 | `--step--1` | +2% | 1.4 |
+| `.t-wordmark` | Cormorant | 400 | `--step-0` | +4% | 1 |
+| `.t-nav` | Inter | 500 | `--step--1` | +1% | 1 |
+
+### Italic policy
+
+Cormorant italic carries emotional weight. Reserve for: hero, manifesto, pull-quotes, "La Nota". Don't sprinkle. Body italic (`<em>`): emphasis only, never decoration.
+
+### Measure utilities
+
+| Class | Max-width | Use |
+|---|---|---|
+| `.measure-body` | 60ch | body paragraphs |
+| `.measure-letter` | 56ch | Publishers, Nota — letter-style pages |
+| `.measure-caption` | 38ch | captions |
+
+Display headlines have no max-width — let them breathe to the grid.
+
+### Drop-cap (Nota only)
+
+Apply `.drop-cap` to the first paragraph. First letter renders in Cormorant 300, `--step-5`, library-green, floated left, line-clamps to ~3 body lines.
+
+### Print styles
+
+`@media print` — body 11pt, Cormorant for h1/h2 + display classes, Inter for body, no backgrounds, ink only.
+
+### Preload
+
+`Base.astro` preloads Cormorant 300 italic and Inter 400 with `crossorigin`. Other weights `font-display: swap` from cold cache.
+
+### Dev QA
+
+`src/pages/dev/type.astro` — full scale + every rule. The `dev/` (no underscore) routing is deliberate: underscore-prefix would hide the page in dev too, defeating QA. Delete the whole `src/pages/dev/` directory before T40 deploy.
 
 ## Motion
 

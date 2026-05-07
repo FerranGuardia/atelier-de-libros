@@ -1,0 +1,174 @@
+---
+// dev/type.astro: typography QA. Delete the entire src/pages/dev/
+// directory before T40 deploy. (Astro's underscore-prefix convention
+// would also hide it from routing, but it would hide it in dev too
+// — defeating the point of a QA page.)
+import Base from '../../layouts/Base.astro'
+---
+
+<Base title="Type QA · Atelier de Libros">
+  <main class="qa">
+    <header>
+      <p class="qa-label">T04 · typography pipeline</p>
+      <p class="qa-meta">
+        Display: Cormorant Garamond · Body: Inter · Self-hosted, Spanish subset
+      </p>
+    </header>
+
+    <section>
+      <p class="qa-label">Modular scale (ratio 1.333)</p>
+      <ul class="scale">
+        <li><span class="step">--step-5</span><span class="t-hero">Curaduría literaria</span></li>
+        <li><span class="step">--step-4</span><span class="t-page-title">El libro como identidad</span></li>
+        <li><span class="step">--step-3</span><span class="t-section-title">Estilismo Literario</span></li>
+        <li><span class="step">--step-2</span><span class="t-lead">Diseñamos el alma intelectual de marcas, espacios y personas.</span></li>
+        <li><span class="step">--step-0</span><span>Inter 400 — el cuerpo del texto se compone aquí, en una columna que respira.</span></li>
+        <li><span class="step">--step--1</span><span class="t-caption">Caption · pie de imagen · meta editorial</span></li>
+      </ul>
+    </section>
+
+    <section>
+      <p class="qa-label">Wordmark · Nav</p>
+      <p class="t-wordmark">ATELIER DE LIBROS</p>
+      <nav class="t-nav">
+        <a href="#">Manifiesto</a>
+        <a href="#">Servicios</a>
+        <a href="#">Publishers</a>
+        <a href="#">Historias</a>
+        <a href="#">Nota</a>
+      </nav>
+    </section>
+
+    <section>
+      <p class="qa-label">Hero candidate</p>
+      <h1 class="t-hero">Curaduría literaria: el libro como identidad</h1>
+      <p class="t-lead measure-body">
+        Diseñamos el alma intelectual de marcas, espacios y personas, una historia
+        a la vez.
+      </p>
+    </section>
+
+    <section>
+      <p class="qa-label">Body · measure 60ch</p>
+      <p class="measure-body">
+        El libro entendido como objeto de distinción no es decoración. Una
+        biblioteca privada se construye con paciencia, con criterio, con la
+        certeza de que cada lomo elegido <em>habla</em> por quien lo posee.
+        Es esa convicción —la de que la literatura excede al contenido y
+        compone identidad— la que organiza esta agencia.
+      </p>
+    </section>
+
+    <section>
+      <p class="qa-label">Letter · measure 56ch</p>
+      <p class="measure-letter">
+        «Vuestros libros en los espacios donde nace la tendencia.» Para los
+        sellos editoriales, transformamos el fondo en símbolo: campañas de
+        moda, hotelería boutique, prescriptores esenciales.
+      </p>
+    </section>
+
+    <section>
+      <p class="qa-label">Caption · measure 38ch</p>
+      <p class="t-caption measure-caption">
+        Salón privado, biblioteca de autor. Madrid, primavera de 2026.
+        Fotografía: archivo del estudio.
+      </p>
+    </section>
+
+    <section>
+      <p class="qa-label">Drop-cap (Nota only)</p>
+      <p class="drop-cap measure-letter">
+        Empecé este oficio porque los libros me enseñaron antes que los maestros.
+        La nota de la autora es, en realidad, una nota a quien lee —sobre el
+        gesto de elegir un libro, abrirlo despacio y dejarse atravesar por sus
+        páginas. La curaduría es ese gesto, repetido para otros.
+      </p>
+    </section>
+
+    <section>
+      <p class="qa-label">Italic policy</p>
+      <p class="measure-body">
+        Cormorant en cursiva carga peso emocional: <em>reservar</em> para el
+        manifiesto, los pull-quotes y la Nota. En el cuerpo, la cursiva se usa
+        sólo para enfatizar —<em>jamás</em> como adorno.
+      </p>
+    </section>
+  </main>
+
+  <style>
+    .qa {
+      max-width: 72ch;
+      margin: var(--space-16) auto;
+      padding: 0 var(--space-6);
+    }
+
+    .qa header {
+      padding-bottom: var(--space-8);
+      border-bottom: 1px solid var(--paper-deep);
+    }
+
+    .qa-label {
+      font-family: var(--font-body);
+      font-size: var(--step--1);
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: var(--space-4);
+    }
+
+    .qa-meta {
+      color: var(--ink-soft);
+      font-size: var(--step--1);
+    }
+
+    .qa section {
+      margin-top: var(--space-16);
+    }
+
+    .scale {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      gap: var(--space-8);
+    }
+
+    .scale li {
+      display: grid;
+      grid-template-columns: 5rem 1fr;
+      align-items: baseline;
+      gap: var(--space-6);
+    }
+
+    .scale .step {
+      font-family: var(--font-body);
+      font-size: var(--step--1);
+      color: var(--ink-whisper);
+      letter-spacing: 0.04em;
+    }
+
+    nav.t-nav {
+      display: flex;
+      gap: var(--space-8);
+      margin-top: var(--space-3);
+      text-transform: uppercase;
+    }
+
+    nav.t-nav a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .t-wordmark {
+      text-transform: uppercase;
+    }
+
+    /* Smaller measure for the hero block on this QA page so the
+       --step-5 italic doesn't span the full column width. */
+    .t-hero {
+      max-width: 16ch;
+      margin-bottom: var(--space-6);
+    }
+  </style>
+</Base>
