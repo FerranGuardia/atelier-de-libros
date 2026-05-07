@@ -212,6 +212,29 @@ Doctrine: [`image-system.md`](image-system.md). Component: `src/components/Pendi
 
 The `prompt` slug points at `.claude/image-prompts/<slug>.md`. Both must land in the same commit as the page that uses them.
 
+## Navigation
+
+Doctrine: [`navigation-system.md`](navigation-system.md). T11 implements; pages cite by name (e.g. *"link uses `m-underline-roll`"*).
+
+### Header
+
+- Wordmark + 6-link nav + language switcher.
+- Sticky (`position: sticky`), 1px paper-deep border fades in past 64px scroll.
+- Hover/focus underline via `m-underline-roll`. Active link: `aria-current="page"` + persistent underline.
+- Mobile: hamburger → full-screen paper panel, focus-trapped, Escape-closeable.
+
+### Footer
+
+- 3 columns desktop / stacked mobile. Studio block · nav repeat + language switcher + legal · contact.
+- Top border 1px paper-deep, padding `--space-16` top/bottom.
+- Bottom copyright strip in `--ink-whisper`.
+
+### Routing
+
+- View Transitions via `astro:transitions`. Default `m-route-cross`. Portfolio detail uses `m-image-morph` shared element.
+- Anchor jumps respect `scroll-margin-top` for sticky-header offset.
+- Smooth scroll only when `prefers-reduced-motion: no-preference`.
+
 ## Motion
 
 Source: `src/styles/motion.css`. Doctrine: [`motion-catalog.md`](motion-catalog.md). Build tasks reference catalog names only — no inline durations, no inline curves.

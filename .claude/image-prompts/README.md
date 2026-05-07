@@ -1,23 +1,37 @@
 # Image prompts
 
-This directory holds ChatGPT prompts drafted by executing agents when a task requires an image.
+External image briefs. Each MD here is self-contained — its reader (ChatGPT, Midjourney, a photographer) does not need any other project context to execute it.
 
 ## Workflow
 
-1. The task's executing agent (governed by `impeccable`) drafts a prompt here.
-2. Ferran copies the prompt into ChatGPT (or another generator), downloads the result, places it under `public/` or `src/assets/`.
-3. The corresponding component is updated to point at the real asset, replacing the placeholder.
+1. Build agent authors a `<PendingImage prompt="<slug>">` in the page composition.
+2. Same agent authors `<slug>.md` here using the prompt template in [`../image-system.md`](../image-system.md).
+3. Ferran or the named creator renders the asset externally — ChatGPT, Midjourney, photographer.
+4. The asset lands at the path declared in the MD's "Lands in" field (under `src/assets/` or `public/`).
+5. Build replaces `<PendingImage />` with `<Image>` (real photograph) or inline SVG (illustration).
+
+The grep target `<PendingImage` site-wide enumerates outstanding slots. The grep target `Lands in:` here enumerates target paths.
 
 ## Naming
-`T<task-id>-<short-name>.md` — e.g. `T05-hero.md`, `T12-open-book.md`.
+
+- `T<task-id>-<short-slug>.md` — build-task-driven prompts (`T13-hero.md`, `T30-illustration-set.md`).
+- `M<id>-<short-slug>.md` — Mireia-blocked prompts (`M04-portrait.md`).
+
+The slug used in `<PendingImage prompt="…">` matches the filename without `.md`.
 
 ## Each prompt file structure
-- `## Subject` — what it depicts.
-- `## Treatment` — line, color, fill, edge.
-- `## Composition` — framing, negative space.
-- `## Output spec` — format, dimensions, transparency.
-- `## Don't` — what to avoid.
-- `## House style reference` — link to T05 prompt or `.claude/visual-language.md`.
+
+Use the template from [`../image-system.md`](../image-system.md):
+
+- `**Kind:**` — illustration | photograph
+- `**Aspect:**` — 16/9 | 4/5 | 1/1
+- `**Lands in:**` — target asset path
+- `**Used by:**` — component or page
+- `## Brief` — one paragraph, what the image carries
+- `## Direction` — composition, lighting, crop, references
+- `## Anti-references` — what this must NOT look like
+- `## Output` — format, max dimension, file naming
 
 ## House style (canonical)
-Once T05 is done, every illustration prompt cites that hero prompt as the canonical reference for hand, line, and posture. The illustration set must feel drawn by one person.
+
+Every illustration prompt cites the hero (`T13-hero.md`) as the reference for line weight, posture, and edge — the illustration set must feel drawn by one person. Photograph prompts cite the *visual-language.md* §6 photography rules: side-light, warm-desaturated, hand/detail crops, no faces unless hand-in-frame is the focal point.
