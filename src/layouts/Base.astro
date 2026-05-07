@@ -1,16 +1,26 @@
 ---
 import '../styles/global.css'
+import { ClientRouter } from 'astro:transitions'
 import { locales, defaultLocale, hreflang, type Locale } from '../i18n/config'
 import { localizePath, getLocaleFromUrl } from '../i18n/locale'
 import { t } from '../i18n/t'
+import SiteHeader from '../components/SiteHeader.astro'
+import SiteFooter from '../components/SiteFooter.astro'
+import Grain from '../components/Grain.astro'
 
 interface Props {
   title?: string
   description?: string
   locale?: Locale
-  /* Path of the current page in canonical (ES) form, without locale
+  /** Path of the current page in canonical (ES) form, without locale
    * prefix. Used for hreflang alternates and the language switcher. */
   pathname?: string
+  /** Render `<meta name="robots" content="noindex">` for unlisted pages
+   * (Publishers' Room may opt in later). */
+  noindex?: boolean
+  /** Hide the chrome — used by /dev/* QA pages so they show only the
+   * thing under test. */
+  bare?: boolean
 }
 
 const detectedLocale = getLocaleFromUrl(Astro.url)
@@ -18,10 +28,13 @@ const {
   locale = detectedLocale,
   pathname = Astro.url.pathname,
   title = t('meta.home.title', locale),
-  description = t('meta.home.description', locale)
+  description = t('meta.home.description', locale),
+  noindex = false,
+  bare = false
 } = Astro.props
 
 const site = Astro.site?.toString().replace(/\/$/, '') ?? ''
+const canonical = site + localizePath(pathname, locale)
 ---
 
 <!doctype html>
@@ -31,6 +44,8 @@ const site = Astro.site?.toString().replace(/\/$/, '') ?? ''
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
+    <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <link
@@ -62,21 +77,42 @@ const site = Astro.site?.toString().replace(/\/$/, '') ?? ''
       href={site + localizePath(pathname, defaultLocale)}
     />
     <meta property="og:locale" content={locale} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
     {
       locales
         .filter((code) => code !== locale)
         .map((code) => <meta property="og:locale:alternate" content={code} />)
     }
+    <meta name="twitter:card" content="summary_large_image" />
     <title>{title}</title>
+    <ClientRouter />
     <slot name="head" />
   </head>
   <body data-locale={locale}>
     <a class="skip-to-content" href="#main">{t('aria.skip_to_content', locale)}</a>
-    <slot />
+    <Grain />
+    {!bare && <SiteHeader locale={locale} pathname={pathname} />}
+    <main id="main">
+      <slot />
+    </main>
+    {!bare && <SiteFooter locale={locale} pathname={pathname} />}
   </body>
 </html>
 
 <style>
+  body {
+    /* Reserve a stacking context above the grain overlay. */
+    position: relative;
+  }
+
+  body > main {
+    position: relative;
+    z-index: 2;
+  }
+
   .skip-to-content {
     position: absolute;
     left: -9999px;
@@ -91,7 +127,7 @@ const site = Astro.site?.toString().replace(/\/$/, '') ?? ''
   .skip-to-content:focus-visible {
     left: var(--space-4);
     top: var(--space-4);
-    outline: 1px solid var(--library-green);
+    outline: 2px solid var(--library-green);
     outline-offset: 2px;
   }
 </style>

@@ -19,7 +19,7 @@ Each task .md addresses one focused concern. Heavy surfaces (hero, home, portfol
 - ☑ **T08** — Image system · `impeccable`
 - ☑ **T09** — Navigation & scroll system · `impeccable` + `frontend-design`
 - ☑ **T10** — Accessibility doctrine · `impeccable`
-- ☐ **T11** — Base layout shell (assembly of T09 + T10) · `frontend-design`
+- ☑ **T11** — Base layout shell (assembly of T09 + T10) · `frontend-design`
 
 ## Phase 1 — Hero (exploded)
 

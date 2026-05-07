@@ -1,8 +1,7 @@
 ---
-/* Localized home routes: /ca/, /fr/, /en/, /it/. Default ES is at root.
- * The page body is intentionally a thin smoke-test mirror until T15-T22
- * land the real composition (which will live in a shared component
- * imported here and from /src/pages/index.astro). */
+/* Localized home routes: /ca/, /fr/, /en/, /it/. Real composition lands
+ * with T15-T22; until then this mirrors the ES stub via the i18n
+ * resolver (which falls back to ES when the locale dict is empty). */
 
 import Base from '../../layouts/Base.astro'
 import { locales, defaultLocale, type Locale } from '../../i18n/config'
@@ -18,16 +17,17 @@ const lang = Astro.params.lang as Locale
 ---
 
 <Base locale={lang} pathname="/">
-  <main id="main">
+  <section class="container intro">
     <h1 class="t-hero">{t('home.hero.headline_part_1', lang)}</h1>
-    <p>i18n smoke: <code>nav.home → {t('nav.home', lang)}</code></p>
-  </main>
-
-  <style>
-    main {
-      max-width: 60ch;
-      margin: var(--space-24) auto;
-      padding: 0 var(--space-6);
-    }
-  </style>
+    <p class="t-lead measure-body">{t('home.hero.subheadline', lang)}</p>
+  </section>
 </Base>
+
+<style>
+  .intro {
+    margin-block: var(--space-24);
+  }
+  .intro h1 {
+    margin-bottom: var(--space-6);
+  }
+</style>

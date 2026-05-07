@@ -1,6 +1,6 @@
 ---
-/* ES home — root route. Other locales: src/pages/[lang]/index.astro.
- * Hero + sections land in T15-T22 via shared page components. */
+/* ES home — root route. Hero + manifesto + sections built in T15-T22.
+ * For now a stub-with-chrome so the layout shell can be QA'd. */
 
 import Base from '../layouts/Base.astro'
 import { t } from '../i18n/t'
@@ -9,16 +9,17 @@ const locale = 'es' as const
 ---
 
 <Base locale={locale} pathname="/">
-  <main id="main">
+  <section class="container intro">
     <h1 class="t-hero">{t('home.hero.headline_part_1', locale)}</h1>
-    <p>i18n smoke: <code>nav.home → {t('nav.home', locale)}</code></p>
-  </main>
-
-  <style>
-    main {
-      max-width: 60ch;
-      margin: var(--space-24) auto;
-      padding: 0 var(--space-6);
-    }
-  </style>
+    <p class="t-lead measure-body">{t('home.hero.subheadline', locale)}</p>
+  </section>
 </Base>
+
+<style>
+  .intro {
+    margin-block: var(--space-24);
+  }
+  .intro h1 {
+    margin-bottom: var(--space-6);
+  }
+</style>
