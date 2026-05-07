@@ -1,8 +1,9 @@
 # M01 — Manifesto copy
 
-**Status:** ⏸ Blocked — awaiting Mireia.
-**Lands in:** `src/pages/index.astro` (Manifesto section).
-**Format:** 4 short paragraphs, ~40–60 words each. Tone: declarative, restrained, first-person plural. Spanish.
+**Status:** ⏸ Awaiting Mireia — borrador propuesto en [`M01-drafts.md`](./M01-drafts.md).
+**Lands in:** `src/pages/index.astro` (Manifesto section, built by T18).
+**Format:** 4 axiomas cortos, ~15–25 palabras cada uno (~70–90 en total). Castellano. Tono declarativo, contenido, primera persona del plural.
 **Reference brief:** "No es usar el libro como objeto de decoración; es entender la literatura y dejar que las historias transmitan nuestro mensaje."
-**Lock criteria:** Mireia signs off.
-**On arrival:** replace placeholder text marked `<!-- M01 -->`. Verify line count + measure against the design (60ch column).
+**Review surface:** Mireia revisa sobre la web, no sobre markdown. T18 pega el cuerpo actual de `M01-drafts.md` directamente en la sección (sin placeholder), con `<!-- M01 DRAFT -->` adyacente hasta que firme.
+**Lock criteria:** Mireia signs off (en directo, sobre la página renderizada).
+**On sign-off:** retirar el marcador `<!-- M01 DRAFT -->`. Verify line count + measure against the design (60ch column).

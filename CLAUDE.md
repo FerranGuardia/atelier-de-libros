@@ -6,7 +6,7 @@ Boutique literary styling agency. Astro + TS, vanilla CSS, no backend.
 
 - **Read the task file before invoking any skill.** The task .md in `.claude/tasks/` declares the skill, the deliverables, and the acceptance criteria. Skipping it is a workflow violation.
 - **Use `/task <id>` to dispatch work** (e.g. `/task T05`). Direct skill invocation without a task is reserved for ad-hoc questions, not scheduled work.
-- **Mireia-blocked copy is never invented.** Placeholders only, HTML-commented `<!-- M0X -->`, matching a backlog ticket in `.claude/tasks-mireia/`.
+- **Manifesto copy (M01) is drafted from her material** (TFM + briefing) and lives in the rendered page with `<!-- M01 DRAFT -->` adjacent until Mireia signs off — she reviews on the web because the manifesto is the brand-voice spine the design rests on. **All other copy slots (M02+) use structural lorem ipsum** with `<!-- M0X LOREM -->` adjacent until Mireia delivers her own copy. Source draft and approval status live in `.claude/tasks-mireia/M0X-*.md`.
 - **One task = one commit.** Per Ferran's global rules.
 
 ## The skill set governing this project

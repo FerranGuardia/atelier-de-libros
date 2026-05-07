@@ -17,5 +17,7 @@ See `.claude/image-prompts/T09-photography.md` (drafted in T09). Mireia or her p
 - `src/content/historias/{slug}.mdx`.
 - Images: `src/assets/historias/{slug}/`.
 
+**Hasta que Mireia entregue:** dos o tres casos placeholder en `src/content/historias/_lorem-{1,2,3}.mdx` con lorem ipsum (250–500 words) y figuras grises (`src/assets/historias/_lorem-N/placeholder-{1..n}.svg`). Cada caso lorem se marca con `<!-- M05 LOREM -->` en el frontmatter. La rejilla del portfolio se monta y audita con estos.
+
 **Lock criteria:** Mireia signs off each case individually. Cases roll out as they're ready.
-**On arrival:** delete the placeholder MDX file with the same slot number; replace `<!-- M05 -->` markers in `src/pages/index.astro` (PortfolioTeaser).
+**On arrival:** delete the corresponding `_lorem-N.mdx` and its `_lorem-N/` image folder; replace `<!-- M05 LOREM -->` markers in `src/pages/index.astro` (PortfolioTeaser) by linking to the new real case.

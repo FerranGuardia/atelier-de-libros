@@ -12,5 +12,7 @@
 3. Dinamización Cultural y Community Building — clubes de lectura corporativos + contenido estratégico.
 4. Eventos de Autor — salones literarios y diseño de objetos de culto (merchandising premium).
 
+**Hasta que Mireia entregue:** cada chapter usa lorem ipsum estructural respetando el formato (1-line dedicatoria + 80–140 words body), con `<!-- M02-N LOREM -->` adyacente. Permite construir y auditar el diseño sin comprometer copy inventado.
+
 **Lock criteria:** Mireia signs off each chapter.
-**On arrival:** replace placeholders marked `<!-- M02-1 -->` through `<!-- M02-4 -->`. Verify each fits the printed-index aesthetic (no marketing tone, no bullet lists).
+**On arrival:** replace lorem blocks marked `<!-- M02-1 LOREM -->` through `<!-- M02-4 LOREM -->`. Verify each fits the printed-index aesthetic (no marketing tone, no bullet lists).
