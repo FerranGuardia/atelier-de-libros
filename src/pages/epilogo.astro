@@ -1,0 +1,16 @@
+---
+import Base from '../layouts/Base.astro'
+import EpilogoPage from '../components/pages/EpilogoPage.astro'
+import { t } from '../i18n/t'
+
+const locale = 'es' as const
+---
+
+<Base
+  locale={locale}
+  pathname="/epilogo"
+  title={t('meta.epilogo.title', locale)}
+  description={t('meta.epilogo.description', locale)}
+>
+  <EpilogoPage locale={locale} />
+</Base>

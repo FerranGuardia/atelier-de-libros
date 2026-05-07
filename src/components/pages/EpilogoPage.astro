@@ -1,0 +1,286 @@
+---
+/* T28 — Epílogo / Contacto. Form with Formspree-compatible action.
+ * Fields: name, email, project, qualifying-question (--step-1, larger
+ * than the rest), message. Honeypot field + aria-live success region.
+ *
+ * The Formspree endpoint is a placeholder until T39 provisions a
+ * real form ID. The form uses native HTML `action` + `method="post"`
+ * so it works without JS — JS layers the m-form-success transition. */
+
+import { t } from '../../i18n/t'
+import type { Locale } from '../../i18n/config'
+
+interface Props {
+  locale: Locale
+}
+const { locale } = Astro.props
+
+/* Replace with the real Formspree endpoint in T39. The placeholder
+ * accepts the submission shape but does not deliver email. */
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/PLACEHOLDER_T39'
+---
+
+<article class="epilogo" data-motion="m-rise">
+  <header class="container intro">
+    <h1 class="t-page-title">{t('epilogo.page_title', locale)}</h1>
+    <p class="lead t-lead measure-body">{t('epilogo.intro', locale)}</p>
+  </header>
+
+  <div
+    class="container form-wrap"
+    data-motion="m-form-success"
+    data-state="form"
+    id="contact-form-wrap"
+  >
+    <form
+      class="contact-form"
+      method="post"
+      action={FORMSPREE_ENDPOINT}
+      novalidate
+      aria-describedby="form-legal"
+    >
+      <p class="field">
+        <label for="f-name">{t('epilogo.form.name_label', locale)}</label>
+        <input id="f-name" name="name" type="text" required aria-required="true" />
+      </p>
+      <p class="field">
+        <label for="f-email">{t('epilogo.form.email_label', locale)}</label>
+        <input id="f-email" name="email" type="email" required aria-required="true" />
+      </p>
+      <p class="field">
+        <label for="f-project">{t('epilogo.form.project_label', locale)}</label>
+        <input
+          id="f-project"
+          name="project"
+          type="text"
+          placeholder={t('epilogo.form.project_placeholder', locale)}
+        />
+      </p>
+
+      <fieldset class="field qualifier">
+        <label for="f-book-question" class="qualifier-label">
+          {t('epilogo.form.book_question_label', locale)}
+        </label>
+        <input id="f-book-question" name="book_question" type="text" />
+        <small id="f-book-help" class="qualifier-help">
+          {t('epilogo.form.book_question_help', locale)}
+        </small>
+      </fieldset>
+
+      <p class="field">
+        <label for="f-message">{t('epilogo.form.message_label', locale)}</label>
+        <textarea id="f-message" name="message" rows="5"></textarea>
+      </p>
+
+      <p class="field" aria-hidden="true" hidden>
+        <label for="f-honey">Leave this field empty</label>
+        <input id="f-honey" name="_gotcha" type="text" tabindex="-1" autocomplete="off" />
+      </p>
+
+      <p id="form-legal" class="legal t-caption">{t('epilogo.form.legal_consent', locale)}</p>
+
+      <button class="submit" type="submit">
+        <span class="submit-label">{t('epilogo.form.submit_label', locale)}</span>
+      </button>
+    </form>
+
+    <div data-form-success role="status" aria-live="polite">
+      <p class="success-title t-page-title">{t('epilogo.form.success_title', locale)}</p>
+      <p class="success-body t-lead measure-body">{t('epilogo.form.success_body', locale)}</p>
+    </div>
+  </div>
+
+  <p class="container direct-email">
+    <span class="col-label">{t('epilogo.contact_email_label', locale)}</span>
+    <a class="email" href={`mailto:${t('epilogo.contact_email', locale)}`}>
+      {t('epilogo.contact_email', locale)}
+    </a>
+  </p>
+</article>
+
+<script>
+  /* Layer the success transition + Formspree XHR over the native form.
+   * Without JS, the form posts and Formspree returns its default thanks
+   * page — the page degrades cleanly. */
+  document.addEventListener('astro:page-load', () => {
+    const wrap = document.getElementById('contact-form-wrap')
+    const form = wrap?.querySelector<HTMLFormElement>('.contact-form')
+    if (!wrap || !form) return
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault()
+      const data = new FormData(form)
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { Accept: 'application/json' }
+        })
+        if (res.ok) wrap.dataset.state = 'success'
+        else wrap.dataset.state = 'error'
+      } catch {
+        wrap.dataset.state = 'error'
+      }
+    })
+  })
+</script>
+
+<style>
+  .epilogo {
+    margin-top: var(--space-24);
+    margin-bottom: var(--space-32);
+  }
+  .intro {
+    margin-bottom: var(--space-16);
+  }
+  .intro h1 {
+    margin-bottom: var(--space-6);
+  }
+  .lead {
+    color: var(--ink-soft);
+    max-width: 56ch;
+  }
+
+  .form-wrap {
+    max-width: 56ch + 2 * var(--container-pad);
+    margin-inline: auto;
+  }
+
+  .contact-form {
+    display: grid;
+    gap: var(--space-8);
+  }
+
+  .field {
+    margin: 0;
+    display: grid;
+    gap: var(--space-2);
+  }
+  .field[hidden] {
+    display: none;
+  }
+
+  label {
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  input[type='text'],
+  input[type='email'],
+  textarea {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--paper-deep);
+    padding: var(--space-3) 0;
+    font-family: var(--font-body);
+    font-size: var(--step-0);
+    color: var(--ink);
+    width: 100%;
+  }
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: none;
+    border-bottom-color: var(--library-green);
+  }
+  textarea {
+    resize: vertical;
+  }
+
+  .qualifier {
+    border: none;
+    padding: 0;
+    margin: var(--space-12) 0;
+    border-top: 1px solid var(--paper-deep);
+    border-bottom: 1px solid var(--paper-deep);
+    padding-block: var(--space-8);
+  }
+  .qualifier-label {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: var(--step-1);
+    color: var(--ink);
+    text-transform: none;
+    letter-spacing: 0;
+    line-height: 1.3;
+  }
+  .qualifier input {
+    margin-top: var(--space-3);
+    font-size: var(--step-1);
+  }
+  .qualifier-help {
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    color: var(--ink-whisper);
+    margin-top: var(--space-3);
+  }
+
+  .legal {
+    color: var(--ink-soft);
+    margin: 0;
+    line-height: 1.55;
+  }
+
+  .submit {
+    justify-self: start;
+    background: transparent;
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    padding: var(--space-3) var(--space-8);
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    min-height: 44px;
+  }
+  .submit:hover,
+  .submit:focus-visible {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  [data-form-success] {
+    display: none;
+    text-align: center;
+    padding-block: var(--space-16);
+  }
+  [data-form-success] p + p {
+    margin-top: var(--space-6);
+  }
+
+  [data-state='success'] form {
+    display: none;
+  }
+  [data-state='success'] [data-form-success] {
+    display: block;
+  }
+
+  .direct-email {
+    margin-top: var(--space-24);
+    text-align: center;
+    display: grid;
+    gap: var(--space-3);
+    justify-items: center;
+  }
+  .col-label {
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-whisper);
+  }
+  .email {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: var(--step-1);
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--library-green);
+    padding-bottom: 4px;
+  }
+</style>
