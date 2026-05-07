@@ -12,13 +12,13 @@
 
 | Slot | Used by | Prompt | Target path | Status |
 |---|---|---|---|---|
-| `hero` | `Hero.astro` (T15) | [`T13-hero.md`](image-prompts/T13-hero.md) | `src/assets/illustrations/hero.svg` | ⏳ |
-| `open-book` | T31 (illustration block) | T30 | `src/assets/illustrations/open-book.svg` | ⏳ |
-| `hand-page` | T31 | T30 | `src/assets/illustrations/hand-page.svg` | ⏳ |
-| `shelf` | T31 | T30 | `src/assets/illustrations/shelf.svg` | ⏳ |
-| `bookmark` | T31 | T30 | `src/assets/illustrations/bookmark.svg` | ⏳ |
-| `page-fold` | T31 | T30 | `src/assets/illustrations/page-fold.svg` | ⏳ |
-| `signature` | T27 (Nota) | M04-signature | `src/assets/illustrations/signature.svg` | ⏳ |
+| `hero` | `Hero.astro` (via PendingImage) | [`T13-hero.md`](image-prompts/T13-hero.md) | `src/assets/illustrations/hero.svg` | ⏳ |
+| `open-book` | `<Illustration slug="open-book">` (T31) | [`T30-illustration-set.md`](image-prompts/T30-illustration-set.md) §1 | `src/assets/illustrations/open-book.svg` | ⏳ |
+| `hand-page` | `<Illustration slug="hand-page">` | T30 §2 | `src/assets/illustrations/hand-page.svg` | ⏳ |
+| `shelf` | `<Illustration slug="shelf">` | T30 §3 | `src/assets/illustrations/shelf.svg` | ⏳ |
+| `bookmark` | `<Illustration slug="bookmark">` (Publishers pull-quote) | T30 §4 | `src/assets/illustrations/bookmark.svg` | ⏳ |
+| `page-fold` | `<Illustration slug="page-fold">` (Nota) | T30 §5 | `src/assets/illustrations/page-fold.svg` | ⏳ |
+| `signature` | `NotaPage.astro` (inline) | [`M04-portrait.md`](image-prompts/M04-portrait.md) (signature is the same M04 hand-off) | `src/assets/illustrations/signature.svg` | ⏳ |
 
 ## House style
 

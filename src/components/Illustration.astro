@@ -1,0 +1,100 @@
+---
+/* T31 — Illustration component. Renders the named illustration if its
+ * SVG has landed under src/assets/illustrations/<slug>.svg; otherwise
+ * falls back to <PendingImage>. The slot map below is the single source
+ * of truth — adding a new slug requires (a) a prompt MD under
+ * .claude/image-prompts/, (b) the asset file, and (c) an entry here.
+ *
+ * The SVG include uses Vite's ?raw import so the file is inlined; the
+ * host page can then style with currentColor. */
+
+import PendingImage from './PendingImage.astro'
+
+interface Props {
+  /** Slug from the registry: `hero | open-book | hand-page | shelf | bookmark | page-fold`. */
+  slug:
+    | 'hero'
+    | 'open-book'
+    | 'hand-page'
+    | 'shelf'
+    | 'bookmark'
+    | 'page-fold'
+  /** ViewBox-derived aspect, used by the placeholder until the asset
+   * lands (the SVG itself ignores this). */
+  aspect?: string
+  /** Human-readable label for the placeholder + aria-label. */
+  label?: string
+  /** Optional hint shown in the placeholder legend. */
+  hint?: string
+  /** Class hook for layout placement. */
+  class?: string
+}
+
+const {
+  slug,
+  aspect = '3/2',
+  label = 'Ilustración pendiente',
+  hint,
+  class: className = ''
+} = Astro.props
+
+/* Per-slug prompt MD slug. Matches .claude/image-prompts/<value>.md. */
+const promptMap: Record<Props['slug'], string> = {
+  hero: 'T13-hero',
+  'open-book': 'T30-illustration-set',
+  'hand-page': 'T30-illustration-set',
+  shelf: 'T30-illustration-set',
+  bookmark: 'T30-illustration-set',
+  'page-fold': 'T30-illustration-set'
+}
+
+/* When the asset lands, replace this map with a real `?raw` import for
+ * each slug, e.g.:
+ *
+ *   import heroSvg from '../assets/illustrations/hero.svg?raw'
+ *   import openBookSvg from '../assets/illustrations/open-book.svg?raw'
+ *   const inlineSvgs = { hero: heroSvg, 'open-book': openBookSvg, … }
+ *
+ * The component then renders `<Fragment set:html={inlineSvgs[slug]} />`
+ * inside a wrapper with `color: var(--library-green)` so the SVG's
+ * `currentColor` strokes inherit. Until then, every slug routes to
+ * the placeholder. */
+const inlineSvgs: Partial<Record<Props['slug'], string>> = {}
+
+const svg = inlineSvgs[slug]
+---
+
+{
+  svg ? (
+    <span
+      class:list={['illustration', className]}
+      style={`--aspect: ${aspect};`}
+      aria-hidden="true"
+      set:html={svg}
+    />
+  ) : (
+    <PendingImage
+      class={className}
+      prompt={promptMap[slug]}
+      aspect={aspect}
+      illustration
+      label={label}
+      hint={hint}
+      ariaLabel=""
+    />
+  )
+}
+
+<style>
+  .illustration {
+    display: block;
+    aspect-ratio: var(--aspect);
+    color: var(--library-green);
+    width: 100%;
+  }
+  .illustration > svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+</style>
