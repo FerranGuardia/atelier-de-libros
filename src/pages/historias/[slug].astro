@@ -1,0 +1,29 @@
+---
+/* T26 — Historia detail. Static routes for the M05 lorem cases. Real
+ * cases override per-slug once they land via M05. */
+
+import Base from '../../layouts/Base.astro'
+import HistoriaDetail from '../../components/pages/HistoriaDetail.astro'
+import { t } from '../../i18n/t'
+
+export function getStaticPaths() {
+  return [
+    { params: { slug: '_lorem-1' }, props: { caseId: 'lorem_1' as const } },
+    { params: { slug: '_lorem-2' }, props: { caseId: 'lorem_2' as const } },
+    { params: { slug: '_lorem-3' }, props: { caseId: 'lorem_3' as const } }
+  ]
+}
+
+const { caseId } = Astro.props
+const locale = 'es' as const
+const title = t(`historias.cases.${caseId}.title` as any, locale)
+---
+
+<Base
+  locale={locale}
+  pathname={`/historias/${Astro.params.slug}`}
+  title={`${title} — ${t('meta.historias.title', locale)}`}
+  description={t(`historias.cases.${caseId}.excerpt` as any, locale)}
+>
+  <HistoriaDetail locale={locale} caseId={caseId} />
+</Base>

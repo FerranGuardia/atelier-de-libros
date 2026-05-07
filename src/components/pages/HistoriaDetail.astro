@@ -1,0 +1,152 @@
+---
+/* T26 — Historia detail template. Hero image (16:9), title block,
+ * meta strip, body essay, gallery (4 placeholders), back link. Used
+ * for the lorem cases today; M05 swap-ins replace per case. */
+
+import PendingImage from '../PendingImage.astro'
+import { t } from '../../i18n/t'
+import { localizePath } from '../../i18n/locale'
+import type { Locale } from '../../i18n/config'
+
+interface Props {
+  locale: Locale
+  caseId: 'lorem_1' | 'lorem_2' | 'lorem_3'
+}
+const { locale, caseId } = Astro.props
+
+const eyebrow = t(`historias.cases.${caseId}.eyebrow` as any, locale)
+const title = t(`historias.cases.${caseId}.title` as any, locale)
+const location = t(`historias.cases.${caseId}.location` as any, locale)
+const excerpt = t(`historias.cases.${caseId}.excerpt` as any, locale)
+const back = t('historia_detail.back_to_index', locale)
+const captionPending = t('historia_detail.image_caption_pending', locale)
+---
+
+<article class="historia" data-motion="m-rise">
+  <p class="back-link container">
+    <a href={localizePath('/historias', locale)} data-motion="m-underline-roll"
+      >← {back}</a
+    >
+  </p>
+
+  <header class="hero-block container">
+    <p class="eyebrow t-caption">{eyebrow}</p>
+    <h1 class="t-page-title">{title}</h1>
+    <p class="meta t-caption">{location}</p>
+  </header>
+
+  <figure class="hero-image container bleed">
+    <PendingImage
+      prompt="T26-historias-detail"
+      aspect="16/9"
+      label={title}
+      hint={location}
+      ariaLabel={`${title} — ${location}`}
+    />
+    <figcaption class="t-caption">{captionPending}</figcaption>
+  </figure>
+
+  <div class="container body measure-letter">
+    <p class="lead t-lead">{excerpt}</p>
+    <p>
+      {excerpt}
+      {excerpt}
+    </p>
+    <p>{excerpt}</p>
+  </div>
+
+  <div class="container gallery">
+    {
+      [4, 5, 1, 16].map((aspect, i) => {
+        const a = aspect === 4 ? '4/5' : aspect === 5 ? '4/5' : aspect === 1 ? '1/1' : '16/9'
+        return (
+          <PendingImage
+            prompt="T26-historias-detail"
+            aspect={a}
+            label={`${title} — ${i + 1}/4`}
+            hint={location}
+            ariaLabel={`${title} galería ${i + 1}`}
+          />
+        )
+      })
+    }
+  </div>
+  <!-- M05 LOREM (text + images) — tasks-mireia/M05 -->
+</article>
+
+<style>
+  .historia {
+    margin-top: var(--space-16);
+    margin-bottom: var(--space-32);
+  }
+  .back-link {
+    margin-bottom: var(--space-12);
+  }
+  .back-link a {
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    text-decoration: none;
+  }
+  .back-link a:hover,
+  .back-link a:focus-visible {
+    color: var(--ink);
+  }
+
+  .hero-block {
+    margin-bottom: var(--space-12);
+    max-width: 60ch;
+  }
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-whisper);
+    margin-bottom: var(--space-3);
+  }
+  .meta {
+    color: var(--ink-soft);
+    margin-top: var(--space-3);
+  }
+
+  .hero-image {
+    margin: 0 0 var(--space-16);
+    /* Full-bleed at desktop; constrained inside the container at smaller. */
+  }
+  @media (min-width: 64rem) {
+    .hero-image {
+      max-width: none;
+      padding-inline: 0;
+    }
+  }
+  .hero-image figcaption {
+    margin-top: var(--space-3);
+    color: var(--ink-soft);
+    padding-inline: var(--container-pad);
+  }
+
+  .body {
+    margin-inline: auto;
+    margin-bottom: var(--space-16);
+    line-height: 1.65;
+  }
+  .body p {
+    margin-bottom: var(--space-6);
+  }
+  .lead {
+    color: var(--ink);
+    margin-bottom: var(--space-8);
+  }
+
+  .gallery {
+    display: grid;
+    gap: var(--space-8);
+  }
+  @media (min-width: 64rem) {
+    .gallery {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-12);
+    }
+  }
+</style>
