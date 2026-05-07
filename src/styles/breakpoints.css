@@ -1,0 +1,27 @@
+/* T07 — Breakpoint anchors. Same numbers as grid.css; this file documents
+ * them as the canonical source so other CSS files can refer back instead
+ * of redefining magic widths inline.
+ *
+ * Why no `@custom-media` — that requires postcss-custom-media which we
+ * don't ship. Use these comments and the constants below as the contract;
+ * grep for `min-width: 48rem` / `64rem` / `90rem` to audit consistency. */
+
+/*
+ * Breakpoints (rem, calculated against the default 16px root):
+ *
+ *   --bp-tablet   : min-width: 48rem  (768px)
+ *   --bp-desktop  : min-width: 64rem  (1024px)
+ *   --bp-wide     : min-width: 90rem  (1440px)
+ *
+ * Only these three. No others. If a component "needs" a fourth, the
+ * answer is to redesign the component, not to add a breakpoint.
+ */
+
+:root {
+  /* Exposed as values mostly for documentation; they aren't used in
+   * @media queries (CSS doesn't support custom-property breakpoints in
+   * media queries without postcss). */
+  --bp-tablet: 48rem;
+  --bp-desktop: 64rem;
+  --bp-wide: 90rem;
+}

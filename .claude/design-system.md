@@ -165,6 +165,25 @@ Container max-width: **1440px**.
 
 `src/pages/dev/grid.astro` — column overlay + sample placements + rhythm demo. Delete `src/pages/dev/` before T40 deploy.
 
+## Responsive
+
+Doctrine: [`responsive-doctrine.md`](responsive-doctrine.md). Three breakpoint thresholds, never four.
+
+| Name | Threshold | Outer padding | Cols |
+|---|---|---|---|
+| Mobile | base | `--space-8` | 4 |
+| Tablet | `min-width: 48rem` | `--space-12` | 8 |
+| Desktop | `min-width: 64rem` | `--space-16` | 12 |
+| Wide | `min-width: 90rem` | absorbed by container max-width 1440px | 12 |
+
+### Hard rules
+
+1. **Mobile is its own composition,** not a shrunk desktop. Multi-column blocks stack; the hero illustration sits **above** the headline; navigation collapses to a hamburger panel (T09).
+2. **Display type uses `clamp()`,** not stepped sizes. `.t-hero` ships fluid; future display utilities follow.
+3. **Body and captions are fixed sizes** across breakpoints (reading rhythm).
+4. **Touch targets ≥ 44 × 44px** on every interactive element.
+5. **Hover states are absent on mobile.** `:focus-visible` and tap feedback replace them.
+
 ## Motion
 
 Source: `src/styles/motion.css`. Doctrine: [`motion-catalog.md`](motion-catalog.md). Build tasks reference catalog names only — no inline durations, no inline curves.
