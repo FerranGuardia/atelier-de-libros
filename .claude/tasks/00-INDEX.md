@@ -41,7 +41,7 @@ Each task .md addresses one focused concern. Heavy surfaces (hero, home, portfol
 ## Phase 3 — Inner pages
 
 - ☑ **T23** — Servicios / "El Índice" · `frontend-design`
-- ☐ **T24** — Publishers' Room · `frontend-design`
+- ☑ **T24** — Publishers' Room · `frontend-design`
 - ☐ **T25** — Historias index (composition + motion + build) · `frontend-design` + `impeccable`
 - ☐ **T26** — Historias detail template (composition + image direction + build) · `frontend-design` + `impeccable`
 - ☐ **T27** — Nota de la Autora · `frontend-design`

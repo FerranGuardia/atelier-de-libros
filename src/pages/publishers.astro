@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro'
+import PublishersPage from '../components/pages/PublishersPage.astro'
+import { t } from '../i18n/t'
+
+const locale = 'es' as const
+---
+
+<Base
+  locale={locale}
+  pathname="/publishers"
+  title={t('meta.publishers.title', locale)}
+  description={t('meta.publishers.description', locale)}
+  noindex
+>
+  <PublishersPage locale={locale} />
+</Base>
