@@ -1,8 +1,8 @@
 ---
 /* T11 — Site header. Implements T09 navigation spec.
  *
- * Wordmark left, 6-link nav right (desktop / tablet), language switcher
- * after a vertical rule. Below 768px the nav collapses to a hamburger
+ * Wordmark left, 6-link nav centered (desktop), language switcher right
+ * (compact dropdown). Below 1024px the nav collapses to a hamburger
  * trigger; the panel is a full-screen paper sheet, focus-trapped,
  * Escape-closeable, and closes on route change via Astro's
  * `astro:after-swap` event.
@@ -73,9 +73,8 @@ const navItems: { key: Key; href: string }[] = [
       </ul>
     </nav>
 
-    <div class="rule" aria-hidden="true"></div>
     <div class="lang-wrap">
-      <LanguageSwitcher current={locale} pathname={pathname} />
+      <LanguageSwitcher current={locale} pathname={pathname} variant="compact" />
     </div>
 
     <button
@@ -237,24 +236,51 @@ const navItems: { key: Key; href: string }[] = [
     border-bottom-color: var(--paper-deep);
   }
 
+  /* Three-column layout: wordmark · nav (centered) · switcher.
+   * Mobile collapses nav + switcher behind the hamburger which sits in
+   * the right cell. */
   .site-header > .container {
     display: grid;
-    grid-template-columns: auto 1fr auto auto auto;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
     gap: var(--space-6);
-    height: 56px;
+    height: 64px;
+  }
+
+  .wordmark {
+    justify-self: start;
+    grid-column: 1;
+  }
+  .primary {
+    justify-self: center;
+    grid-column: 2;
+  }
+  .lang-wrap {
+    justify-self: end;
+    grid-column: 3;
+  }
+  .hamburger {
+    justify-self: end;
+    grid-column: 3;
   }
 
   @media (min-width: 48rem) {
     .site-header > .container {
-      height: 64px;
+      height: 72px;
     }
   }
 
   @media (min-width: 64rem) {
     .site-header > .container {
-      height: 72px;
-      gap: var(--space-8);
+      height: 88px;
+      gap: var(--space-10, 40px);
+    }
+  }
+
+  @media (min-width: 90rem) {
+    .site-header > .container {
+      height: 96px;
+      gap: var(--space-12, 48px);
     }
   }
 
@@ -276,6 +302,12 @@ const navItems: { key: Key; href: string }[] = [
   @media (min-width: 64rem) {
     .primary ul {
       display: flex;
+      gap: var(--space-10, 40px);
+    }
+  }
+  @media (min-width: 90rem) {
+    .primary ul {
+      gap: var(--space-12, 48px);
     }
   }
   .primary a {
@@ -293,18 +325,6 @@ const navItems: { key: Key; href: string }[] = [
   .primary a.is-active::after {
     transform: scaleX(1);
     background: var(--library-green);
-  }
-
-  .rule {
-    display: none;
-    width: 1px;
-    height: 1.6em;
-    background: var(--paper-deep);
-  }
-  @media (min-width: 64rem) {
-    .rule {
-      display: block;
-    }
   }
 
   .lang-wrap {
@@ -325,7 +345,6 @@ const navItems: { key: Key; href: string }[] = [
     background: transparent;
     border: 1px solid transparent;
     cursor: pointer;
-    margin-inline-start: auto;
   }
   .hamburger span {
     display: block;

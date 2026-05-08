@@ -4,6 +4,7 @@
  * for the lorem cases today; M05 swap-ins replace per case. */
 
 import PendingImage from '../PendingImage.astro'
+import WatercolorSpot from '../WatercolorSpot.astro'
 import { t } from '../../i18n/t'
 import { localizePath } from '../../i18n/locale'
 import type { Locale } from '../../i18n/config'
@@ -30,9 +31,16 @@ const captionPending = t('historia_detail.image_caption_pending', locale)
   </p>
 
   <header class="hero-block container">
-    <p class="eyebrow t-caption">{eyebrow}</p>
-    <h1 class="t-page-title">{title}</h1>
-    <p class="meta t-caption">{location}</p>
+    <div class="hero-copy">
+      <p class="eyebrow t-caption">{eyebrow}</p>
+      <h1 class="t-page-title">{title}</h1>
+      <p class="meta t-caption">{location}</p>
+    </div>
+    <WatercolorSpot
+      class="story-token"
+      slug="reader-paper-island"
+      aspect="3/4"
+    />
   </header>
 
   <figure class="hero-image container bleed">
@@ -97,6 +105,10 @@ const captionPending = t('historia_detail.image_caption_pending', locale)
 
   .hero-block {
     margin-bottom: var(--space-12);
+    align-items: end;
+  }
+  .hero-copy {
+    grid-column: 1 / -1;
     max-width: 60ch;
   }
   .eyebrow {
@@ -108,6 +120,26 @@ const captionPending = t('historia_detail.image_caption_pending', locale)
   .meta {
     color: var(--ink-soft);
     margin-top: var(--space-3);
+  }
+  .hero-block :global(.story-token) {
+    grid-column: 1 / -1;
+    width: min(72vw, 230px);
+    justify-self: end;
+    margin-top: var(--space-6);
+    opacity: 0.5;
+  }
+  @media (min-width: 64rem) {
+    .hero-copy {
+      grid-column: 1 / 8;
+    }
+    .hero-block :global(.story-token) {
+      grid-column: 7 / 11;
+      width: min(100%, 360px);
+      justify-self: start;
+      align-self: center;
+      margin-top: 0;
+      opacity: 0.62;
+    }
   }
 
   .hero-image {

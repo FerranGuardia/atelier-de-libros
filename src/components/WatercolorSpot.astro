@@ -1,0 +1,92 @@
+---
+import { Image } from 'astro:assets'
+import bookmarkOrbit from '../assets/watercolor/bookmark-orbit.png'
+import compassPage from '../assets/watercolor/compass-page.png'
+import correctionWreath from '../assets/watercolor/correction-wreath.png'
+import diagonalBranches from '../assets/watercolor/diagonal-branches.png'
+import editorialDesk from '../assets/watercolor/editorial-desk.png'
+import editorialOrbit from '../assets/watercolor/editorial-orbit.png'
+import foldedFlame from '../assets/watercolor/folded-flame.png'
+import inkThread from '../assets/watercolor/ink-thread.png'
+import inkPathValley from '../assets/watercolor/ink-path-valley.png'
+import libraryArch from '../assets/watercolor/library-arch.png'
+import marginNotes from '../assets/watercolor/margin-notes.png'
+import offeredFragment from '../assets/watercolor/offered-fragment.png'
+import openBookLandscape from '../assets/watercolor/open-book-landscape.png'
+import pageFoldConstellation from '../assets/watercolor/page-fold-constellation.png'
+import photoFrameWash from '../assets/watercolor/photo-frame-wash.png'
+import readerPaperIsland from '../assets/watercolor/reader-paper-island.png'
+import readingLectern from '../assets/watercolor/reading-lectern.png'
+
+interface Props {
+  slug:
+    | 'open-book-landscape'
+    | 'bookmark-orbit'
+    | 'page-fold-constellation'
+    | 'compass-page'
+    | 'margin-notes'
+    | 'editorial-orbit'
+    | 'photo-frame-wash'
+    | 'ink-thread'
+    | 'folded-flame'
+    | 'reader-paper-island'
+    | 'offered-fragment'
+    | 'library-arch'
+    | 'diagonal-branches'
+    | 'editorial-desk'
+    | 'ink-path-valley'
+    | 'correction-wreath'
+    | 'reading-lectern'
+  class?: string
+  aspect?: string
+}
+
+const { slug, class: className = '', aspect = '3/2' } = Astro.props
+
+const srcMap = {
+  'open-book-landscape': openBookLandscape,
+  'bookmark-orbit': bookmarkOrbit,
+  'page-fold-constellation': pageFoldConstellation,
+  'compass-page': compassPage,
+  'margin-notes': marginNotes,
+  'editorial-orbit': editorialOrbit,
+  'photo-frame-wash': photoFrameWash,
+  'ink-thread': inkThread,
+  'folded-flame': foldedFlame,
+  'reader-paper-island': readerPaperIsland,
+  'offered-fragment': offeredFragment,
+  'library-arch': libraryArch,
+  'diagonal-branches': diagonalBranches,
+  'editorial-desk': editorialDesk,
+  'ink-path-valley': inkPathValley,
+  'correction-wreath': correctionWreath,
+  'reading-lectern': readingLectern
+}
+
+const src = srcMap[slug]
+---
+
+<Image
+  class:list={['watercolor-spot', className]}
+  src={src}
+  alt=""
+  widths={[240, 360, 520, 720, 960, 1200]}
+  sizes="(min-width: 64rem) 520px, 70vw"
+  loading="lazy"
+  decoding="async"
+  quality={88}
+  style={`--aspect: ${aspect};`}
+  aria-hidden="true"
+/>
+
+<style>
+  .watercolor-spot {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: var(--aspect);
+    object-fit: contain;
+    background: transparent;
+    mix-blend-mode: multiply;
+  }
+</style>

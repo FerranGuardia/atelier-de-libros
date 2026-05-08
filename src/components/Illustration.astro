@@ -1,17 +1,13 @@
 ---
-/* T31 — Illustration component. Renders the named illustration if its
- * raster (PNG/WebP) has landed under src/assets/illustrations/<slug>.*;
- * otherwise falls back to <PendingImage>. The slot map below is the
- * single source of truth — adding a new slug requires (a) a prompt MD
- * under .claude/image-prompts/, (b) the asset file, and (c) an entry
- * here.
- *
- * Post-pivot (T13/T30 watercolor aesthetic): illustrations are raster
- * assets, not SVG. When each lands, swap the placeholder branch below
- * for an Astro <Image> import — see .claude/illustrations.md
- * "Integration pattern" for the canonical snippet. */
+/* T31 — Illustration component. Renders local SVG ornaments when they
+ * exist, otherwise falls back to <PendingImage>. */
 
 import PendingImage from './PendingImage.astro'
+import bookmarkSvg from '../assets/illustrations/bookmark.svg?raw'
+import handPageSvg from '../assets/illustrations/hand-page.svg?raw'
+import openBookSvg from '../assets/illustrations/open-book.svg?raw'
+import pageFoldSvg from '../assets/illustrations/page-fold.svg?raw'
+import shelfSvg from '../assets/illustrations/shelf.svg?raw'
 
 interface Props {
   /** Slug from the registry: `hero | open-book | hand-page | shelf | bookmark | page-fold`. */
@@ -51,28 +47,24 @@ const promptMap: Record<Props['slug'], string> = {
   'page-fold': 'T30-illustration-set'
 }
 
-/* When each asset lands, import it from src/assets/illustrations/ and
- * render through Astro's <Image>:
- *
- *   import { Image } from 'astro:assets'
- *   import heroSrc from '../assets/illustrations/hero.png'
- *
- * Then pass the matching src into the Image branch below. Until then,
- * every slug routes to the <PendingImage> placeholder. */
-const rasterSrcs: Partial<Record<Props['slug'], string>> = {}
+const svgMap: Partial<Record<Props['slug'], string>> = {
+  'open-book': openBookSvg,
+  'hand-page': handPageSvg,
+  shelf: shelfSvg,
+  bookmark: bookmarkSvg,
+  'page-fold': pageFoldSvg
+}
 
-const src = rasterSrcs[slug]
+const svg = svgMap[slug]
 ---
 
 {
-  src ? (
-    <img
-      src={src}
-      alt=""
+  svg ? (
+    <span
       class:list={['illustration', className]}
       style={`--aspect: ${aspect};`}
-      loading="lazy"
-      decoding="async"
+      aria-hidden="true"
+      set:html={svg}
     />
   ) : (
     <PendingImage
@@ -93,5 +85,12 @@ const src = rasterSrcs[slug]
     aspect-ratio: var(--aspect);
     width: 100%;
     height: auto;
+    color: var(--library-green);
+  }
+  .illustration :global(svg) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
   }
 </style>

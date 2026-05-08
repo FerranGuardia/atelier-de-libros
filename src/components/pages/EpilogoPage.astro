@@ -8,6 +8,7 @@
  * so it works without JS — JS layers the m-form-success transition. */
 
 import { t } from '../../i18n/t'
+import WatercolorSpot from '../WatercolorSpot.astro'
 import type { Locale } from '../../i18n/config'
 
 interface Props {
@@ -22,8 +23,15 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/PLACEHOLDER_T39'
 
 <article class="epilogo" data-motion="m-rise">
   <header class="container intro">
-    <h1 class="t-page-title">{t('epilogo.page_title', locale)}</h1>
-    <p class="lead t-lead measure-body">{t('epilogo.intro', locale)}</p>
+    <div class="intro-copy">
+      <h1 class="t-page-title">{t('epilogo.page_title', locale)}</h1>
+      <p class="lead t-lead measure-body">{t('epilogo.intro', locale)}</p>
+    </div>
+    <WatercolorSpot
+      class="intro-ornament"
+      slug="offered-fragment"
+      aspect="3/4"
+    />
   </header>
 
   <div
@@ -131,6 +139,10 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/PLACEHOLDER_T39'
   }
   .intro {
     margin-bottom: var(--space-16);
+    align-items: end;
+  }
+  .intro-copy {
+    grid-column: 1 / -1;
   }
   .intro h1 {
     margin-bottom: var(--space-6);
@@ -138,6 +150,26 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/PLACEHOLDER_T39'
   .lead {
     color: var(--ink-soft);
     max-width: 56ch;
+  }
+  .intro :global(.intro-ornament) {
+    grid-column: 1 / -1;
+    width: min(72vw, 230px);
+    justify-self: end;
+    margin-top: var(--space-6);
+    opacity: 0.5;
+  }
+  @media (min-width: 64rem) {
+    .intro-copy {
+      grid-column: 1 / 7;
+    }
+    .intro :global(.intro-ornament) {
+      grid-column: 7 / 11;
+      width: min(100%, 340px);
+      justify-self: start;
+      align-self: center;
+      margin-top: 0;
+      opacity: 0.6;
+    }
   }
 
   .form-wrap {

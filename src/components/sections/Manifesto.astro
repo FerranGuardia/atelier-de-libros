@@ -6,6 +6,7 @@
  *
  * Italic Cormorant runs as body type ONLY here — deliberate exception. */
 
+import WatercolorSpot from '../WatercolorSpot.astro'
 import { t } from '../../i18n/t'
 import type { Locale } from '../../i18n/config'
 
@@ -35,11 +36,17 @@ const axioms = [
   <div class="column">
     {axioms.map((line) => <p>{line}</p>)}
   </div>
+  <WatercolorSpot
+    class="manifesto-ornament"
+    slug="diagonal-branches"
+    aspect="3/4"
+  />
 </section>
 <!-- /M01 DRAFT -->
 
 <style>
   .manifesto {
+    position: relative;
     margin-top: var(--space-32);
     margin-bottom: var(--space-24);
     padding-inline: var(--container-pad);
@@ -94,5 +101,18 @@ const axioms = [
 
   .column p + p {
     margin-top: var(--space-3);
+  }
+  .manifesto :global(.manifesto-ornament) {
+    display: none;
+  }
+  @media (min-width: 64rem) {
+    .manifesto :global(.manifesto-ornament) {
+      display: block;
+      width: clamp(260px, 23vw, 360px);
+      position: absolute;
+      left: max(var(--container-pad), calc(50% + 24ch));
+      top: calc(-1 * var(--space-8));
+      opacity: 0.44;
+    }
   }
 </style>

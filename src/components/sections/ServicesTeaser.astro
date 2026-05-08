@@ -4,6 +4,7 @@
  * desktop / above titles mobile. Hover/focus uses m-row-tint from the
  * catalog (numeral shifts +6px, row tints library-green-soft). */
 
+import WatercolorSpot from '../WatercolorSpot.astro'
 import { t } from '../../i18n/t'
 import { localizePath } from '../../i18n/locale'
 import type { Locale } from '../../i18n/config'
@@ -31,13 +32,20 @@ const serviciosHref = localizePath('/servicios', locale)
   data-motion="m-rise"
 >
   <header class="container">
-    <p class="eyebrow t-caption">{t('home.servicios_teaser.eyebrow', locale)}</p>
-    <h2 id="services-teaser-title" class="t-section-title">
-      {t('home.servicios_teaser.title', locale)}
-    </h2>
-    <p class="lead measure-body">
-      {t('home.servicios_teaser.lead', locale)}
-    </p>
+    <div class="header-copy">
+      <p class="eyebrow t-caption">{t('home.servicios_teaser.eyebrow', locale)}</p>
+      <h2 id="services-teaser-title" class="t-section-title">
+        {t('home.servicios_teaser.title', locale)}
+      </h2>
+      <p class="lead measure-body">
+        {t('home.servicios_teaser.lead', locale)}
+      </p>
+    </div>
+    <WatercolorSpot
+      class="section-ornament"
+      slug="ink-path-valley"
+      aspect="3/4"
+    />
   </header>
 
   <ol class="container index">
@@ -83,8 +91,9 @@ const serviciosHref = localizePath('/servicios', locale)
 
   header {
     margin-bottom: var(--space-12);
+    align-items: end;
   }
-  header > * {
+  .header-copy {
     grid-column: 1 / -1;
   }
   .eyebrow {
@@ -98,9 +107,27 @@ const serviciosHref = localizePath('/servicios', locale)
     margin-top: var(--space-3);
     max-width: 56ch;
   }
+  header :global(.section-ornament) {
+    grid-column: 1 / -1;
+    width: min(72vw, 240px);
+    justify-self: end;
+    margin-top: var(--space-6);
+    opacity: 0.48;
+  }
   @media (min-width: 64rem) {
+    .header-copy {
+      grid-column: 1 / 7;
+    }
     header h2 {
       max-width: 18ch;
+    }
+    header :global(.section-ornament) {
+      grid-column: 7 / 11;
+      width: min(100%, 360px);
+      justify-self: start;
+      align-self: center;
+      margin-top: 0;
+      opacity: 0.62;
     }
   }
 

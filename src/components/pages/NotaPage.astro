@@ -5,6 +5,7 @@
  * delivers). */
 
 import PendingImage from '../PendingImage.astro'
+import WatercolorSpot from '../WatercolorSpot.astro'
 import { t } from '../../i18n/t'
 import type { Locale } from '../../i18n/config'
 
@@ -22,6 +23,11 @@ const { locale } = Astro.props
 
   <div class="container layout">
     <div class="body measure-letter">
+      <WatercolorSpot
+        class="page-ornament"
+        slug="editorial-desk"
+        aspect="3/4"
+      />
       <p class="drop-cap">{t('nota.body_1', locale)}</p>
       <p>{t('nota.body_2', locale)}</p>
       <p>{t('nota.body_3', locale)}</p>
@@ -101,6 +107,12 @@ const { locale } = Astro.props
   .body p {
     margin-bottom: var(--space-6);
     line-height: 1.7;
+  }
+  .body :global(.page-ornament) {
+    width: clamp(240px, 28vw, 360px);
+    margin: calc(-1 * var(--space-4)) 0 var(--space-8) auto;
+    color: var(--library-green);
+    opacity: 0.5;
   }
 
   .signature {

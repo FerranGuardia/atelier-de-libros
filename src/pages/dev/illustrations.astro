@@ -1,0 +1,112 @@
+---
+/* dev/illustrations.astro — temporary visual sheet for the T30 SVG set.
+ * Delete src/pages/dev/ before T40 deploy. */
+
+import Base from '../../layouts/Base.astro'
+import WatercolorSpot from '../../components/WatercolorSpot.astro'
+
+const items = [
+  { slug: 'open-book-landscape', label: 'open-book-landscape', aspect: '3/2' },
+  { slug: 'bookmark-orbit', label: 'bookmark-orbit', aspect: '4/5' },
+  {
+    slug: 'page-fold-constellation',
+    label: 'page-fold-constellation',
+    aspect: '3/2'
+  },
+  { slug: 'compass-page', label: 'compass-page', aspect: '3/2' },
+  { slug: 'margin-notes', label: 'margin-notes', aspect: '3/2' },
+  { slug: 'editorial-orbit', label: 'editorial-orbit', aspect: '1/1' },
+  { slug: 'photo-frame-wash', label: 'photo-frame-wash', aspect: '3/2' },
+  { slug: 'ink-thread', label: 'ink-thread', aspect: '3/2' },
+  {
+    slug: 'folded-flame',
+    label: 'folded-flame',
+    aspect: '1/1'
+  },
+  { slug: 'reader-paper-island', label: 'reader-paper-island', aspect: '3/4' },
+  { slug: 'offered-fragment', label: 'offered-fragment', aspect: '3/4' },
+  { slug: 'library-arch', label: 'library-arch', aspect: '3/4' },
+  { slug: 'diagonal-branches', label: 'diagonal-branches', aspect: '3/4' },
+  { slug: 'editorial-desk', label: 'editorial-desk', aspect: '3/4' },
+  { slug: 'ink-path-valley', label: 'ink-path-valley', aspect: '3/4' },
+  { slug: 'correction-wreath', label: 'correction-wreath', aspect: '3/4' },
+  { slug: 'reading-lectern', label: 'reading-lectern', aspect: '3/4' }
+] as const
+---
+
+<Base title="Illustrations QA · Atelier de Libros" bare>
+  <main class="qa">
+    <header class="container intro">
+      <p class="qa-label">T30 · illustration set</p>
+      <h1 class="t-page-title">Watercolor spots</h1>
+    </header>
+
+    <section class="container sheet" aria-label="Illustration set">
+      {
+        items.map((item) => (
+          <article class:list={['sample', item.slug === 'bookmark-orbit' && 'portrait']}>
+            <WatercolorSpot
+              slug={item.slug}
+              aspect={item.aspect}
+            />
+            <p class="qa-label">{item.label}</p>
+          </article>
+        ))
+      }
+    </section>
+  </main>
+
+  <style>
+    .qa {
+      margin: var(--space-16) 0 var(--space-32);
+    }
+    .intro {
+      margin-bottom: var(--space-12);
+    }
+    .intro > * {
+      grid-column: 1 / -1;
+    }
+    .qa-label {
+      font-family: var(--font-body);
+      font-size: var(--step--1);
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+    .sheet {
+      display: grid;
+      gap: var(--space-8);
+    }
+    @media (min-width: 48rem) {
+      .sheet {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+    @media (min-width: 64rem) {
+      .sheet {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+    .sample {
+      display: grid;
+      align-content: center;
+      min-height: 280px;
+      padding: var(--space-8);
+      border-top: 1px solid var(--paper-deep);
+      color: var(--library-green);
+    }
+    .sample :global(.watercolor-spot) {
+      max-width: 360px;
+      margin-inline: auto;
+      opacity: 0.95;
+    }
+    .sample.portrait :global(.watercolor-spot) {
+      max-width: 190px;
+    }
+    .sample .qa-label {
+      margin-top: var(--space-6);
+      text-align: center;
+    }
+  </style>
+</Base>

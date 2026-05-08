@@ -1,8 +1,15 @@
 ---
-/* T04b — Language switcher. Unstyled-ish: minimal CSS, accessible; the
- * styled visual integration lands in T09 (navigation). Renders the 5
- * locales in switcherOrder. Current locale marked aria-current. Others
- * link to the equivalent path in their locale. */
+/* T04b — Language switcher.
+ *
+ * Two variants:
+ *   - `inline` (default): horizontal list of native labels. Used in the
+ *     mobile panel and the footer, where the choice is part of the
+ *     directory and benefits from being visible.
+ *   - `compact`: a discreet <details> disclosure that surfaces just the
+ *     current locale's two-letter code; the panel reveals the others
+ *     on click. Used in the desktop header so the locale chooser does
+ *     not crowd the nav. <details> is native, keyboard-accessible, and
+ *     needs no JS for the basic toggle. */
 
 import { switcherOrder, localeLabels, type Locale } from '../i18n/config'
 import { localizePath } from '../i18n/locale'
@@ -11,15 +18,55 @@ import { t } from '../i18n/t'
 interface Props {
   current: Locale
   pathname: string
+  variant?: 'inline' | 'compact'
 }
 
-const { current, pathname } = Astro.props
+const { current, pathname, variant = 'inline' } = Astro.props
 ---
 
-<nav class="lang-switcher" aria-label={t('aria.language_switcher', current)}>
-  <ul>
-    {
-      switcherOrder.map((code) => {
+{variant === 'compact' ? (
+  <details class="lang-switcher compact" data-lang-switcher>
+    <summary
+      aria-label={t('aria.language_switcher', current)}
+      lang={current}
+    >
+      <span class="code">{current.toUpperCase()}</span>
+      <svg
+        class="caret"
+        viewBox="0 0 10 6"
+        width="10"
+        height="6"
+        aria-hidden="true"
+      >
+        <path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </summary>
+    <div class="panel" role="group" aria-label={t('aria.language_switcher', current)}>
+      <ul>
+        {switcherOrder.map((code) => {
+          const isCurrent = code === current
+          const href = localizePath(pathname, code)
+          return (
+            <li>
+              {isCurrent ? (
+                <span aria-current="true" lang={code}>
+                  {localeLabels[code]}
+                </span>
+              ) : (
+                <a href={href} hreflang={code} lang={code}>
+                  {localeLabels[code]}
+                </a>
+              )}
+            </li>
+          )
+        })}
+      </ul>
+    </div>
+  </details>
+) : (
+  <nav class="lang-switcher inline" aria-label={t('aria.language_switcher', current)}>
+    <ul>
+      {switcherOrder.map((code) => {
         const isCurrent = code === current
         const href = localizePath(pathname, code)
         return (
@@ -35,13 +82,44 @@ const { current, pathname } = Astro.props
             )}
           </li>
         )
+      })}
+    </ul>
+  </nav>
+)}
+
+<script>
+  /* Compact <details> closes on outside click and Escape. The native
+   * element handles the toggle and keyboard activation; this script
+   * only adds dismissal niceties. */
+  function mount() {
+    const els = document.querySelectorAll<HTMLDetailsElement>(
+      'details.lang-switcher.compact'
+    )
+    if (!els.length) return
+
+    const onDocClick = (e: MouseEvent) => {
+      els.forEach((d) => {
+        if (d.open && !d.contains(e.target as Node)) d.open = false
       })
     }
-  </ul>
-</nav>
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape') return
+      els.forEach((d) => {
+        if (d.open) {
+          d.open = false
+          d.querySelector('summary')?.focus()
+        }
+      })
+    }
+    document.addEventListener('click', onDocClick)
+    document.addEventListener('keydown', onKey)
+  }
+  document.addEventListener('astro:page-load', mount)
+</script>
 
 <style>
-  .lang-switcher ul {
+  /* ── inline variant ───────────────────────────────────────────── */
+  .lang-switcher.inline ul {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -50,27 +128,114 @@ const { current, pathname } = Astro.props
     flex-wrap: wrap;
   }
 
-  .lang-switcher li {
+  .lang-switcher.inline li {
     font-family: var(--font-body);
     font-size: var(--step--1);
     font-weight: 500;
     letter-spacing: 0.04em;
   }
 
-  .lang-switcher a {
+  .lang-switcher.inline a {
     color: var(--ink-soft);
     text-decoration: none;
     transition: color var(--dur-fast, 300ms) var(--ease, ease-out);
   }
 
-  .lang-switcher a:hover,
-  .lang-switcher a:focus-visible {
+  .lang-switcher.inline a:hover,
+  .lang-switcher.inline a:focus-visible {
     color: var(--ink);
   }
 
-  .lang-switcher [aria-current='true'] {
+  .lang-switcher.inline [aria-current='true'] {
     color: var(--ink);
     border-bottom: 1px solid var(--library-green);
     padding-bottom: 1px;
+  }
+
+  /* ── compact variant ──────────────────────────────────────────── */
+  .lang-switcher.compact {
+    position: relative;
+  }
+
+  .lang-switcher.compact summary {
+    list-style: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    padding: 6px 8px;
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    transition: color var(--dur-fast, 300ms) var(--ease, ease-out);
+    user-select: none;
+  }
+  /* Kill the native disclosure triangle in every browser. */
+  .lang-switcher.compact summary::-webkit-details-marker {
+    display: none;
+  }
+  .lang-switcher.compact summary::marker {
+    content: '';
+  }
+  .lang-switcher.compact summary::before {
+    content: none;
+  }
+  .lang-switcher.compact summary:hover,
+  .lang-switcher.compact summary:focus-visible {
+    color: var(--ink);
+  }
+
+  .lang-switcher.compact .caret {
+    transition: transform var(--dur-fast, 300ms) var(--ease, ease-out);
+    color: var(--ink-whisper);
+  }
+  .lang-switcher.compact[open] .caret {
+    transform: rotate(180deg);
+    color: var(--library-green);
+  }
+
+  .lang-switcher.compact .panel {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 9.5rem;
+    background: var(--paper);
+    border: 1px solid var(--paper-deep);
+    padding: var(--space-3) var(--space-4);
+    z-index: 70;
+    box-shadow: 0 8px 24px -16px rgba(0, 0, 0, 0.18);
+  }
+  .lang-switcher.compact .panel ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: var(--space-2);
+  }
+  .lang-switcher.compact .panel li {
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    letter-spacing: 0.02em;
+  }
+  .lang-switcher.compact .panel a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    display: block;
+    padding: 2px 0;
+    transition: color var(--dur-fast, 300ms) var(--ease, ease-out);
+  }
+  .lang-switcher.compact .panel a:hover,
+  .lang-switcher.compact .panel a:focus-visible {
+    color: var(--ink);
+  }
+  .lang-switcher.compact .panel [aria-current='true'] {
+    color: var(--ink);
+    display: block;
+    padding: 2px 0;
+    border-left: 2px solid var(--library-green);
+    padding-left: 8px;
+    margin-left: -10px;
   }
 </style>

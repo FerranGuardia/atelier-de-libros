@@ -1,9 +1,8 @@
 ---
-/* T11 — Site footer. Implements T09 spec. Three columns desktop,
- * stacked mobile. Studio block · nav repeat + language switcher · contact.
+/* Site footer. Studio block · legal + contact.
  * Bottom strip: copyright in --ink-whisper, centred. */
 
-import LanguageSwitcher from './LanguageSwitcher.astro'
+import WatercolorSpot from './WatercolorSpot.astro'
 import { localizePath } from '../i18n/locale'
 import { t, type Key } from '../i18n/t'
 import type { Locale } from '../i18n/config'
@@ -13,16 +12,7 @@ interface Props {
   pathname: string
 }
 
-const { locale, pathname } = Astro.props
-
-const navItems: { key: Key; href: string }[] = [
-  { key: 'nav.manifiesto', href: '/#manifiesto' },
-  { key: 'nav.servicios', href: '/servicios' },
-  { key: 'nav.publishers', href: '/publishers' },
-  { key: 'nav.historias', href: '/historias' },
-  { key: 'nav.nota', href: '/nota' },
-  { key: 'nav.epilogo', href: '/epilogo' }
-]
+const { locale } = Astro.props
 
 const legal: { key: Key; href: string }[] = [
   { key: 'footer.legal.imprint', href: '/legal/imprint' },
@@ -36,35 +26,12 @@ const legal: { key: Key; href: string }[] = [
     <section class="col studio">
       <p class="t-wordmark">{t('brand.wordmark', locale)}</p>
       <p class="tagline">{t('brand.tagline', locale)}</p>
+      <WatercolorSpot
+        class="footer-token"
+        slug="correction-wreath"
+        aspect="3/4"
+      />
       <p class="colofon t-caption measure-caption">{t('footer.colophon', locale)}</p>
-    </section>
-
-    <section class="col directory">
-      <p class="col-label">{t('footer.column_studio', locale)}</p>
-      <nav aria-label={t('aria.footer_nav', locale)}>
-        <ul>
-          {
-            navItems.map(({ key, href }) => (
-              <li>
-                <a
-                  data-motion="m-underline-roll"
-                  href={
-                    href.startsWith('/#')
-                      ? localizePath('/', locale) + href.slice(1)
-                      : localizePath(href, locale)
-                  }
-                >
-                  {t(key, locale)}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </nav>
-      <div class="lang">
-        <p class="col-label">{t('footer.column_languages', locale)}</p>
-        <LanguageSwitcher current={locale} pathname={pathname} />
-      </div>
     </section>
 
     <section class="col contact">
@@ -93,8 +60,18 @@ const legal: { key: Key; href: string }[] = [
 <style>
   .site-footer {
     border-top: 1px solid var(--paper-deep);
-    padding-block: var(--space-16);
-    margin-top: var(--space-32);
+    padding-block: var(--space-16, 64px);
+    margin-top: var(--space-24);
+  }
+  @media (min-width: 64rem) {
+    .site-footer {
+      padding-block: var(--space-20, 80px) var(--space-12);
+    }
+  }
+  @media (min-width: 90rem) {
+    .site-footer {
+      padding-block: var(--space-24, 96px) var(--space-16);
+    }
   }
 
   .site-footer .container {
@@ -104,8 +81,17 @@ const legal: { key: Key; href: string }[] = [
   }
   @media (min-width: 64rem) {
     .site-footer .container {
-      grid-template-columns: 1.2fr 1fr 1fr;
-      gap: var(--space-16);
+      grid-template-columns: 1fr auto;
+      gap: var(--space-20, 80px);
+    }
+    .site-footer .col.contact {
+      justify-self: end;
+      text-align: right;
+    }
+  }
+  @media (min-width: 90rem) {
+    .site-footer .container {
+      gap: var(--space-24, 96px);
     }
   }
 
@@ -131,32 +117,14 @@ const legal: { key: Key; href: string }[] = [
     color: var(--ink-soft);
     margin-bottom: var(--space-6);
   }
+  .studio :global(.footer-token) {
+    width: clamp(120px, 10vw, 170px);
+    margin-bottom: var(--space-6);
+    opacity: 0.5;
+  }
   .colofon {
     color: var(--ink-soft);
     line-height: 1.55;
-  }
-
-  .directory ul {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 var(--space-8);
-    display: grid;
-    gap: var(--space-2);
-  }
-  .directory a {
-    color: var(--ink);
-    text-decoration: none;
-    font-family: var(--font-body);
-    font-size: var(--step--1);
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-  }
-  .directory a:hover,
-  .directory a:focus-visible {
-    color: var(--library-green);
-  }
-  .lang {
-    margin-top: var(--space-6);
   }
 
   .legal {
@@ -183,15 +151,16 @@ const legal: { key: Key; href: string }[] = [
     font-family: var(--font-display);
     font-style: italic;
     font-weight: 300;
-    font-size: var(--step-1);
-    color: var(--ink);
+    font-size: var(--step-0);
+    color: var(--ink-soft);
     text-decoration: none;
-    border-bottom: 1px solid var(--library-green);
+    border-bottom: 1px solid var(--ink-whisper);
     padding-bottom: 2px;
   }
   .email:hover,
   .email:focus-visible {
-    color: var(--library-green);
+    color: var(--ink);
+    border-bottom-color: var(--library-green);
   }
 
   .copyright {

@@ -6,6 +6,7 @@
 
 import { t } from '../../i18n/t'
 import { localizePath } from '../../i18n/locale'
+import WatercolorSpot from '../WatercolorSpot.astro'
 import type { Locale } from '../../i18n/config'
 
 interface Props {
@@ -22,6 +23,11 @@ const { locale } = Astro.props
   data-motion="m-rise"
 >
   <div class="container">
+    <WatercolorSpot
+      class="cta-token"
+      slug="correction-wreath"
+      aspect="3/4"
+    />
     <p class="eyebrow t-caption">{t('home.epilogo_cta.eyebrow', locale)}</p>
     <p id="epilogue-title" class="headline t-page-title">
       {t('home.epilogo_cta.headline', locale)}
@@ -40,16 +46,12 @@ const { locale } = Astro.props
   .epilogue {
     margin-top: var(--space-24);
     margin-bottom: var(--space-24);
-    /* The home page's single library-green-soft wash. Within budget
-     * (≤ 8% of the viewport at desktop / tablet). */
-    background: var(--library-green-soft);
+    background: transparent;
     padding-block: var(--space-24);
   }
 
-  /* Mobile: drop the wash to keep the small viewport quiet. */
   @media (max-width: 47.99rem) {
     .epilogue {
-      background: transparent;
       padding-block: var(--space-16);
       margin-top: var(--space-16);
     }
@@ -60,6 +62,11 @@ const { locale } = Astro.props
     display: grid;
     gap: var(--space-6);
     justify-items: center;
+  }
+  .container :global(.cta-token) {
+    width: clamp(180px, 22vw, 300px);
+    margin-bottom: calc(-1 * var(--space-3));
+    opacity: 0.5;
   }
 
   .eyebrow {
