@@ -1,6 +1,6 @@
 # T12 — Hero composition spec
 
-> The literal layout the build (T15) implements. No code here.
+> The literal layout the build (T15) implements. **Revised after the GRIS-watercolor pivot:** the small-illustration brief (cols 9-11, ≈ 280px) was downgrading the asset. The painted hero now occupies the whole canvas; the headline overlays on the left where the cream-paper negative space sits.
 
 ## 1. Focal logic
 
@@ -10,9 +10,11 @@ The eye lands first on the headline — Cormorant 300 italic at `--step-5` carri
 
 | Rank | Element | Size | Weight | Colour | Position (desktop) |
 |---|---|---|---|---|---|
-| 1 | Headline | clamp `--step-3` → `--step-5` | Cormorant 300 italic | `--ink` | cols 2–7, optical centre −80px |
-| 2 | Illustration | ≈ 280px wide | line, currentColor | `--library-green` | cols 9–11, optical centre +120px |
-| 3 | Sub-headline | `--step-0` | Inter 400 | `--ink-soft` | cols 2–5, gap `--space-8` below headline |
+| 1 | **Illustration** (watercolor, full-bleed) | covers the hero, anchored 70% across | painted | the painting's own palette (cream + dusty teal + soft rose, library-green at the deepest fold) | full bleed, behind the text |
+| 2 | Headline | clamp ≈ 2rem → 3.4rem (one to two steps below `--step-5`) | Cormorant 300 italic | `--ink` | overlay on the left, in the painting's cream-paper negative space, vertically centred |
+| 3 | Sub-headline | clamp ≈ 1.1rem → 1.4rem | Cormorant 300 italic (`.t-lead`) | `--ink-soft` | below headline, max 32ch |
+
+The headline **competes with the painting** if rendered at full `--step-5`. The post-pivot rule: **let the painting carry the volume; let the type whisper alongside.**
 
 Headline copy is split across two lines deliberately:
 
@@ -21,28 +23,23 @@ Headline copy is split across two lines deliberately:
 
 The natural break is the colon; italic Cormorant carries best two-line. The break is preserved in markup with two spans, not a `<br>`.
 
-## 3. ASCII grid sketch (desktop, 12-col)
+## 3. ASCII grid sketch (desktop, 12-col, post-pivot)
 
 ```
    1     2   3   4   5   6   7     8     9   10   11    12
-   │   .   .   .   .   .   .   │   .   .   .   .   │
-   │                                                │
-   │   ┌──────────────────────┐                     │
-   │   │ Curaduría literaria  │                     │
-   │   │                      │            ╭──╮     │
-   │   │ el libro como        │           (    )    │
-   │   │ identidad            │            ╰──╯     │
-   │   └──────────────────────┘                     │
-   │                                                │
-   │   ┌──────────────────┐                         │
-   │   │ Diseñamos el     │                         │
-   │   │ alma intelectual │                         │
-   │   └──────────────────┘                         │
-   │                                                │
-   │   .   .   .   .   .   .   .   .   .   .   .    │
+   ┌────────────────────────────────────────────────────┐
+   │ ░ falling pages   ░░░░░░  rose horizon  ░░░░░░░░░░ │
+   │                                                    │
+   │   Curaduría literaria        ░░░ open book ░░░░░░  │
+   │   el libro como identidad    ░░░ → landscape ░░░░  │
+   │                              ░░░ figure at spine ░ │
+   │   Diseñamos el alma          ░░░░░░░░░░░░░░░░░░░░  │
+   │   intelectual…               ░░░░░░░░░░░░░░░░░░░░  │
+   │                                                    │
+   └────────────────────────────────────────────────────┘
 ```
 
-Not centred. The headline and sub-headline are anchored to the left half of the grid; the illustration floats off-axis to the right at vertical +120px so the page reads as composed, not balanced.
+The watercolor is the canvas. Headline + sub-headline anchor on the left where the painting's cream paper falls away from the book; the painting's narrative content (book + figure + falling pages) lives on the right and top. `object-position: 70% center` keeps the book and figure in frame at every viewport while letting the cream-paper edge extend off-screen on the left, giving the text room.
 
 ## 4. Whitespace ratios (above the fold)
 
@@ -57,14 +54,14 @@ Not centred. The headline and sub-headline are anchored to the left half of the 
 
 ### Tablet (8-col, ≥ 768px)
 
-- Headline at cols 2–7, font size steps to clamp lower bound (`--step-3` → `--step-4`).
-- Illustration at cols 5–8, ≈ 220px wide, optical centre +90px.
-- Sub-headline at cols 2–5, gap `--space-6`.
+- Watercolor still full-bleed, `object-position: 70% center`.
+- Headline + sub-headline overlay on the left, headline clamp lands mid-range.
+- Same vertical centering as desktop.
 
 ### Mobile (4-col, < 768px)
 
-- **Stack.** Illustration above headline, ≈ 30% of viewport width, centred.
-- Headline below at cols 1–4, clamp lower bound (`--step-3`), text-align left within column.
+- **Stack.** Watercolor sits as a contained block at the top of the hero (full container width, natural aspect, ≈ 50–60% viewport height).
+- Headline below the painting in cream paper, headline clamp at lower bound.
 - Sub-headline immediately below, max-width 32ch.
 - No vertical centering — content starts ≈ `--space-24` below the header.
 

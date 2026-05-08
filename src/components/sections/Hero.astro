@@ -1,11 +1,13 @@
 ---
-/* T15 — Hero. Implements composition (T12), illustration (T13 prompt /
- * pending-image placeholder), and motion choreography (T14).
- *
- * No composition / motion / image decisions in this file — it follows
- * the three spec docs exactly. */
+/* T15 (revised after the watercolor pivot) — Hero. The illustration
+ * is now a full-bleed atmospheric backdrop (cols 1-12 at desktop). The
+ * headline and sub-headline overlay on the left half, where the
+ * watercolor's cream-paper negative space sits. The original asymmetric
+ * brief (small illustration cols 9-11) was downgrading the asset; the
+ * GRIS-volume painting deserves the whole canvas. */
 
-import PendingImage from '../PendingImage.astro'
+import { Image } from 'astro:assets'
+import heroSrc from '../../assets/illustrations/hero-atelier.png'
 import { t } from '../../i18n/t'
 import type { Locale } from '../../i18n/config'
 
@@ -17,8 +19,19 @@ const { locale } = Astro.props
 ---
 
 <section class="hero" aria-labelledby="hero-title" data-hero>
-  <div class="container grid">
-    <div class="headline-wrap col-2-7">
+  <Image
+    class="hero-image"
+    src={heroSrc}
+    alt=""
+    widths={[640, 960, 1280, 1600, 2000, 2400]}
+    sizes="(min-width: 64rem) 100vw, 100vw"
+    loading="eager"
+    fetchpriority="high"
+    quality={85}
+  />
+
+  <div class="hero-content container">
+    <div class="text-block">
       <h1 id="hero-title" class="t-hero" data-hero-headline>
         <span class="line" data-motion="m-mask-wipe">
           {t('home.hero.headline_part_1', locale)}
@@ -27,21 +40,9 @@ const { locale } = Astro.props
           {t('home.hero.headline_part_2', locale)}
         </span>
       </h1>
-    </div>
-
-    <p class="subhead t-lead col-2-5" data-motion="m-fade-in" data-hero-subhead>
-      {t('home.hero.subheadline', locale)}
-    </p>
-
-    <div class="illustration col-9-11" data-motion="m-parallax-soft" data-hero-illustration>
-      <PendingImage
-        prompt="T13-hero"
-        aspect="3/2"
-        illustration
-        label={t('home.hero.headline_part_2', locale)}
-        hint="Open book on spine · single library-green stroke"
-        ariaLabel=""
-      />
+      <p class="subhead t-lead" data-motion="m-fade-in" data-hero-subhead>
+        {t('home.hero.subheadline', locale)}
+      </p>
     </div>
   </div>
 </section>
@@ -54,8 +55,9 @@ const { locale } = Astro.props
 </script>
 
 <script>
-  /* Hero entrance choreography per T14 timeline. Wires once per route
-   * via Astro's astro:page-load (so it survives View Transitions). */
+  /* Hero entrance choreography per T14 timeline (post-pivot: the
+   * illustration uses an opacity rise instead of m-stroke-draw — the
+   * watercolor isn't strokeable). */
 
   function reveal() {
     const root = document.querySelector<HTMLElement>('[data-hero]')
@@ -68,11 +70,10 @@ const { locale } = Astro.props
       ? Array.from(headline.querySelectorAll<HTMLElement>('.line'))
       : []
     const subhead = root.querySelector<HTMLElement>('[data-hero-subhead]')
-    const illust = root.querySelector<HTMLElement>('[data-hero-illustration]')
+    const image = root.querySelector<HTMLElement>('.hero-image')
 
-    /* Reveal in stages. The data-in-view flag is what motion.css watches. */
     requestAnimationFrame(() => {
-      illust?.setAttribute('data-in-view', '')
+      image?.setAttribute('data-in-view', '')
 
       lines.forEach((line, i) => {
         line.style.transitionDelay = `${200 + i * 120}ms`
@@ -86,44 +87,18 @@ const { locale } = Astro.props
     })
   }
 
-  function mountParallax() {
-    const illust = document.querySelector<HTMLElement>('[data-hero-illustration]')
-    const hero = document.querySelector<HTMLElement>('[data-hero]')
-    if (!illust || !hero) return () => {}
-
-    const onScroll = () => {
-      const { top, height } = hero.getBoundingClientRect()
-      const vh = window.innerHeight || 1
-      const progress = Math.max(0, Math.min(1, -top / (height + vh)))
-      illust.style.setProperty('--parallax-y', `${-progress * 24}px`)
-    }
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }
-
-  let teardown: (() => void) | null = null
-  document.addEventListener('astro:page-load', () => {
-    reveal()
-    teardown?.()
-    teardown = mountParallax()
-  })
-  document.addEventListener('astro:before-swap', () => {
-    teardown?.()
-    teardown = null
-  })
+  document.addEventListener('astro:page-load', reveal)
 </script>
 
 <style>
   .hero {
+    position: relative;
     min-height: 100vh;
     min-height: 100dvh;
     display: grid;
     align-items: center;
-    /* Top padding compensates for the sticky header so the optical
-     * centre of the hero matches the spec, not the viewport raw. */
     padding-block: calc(var(--space-16) + 72px) var(--space-16);
-    contain: layout paint;
+    overflow: hidden;
   }
   @media (max-width: 47.99rem) {
     .hero {
@@ -131,93 +106,98 @@ const { locale } = Astro.props
     }
   }
 
-  .hero > .container {
-    align-items: start;
-    row-gap: var(--space-8);
+  /* The watercolor sits behind the text. On desktop / tablet it covers
+   * the entire hero, anchored so the book composition lives on the
+   * right and the cream-paper negative space falls under the headline.
+   * On mobile it sits above the headline as a contained block. */
+
+  .hero-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    opacity: 0;
+    transition: opacity var(--dur) var(--ease);
+  }
+  .hero-image[data-in-view] {
+    opacity: 1;
   }
 
-  /* Mobile order: illustration → headline → sub-head (T07: stack). */
-
-  .illustration {
-    order: 1;
-    width: 60vw;
-    max-width: 220px;
-    margin-inline: auto;
-  }
-  .headline-wrap {
-    order: 2;
-  }
-  .subhead {
-    order: 3;
-    color: var(--ink-soft);
-  }
-
-  .subhead {
-    max-width: 32ch;
-  }
-
-  /* Desktop: asymmetric placement per T12 ASCII grid. */
-
-  @media (min-width: 64rem) {
-    .hero > .container {
-      align-items: center;
-      min-height: 80vh;
-    }
-    .headline-wrap {
-      order: 0;
-      transform: translateY(-80px);
-      align-self: center;
-    }
-    .subhead {
-      order: 0;
-      align-self: center;
-      transform: translateY(-80px);
-      margin-top: var(--space-8);
-      max-width: 38ch;
-    }
-    .illustration {
-      order: 0;
-      align-self: center;
-      transform: translateY(120px);
-      width: 280px;
-      max-width: none;
+  @media (min-width: 48rem) {
+    .hero-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      /* Keep the book + figure visible; let the cream-paper left edge
+       * extend off-screen so the headline gets the room it needs. */
+      object-position: 70% center;
+      z-index: 0;
     }
   }
 
-  @media (min-width: 48rem) and (max-width: 63.99rem) {
-    .hero > .container {
-      align-items: center;
-      min-height: 80vh;
-    }
-    .headline-wrap {
-      order: 0;
-    }
-    .subhead {
-      order: 0;
-      margin-top: var(--space-6);
-    }
-    .illustration {
-      order: 0;
-      align-self: start;
-      transform: translateY(90px);
-      width: 220px;
+  @media (max-width: 47.99rem) {
+    .hero-image {
+      max-width: 100%;
+      margin-bottom: var(--space-8);
     }
   }
 
-  /* Headline line wrapping. Each line is its own clip-path scope. */
+  .hero-content {
+    position: relative;
+    z-index: 1;
+  }
 
+  .text-block {
+    /* Width is controlled by the headline's own clamp + line-by-line
+     * spans below, not by a parent max-width (ch units on the parent
+     * compute against the body font-size and would force the huge
+     * display headline into a tiny column). */
+    width: fit-content;
+    max-width: 100%;
+  }
+
+  /* Hero typography is its own thing — competing with the watercolor
+   * at full --step-5 would shout. Reduce one or two steps so the
+   * painting reads first and the words settle in second. */
   #hero-title {
-    /* Override the typography.css clamp at the desktop edge:
-     * the hero on this page is the only target; clamp() handles
-     * all responsive cases. */
+    font-size: clamp(2rem, 0.9rem + 3.6vw, 3.4rem);
+    line-height: 1.1;
+    max-width: none;
   }
   #hero-title .line {
     display: block;
+    white-space: nowrap;
+  }
+
+  .subhead {
+    color: var(--ink-soft);
+    margin-top: var(--space-6);
+    max-width: 32ch;
+    font-size: clamp(1.1rem, 0.9rem + 0.5vw, 1.4rem);
+  }
+  @media (min-width: 64rem) {
+    .subhead {
+      max-width: 32ch;
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .text-block {
+      padding-block: var(--space-16);
+      padding-left: var(--space-6);
+    }
   }
 
   /* Pre-JS entrance state. Without `.js-ready`, the hero is fully
-   * visible (no animation, no FOIC). With JS, the entrance state is
-   * applied; the controller above flips data-in-view to reveal. */
+   * visible (no animation, no FOIC). */
+
+  .js-ready .hero-image {
+    opacity: 0;
+  }
+  .js-ready .hero-image[data-in-view] {
+    opacity: 1;
+  }
 
   .js-ready [data-hero-subhead] {
     opacity: 0;
