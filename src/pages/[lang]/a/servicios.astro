@@ -1,10 +1,9 @@
 ---
 /* T23 — Servicios for non-default locales. Mirror of /servicios. */
 
-import Base from '../../layouts/Base.astro'
-import WatercolorSpot from '../../components/WatercolorSpot.astro'
-import { locales, defaultLocale, type Locale } from '../../i18n/config'
-import { t } from '../../i18n/t'
+import Base from '../../../layouts/Base.astro'
+import { locales, defaultLocale, type Locale } from '../../../i18n/config'
+import { t } from '../../../i18n/t'
 
 export function getStaticPaths() {
   return locales
@@ -15,16 +14,16 @@ export function getStaticPaths() {
 const lang = Astro.params.lang as Locale
 
 const items = [
-  { key: 'curaduria', token: 'offered-fragment' },
-  { key: 'interiorismo', token: 'library-arch' },
-  { key: 'cultural', token: 'ink-path-valley' },
-  { key: 'eventos', token: 'reading-lectern' }
+  { key: 'curaduria' },
+  { key: 'interiorismo' },
+  { key: 'cultural' },
+  { key: 'eventos' }
 ] as const
 ---
 
-<Base
+<Base proposal="a"
   locale={lang}
-  pathname="/servicios"
+  pathname="/a/servicios"
   title={t('meta.servicios.title', lang)}
   description={t('meta.servicios.description', lang)}
 >
@@ -34,16 +33,11 @@ const items = [
         <h1 class="t-page-title">{t('servicios.page_title', lang)}</h1>
         <p class="lead t-lead measure-body">{t('servicios.intro', lang)}</p>
       </div>
-      <WatercolorSpot
-        class="intro-ornament"
-        slug="diagonal-branches"
-        aspect="3/4"
-      />
     </header>
 
     <div class="chapters container">
       {
-        items.map(({ key, token }) => {
+        items.map(({ key }) => {
           const number = t(`servicios.items.${key}.number` as any, lang)
           const title = t(`servicios.items.${key}.title` as any, lang)
           const dedication = t(`servicios.items.${key}.dedication` as any, lang)
@@ -54,11 +48,6 @@ const items = [
               <h2 class="t-section-title">{title}</h2>
               <p class="dedication t-lead">{dedication}</p>
               <p class="body measure-body">{body}</p>
-              <WatercolorSpot
-                class="chapter-token"
-                slug={token}
-                aspect="3/4"
-              />
             </article>
           )
         })
@@ -86,24 +75,9 @@ const items = [
     color: var(--ink-soft);
     max-width: 56ch;
   }
-  .intro :global(.intro-ornament) {
-    grid-column: 1 / -1;
-    width: min(74vw, 260px);
-    justify-self: end;
-    margin-top: var(--space-8);
-    opacity: 0.5;
-  }
   @media (min-width: 64rem) {
     .intro-copy {
       grid-column: 1 / 8;
-    }
-    .intro :global(.intro-ornament) {
-      grid-column: 7 / 11;
-      width: min(100%, 390px);
-      justify-self: start;
-      align-self: center;
-      margin-top: 0;
-      opacity: 0.58;
     }
   }
   .chapters {
@@ -117,16 +91,11 @@ const items = [
     padding-block: var(--space-12);
     border-top: 1px solid var(--paper-deep);
   }
-  .capitulo :global(.chapter-token) {
-    width: min(72vw, 230px);
-    opacity: 0.44;
-    margin-top: var(--space-4);
-  }
   @media (min-width: 64rem) {
     .capitulo {
-      grid-template-columns: 5ch minmax(34rem, 60ch) 300px;
-      grid-template-areas: 'num title token' '. ded token' '. body token';
-      column-gap: var(--space-12);
+      grid-template-columns: 5ch minmax(34rem, 60ch);
+      grid-template-areas: 'num title' '. ded' '. body';
+      column-gap: var(--space-8);
       row-gap: var(--space-3);
       justify-content: start;
     }
@@ -142,14 +111,6 @@ const items = [
     .capitulo .body {
       grid-area: body;
       max-width: 60ch;
-    }
-    .capitulo :global(.chapter-token) {
-      grid-area: token;
-      align-self: center;
-      justify-self: start;
-      width: min(100%, 300px);
-      margin-top: 0;
-      opacity: 0.5;
     }
   }
   .numeral {

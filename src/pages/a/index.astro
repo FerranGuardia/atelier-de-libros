@@ -1,0 +1,15 @@
+---
+/* Home assembly. Hero + Manifesto. La navegación por overscroll vive
+ * en Base.astro y aplica a toda la secuencia editorial del sitio. */
+
+import Base from '../../layouts/Base.astro'
+import Hero from '../../components/sections/Hero.astro'
+import Manifesto from '../../components/sections/Manifesto.astro'
+
+const locale = 'es' as const
+---
+
+<Base locale={locale} pathname="/a/" proposal="a">
+  <Hero locale={locale} />
+  <Manifesto locale={locale} />
+</Base>

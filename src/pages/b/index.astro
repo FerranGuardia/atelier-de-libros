@@ -1,0 +1,673 @@
+---
+/* Propuesta B — comercial directa. ES, single-page, sin floritura.
+ * Misma identidad cromática y tipográfica que A; otra arquitectura: hero
+ * → servicios → casos → proceso → contacto. Texto al mínimo. */
+
+import { Image } from 'astro:assets'
+import Base from '../../layouts/Base.astro'
+import editorialDesk from '../../assets/watercolor/editorial-desk.png'
+import readerIsland from '../../assets/watercolor/reader-paper-island.png'
+import libraryArch from '../../assets/watercolor/library-arch.png'
+import readingLectern from '../../assets/watercolor/reading-lectern.png'
+import inkPathValley from '../../assets/watercolor/ink-path-valley.png'
+
+const locale = 'es' as const
+
+const servicios = [
+  {
+    n: '01',
+    title: 'Curaduría de identidad',
+    line: 'Selección de libros que comunican lo que tu marca quiere decir.',
+    deliverables: ['Book list anotada', 'Dossier visual', 'Plan de uso']
+  },
+  {
+    n: '02',
+    title: 'Interiorismo narrativo',
+    line: 'Bibliotecas y córneres literarios diseñados a medida.',
+    deliverables: ['Proyecto y planos', 'Sourcing y edición', 'Instalación']
+  },
+  {
+    n: '03',
+    title: 'Comunidad y contenido',
+    line: 'Clubes de lectura y producción de contenido cultural recurrente.',
+    deliverables: ['Programa anual', 'Calendario editorial', 'Foto y vídeo']
+  },
+  {
+    n: '04',
+    title: 'Eventos y objeto',
+    line: 'Salones literarios, lanzamientos y merchandising editorial.',
+    deliverables: ['Concepto', 'Producción integral', 'Papelería y edición']
+  }
+]
+
+const casos = [
+  {
+    img: libraryArch,
+    client: 'Hotel boutique',
+    year: '2026',
+    scope: 'Interiorismo · Curaduría',
+    title: 'Biblioteca y córneres en lobby y suites',
+    excerpt: 'Selección de 480 títulos. Identidad de lectura por planta.'
+  },
+  {
+    img: readingLectern,
+    client: 'Marca de moda',
+    year: '2025',
+    scope: 'Pop-up · Campaña',
+    title: 'Lanzamiento de colección con biblioteca temática',
+    excerpt: 'Pop-up de tres días. It-books, invitación-objeto, contenido.'
+  },
+  {
+    img: inkPathValley,
+    client: 'Figura pública',
+    year: '2025',
+    scope: 'Imagen · Salón literario',
+    title: 'Reposicionamiento cultural en redes y evento privado',
+    excerpt: 'Auditoría de feed, plan de lecturas, salón con 24 invitados.'
+  }
+]
+
+const proceso = [
+  {
+    n: '01',
+    title: 'Briefing',
+    note: 'Una reunión. Encaje, objetivo, presupuesto, calendario.',
+    span: '1 semana'
+  },
+  {
+    n: '02',
+    title: 'Propuesta',
+    note: 'Documento con concepto, alcance cerrado y honorarios.',
+    span: '2 semanas'
+  },
+  {
+    n: '03',
+    title: 'Ejecución',
+    note: 'Producción y entrega. Reuniones quincenales hasta cierre.',
+    span: 'Variable'
+  }
+]
+---
+
+<Base
+  locale={locale}
+  pathname="/b/"
+  proposal="b"
+  title="Atelier de Libros — Estilismo literario para marcas, espacios y figuras públicas"
+  description="Curaduría de libros, interiorismo narrativo, eventos y contenido. Servicios a medida."
+  noindex
+>
+  <article class="b">
+    <!-- HERO ───────────────────────────────────────────────────── -->
+    <section class="hero container">
+      <div class="hero-text">
+        <p class="eyebrow">Estilismo literario</p>
+        <h1 class="hero-title">
+          Damos forma a lo que tu marca, tu espacio o tu figura todavía no sabe decir.
+        </h1>
+        <p class="hero-sub">
+          Curaduría de libros, interiorismo narrativo, eventos y contenido.
+          Servicios a medida, alcance cerrado, calendario corto.
+        </p>
+        <div class="hero-ctas">
+          <a class="btn primary" href="#servicios">Ver servicios</a>
+          <a class="btn ghost" href="#contacto">Contactar</a>
+        </div>
+        <ul class="hero-meta">
+          <li>Madrid · Barcelona</li>
+          <li>Estudio fundado en 2025</li>
+          <li>Proyectos desde 4 semanas</li>
+        </ul>
+      </div>
+      <div class="hero-image">
+        <Image
+          src={editorialDesk}
+          alt=""
+          widths={[480, 720, 960, 1280]}
+          sizes="(min-width: 64rem) 48vw, 92vw"
+          quality={84}
+        />
+      </div>
+    </section>
+
+    <!-- SERVICIOS ───────────────────────────────────────────────── -->
+    <section id="servicios" class="block container">
+      <header class="block-head">
+        <p class="block-num">I</p>
+        <h2 class="block-title">Servicios</h2>
+        <p class="block-lead">Cuatro líneas de trabajo. Se contratan sueltas o combinadas.</p>
+      </header>
+
+      <ul class="service-grid">
+        {
+          servicios.map(({ n, title, line, deliverables }) => (
+            <li class="service">
+              <p class="s-num">{n}</p>
+              <h3 class="s-title">{title}</h3>
+              <p class="s-line">{line}</p>
+              <p class="s-label">Entregables</p>
+              <ul class="s-deliv">
+                {deliverables.map((d) => (
+                  <li>{d}</li>
+                ))}
+              </ul>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <!-- CASOS ───────────────────────────────────────────────────── -->
+    <section id="casos" class="block container">
+      <header class="block-head">
+        <p class="block-num">II</p>
+        <h2 class="block-title">Casos</h2>
+        <p class="block-lead">Selección reciente. Cliente, alcance y resultado.</p>
+      </header>
+
+      <ul class="case-grid">
+        {
+          casos.map(({ img, client, year, scope, title, excerpt }) => (
+            <li class="case">
+              <div class="case-img">
+                <Image
+                  src={img}
+                  alt=""
+                  widths={[420, 640, 880]}
+                  sizes="(min-width: 64rem) 30vw, 92vw"
+                  quality={82}
+                />
+              </div>
+              <div class="case-meta">
+                <p class="c-tag">
+                  <span>{client}</span>
+                  <span>·</span>
+                  <span>{year}</span>
+                </p>
+                <h3 class="c-title">{title}</h3>
+                <p class="c-scope">{scope}</p>
+                <p class="c-excerpt">{excerpt}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <!-- PROCESO ─────────────────────────────────────────────────── -->
+    <section id="proceso" class="block container">
+      <header class="block-head">
+        <p class="block-num">III</p>
+        <h2 class="block-title">Proceso</h2>
+        <p class="block-lead">Tres pasos. Sin sorpresas en presupuesto ni en plazos.</p>
+      </header>
+
+      <ol class="process">
+        {
+          proceso.map(({ n, title, note, span }) => (
+            <li class="step">
+              <p class="p-num">{n}</p>
+              <h3 class="p-title">{title}</h3>
+              <p class="p-note">{note}</p>
+              <p class="p-span">{span}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    <!-- CONTACTO ────────────────────────────────────────────────── -->
+    <section id="contacto" class="block container contact">
+      <header class="block-head">
+        <p class="block-num">IV</p>
+        <h2 class="block-title">Contacto</h2>
+        <p class="block-lead">Cuéntanos en dos líneas qué quieres hacer. Respondemos en 48h.</p>
+      </header>
+
+      <div class="contact-grid">
+        <form class="contact-form" method="post" action="#">
+          <label>
+            <span>Nombre</span>
+            <input type="text" name="name" required />
+          </label>
+          <label>
+            <span>Correo</span>
+            <input type="email" name="email" required />
+          </label>
+          <label>
+            <span>Tipo de proyecto</span>
+            <select name="type">
+              <option>Curaduría de identidad</option>
+              <option>Interiorismo narrativo</option>
+              <option>Comunidad y contenido</option>
+              <option>Eventos y objeto</option>
+              <option>Otro</option>
+            </select>
+          </label>
+          <label class="full">
+            <span>Mensaje</span>
+            <textarea name="message" rows="4" required></textarea>
+          </label>
+          <button class="btn primary submit" type="submit">Enviar</button>
+        </form>
+
+        <aside class="contact-side">
+          <p class="c-label">Estudio</p>
+          <p>estudio@atelierdelibros.com</p>
+          <p class="c-label">Atendemos</p>
+          <p>Lunes a jueves · 10:00–18:00 (CET)</p>
+          <p class="c-label">Sede</p>
+          <p>Madrid · Barcelona</p>
+        </aside>
+      </div>
+    </section>
+  </article>
+</Base>
+
+<style>
+  /* ──────────────────────────────────────────────────────────────
+   * Propuesta B — registro comercial. Misma paleta y tipografía que
+   * A; arquitectura distinta: cuadrícula firme, mayúsculas tracked,
+   * sin cursivas en titulares, fotografía como protagonista.
+   * ────────────────────────────────────────────────────────────── */
+
+  .b {
+    margin-bottom: var(--space-32);
+  }
+
+  /* Etiquetas tipográficas reutilizadas en toda la página */
+  .eyebrow,
+  .block-head .block-num,
+  .s-label,
+  .c-tag,
+  .c-scope,
+  .c-label,
+  .p-span,
+  .hero-meta li {
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-whisper);
+  }
+
+  /* Botones — diseño plano y crisp */
+  .btn {
+    display: inline-block;
+    text-decoration: none;
+    padding: 14px 22px;
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border: 1px solid var(--ink);
+    transition:
+      background var(--dur-fast) var(--ease),
+      color var(--dur-fast) var(--ease),
+      border-color var(--dur-fast) var(--ease);
+    cursor: pointer;
+  }
+  .btn.primary {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .btn.primary:hover,
+  .btn.primary:focus-visible {
+    background: var(--library-green);
+    border-color: var(--library-green);
+  }
+  .btn.ghost {
+    background: transparent;
+    color: var(--ink);
+  }
+  .btn.ghost:hover,
+  .btn.ghost:focus-visible {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  /* HERO ───────────────────────────────────────────── */
+  .hero {
+    padding-top: var(--space-16);
+    padding-bottom: var(--space-24);
+    display: grid;
+    gap: var(--space-12);
+  }
+  @media (min-width: 64rem) {
+    .hero {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      align-items: center;
+      gap: var(--space-16);
+      padding-top: var(--space-24);
+    }
+  }
+  .hero-text {
+    display: grid;
+    gap: var(--space-6);
+  }
+  .hero-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-style: normal; /* no italics — registro comercial */
+    font-size: clamp(2.2rem, 1.4rem + 2.8vw, 3.6rem);
+    line-height: 1.1;
+    margin: 0;
+    max-width: 18ch;
+  }
+  .hero-sub {
+    color: var(--ink-soft);
+    line-height: 1.55;
+    max-width: 48ch;
+  }
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-2);
+  }
+  .hero-meta {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-6) 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-6);
+    border-top: 1px solid var(--paper-deep);
+    padding-top: var(--space-4);
+  }
+
+  .hero-image {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: var(--paper-deep);
+  }
+  .hero-image :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* BLOQUES — encabezado común */
+  .block {
+    padding-block: var(--space-16);
+    border-top: 1px solid var(--paper-deep);
+  }
+  @media (min-width: 64rem) {
+    .block {
+      padding-block: var(--space-24);
+    }
+  }
+  .block-head {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: var(--space-6);
+    row-gap: var(--space-2);
+    align-items: baseline;
+    margin-bottom: var(--space-12);
+  }
+  .block-num {
+    grid-row: 1 / span 2;
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    color: var(--ink);
+    align-self: start;
+    padding-top: 6px;
+  }
+  .block-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-style: normal;
+    font-size: var(--step-3);
+    line-height: 1.1;
+    margin: 0;
+  }
+  .block-lead {
+    grid-column: 2;
+    color: var(--ink-soft);
+    max-width: 48ch;
+  }
+
+  /* SERVICIOS ─────────────────────────────────────── */
+  .service-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    background: var(--paper-deep);
+    border: 1px solid var(--paper-deep);
+  }
+  @media (min-width: 48rem) {
+    .service-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .service {
+    background: var(--paper);
+    padding: var(--space-8);
+    display: grid;
+    gap: var(--space-3);
+  }
+  @media (min-width: 64rem) {
+    .service {
+      padding: var(--space-12);
+    }
+  }
+  .s-num {
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    color: var(--ink-whisper);
+    letter-spacing: 0.12em;
+  }
+  .s-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--step-2);
+    line-height: 1.2;
+    margin: 0;
+  }
+  .s-line {
+    color: var(--ink-soft);
+    line-height: 1.55;
+    max-width: 36ch;
+    margin-bottom: var(--space-4);
+  }
+  .s-label {
+    margin-top: var(--space-2);
+  }
+  .s-deliv {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: var(--space-1);
+  }
+  .s-deliv li {
+    font-family: var(--font-body);
+    font-size: var(--step-0);
+    color: var(--ink);
+    padding-left: 18px;
+    position: relative;
+  }
+  .s-deliv li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--library-green);
+  }
+
+  /* CASOS ─────────────────────────────────────────── */
+  .case-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+  }
+  @media (min-width: 48rem) {
+    .case-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-8);
+    }
+  }
+  .case {
+    display: grid;
+    gap: var(--space-4);
+  }
+  .case-img {
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: var(--paper-deep);
+  }
+  .case-img :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .case-meta {
+    display: grid;
+    gap: var(--space-2);
+  }
+  .c-tag {
+    display: flex;
+    gap: var(--space-2);
+    align-items: baseline;
+  }
+  .c-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--step-1);
+    line-height: 1.2;
+    margin: 0;
+  }
+  .c-scope {
+    color: var(--ink-soft);
+  }
+  .c-excerpt {
+    color: var(--ink);
+    line-height: 1.55;
+  }
+
+  /* PROCESO ──────────────────────────────────────── */
+  .process {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    counter-reset: step;
+  }
+  @media (min-width: 48rem) {
+    .process {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-8);
+    }
+  }
+  .step {
+    display: grid;
+    gap: var(--space-3);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--ink);
+  }
+  .p-num {
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink);
+  }
+  .p-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--step-2);
+    line-height: 1.15;
+    margin: 0;
+  }
+  .p-note {
+    color: var(--ink-soft);
+    line-height: 1.55;
+    max-width: 36ch;
+  }
+  .p-span {
+    color: var(--library-green);
+  }
+
+  /* CONTACTO ─────────────────────────────────────── */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+  }
+  @media (min-width: 64rem) {
+    .contact-grid {
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+      gap: var(--space-16);
+    }
+  }
+  .contact-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+  }
+  .contact-form label {
+    display: grid;
+    gap: var(--space-2);
+  }
+  .contact-form label.full {
+    grid-column: 1 / -1;
+  }
+  .contact-form span {
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-whisper);
+  }
+  .contact-form input,
+  .contact-form select,
+  .contact-form textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--paper-deep);
+    background: var(--paper);
+    color: var(--ink);
+    font: inherit;
+    border-radius: 0;
+  }
+  .contact-form input:focus,
+  .contact-form select:focus,
+  .contact-form textarea:focus {
+    outline: 2px solid var(--library-green);
+    outline-offset: 1px;
+    border-color: var(--library-green);
+  }
+  .contact-form .submit {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+
+  .contact-side {
+    display: grid;
+    gap: var(--space-2);
+    align-content: start;
+    border-left: 1px solid var(--paper-deep);
+    padding-left: var(--space-8);
+  }
+  @media (max-width: 63.99rem) {
+    .contact-side {
+      border-left: none;
+      border-top: 1px solid var(--paper-deep);
+      padding-left: 0;
+      padding-top: var(--space-8);
+    }
+  }
+  .contact-side .c-label {
+    margin-top: var(--space-3);
+  }
+  .contact-side .c-label:first-child {
+    margin-top: 0;
+  }
+</style>

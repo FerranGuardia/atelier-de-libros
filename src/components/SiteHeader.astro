@@ -20,42 +20,63 @@ import type { Locale } from '../i18n/config'
 interface Props {
   locale: Locale
   pathname: string
+  /** Proposal subtree. Prefixes nav hrefs and the wordmark home. */
+  proposal?: 'a' | 'b'
 }
 
-const { locale, pathname } = Astro.props
+const { locale, pathname, proposal } = Astro.props
+
+const prefix = proposal ? `/${proposal}` : ''
+const home = proposal ? `${prefix}/` : '/'
 
 /* Active when the current pathname (locale-stripped) starts with the
  * link's canonical href. The home link matches only an exact root. */
 function isActive(href: string): boolean {
   const stripped = pathname.replace(/^\/(ca|fr|en|it)(\/|$)/, '/')
-  if (href === '/') return stripped === '/'
+  if (href === home) return stripped === home
   return stripped === href || stripped.startsWith(href + '/')
 }
 
-const navItems: { key: Key; href: string }[] = [
-  { key: 'nav.manifiesto', href: '/#manifiesto' },
-  { key: 'nav.servicios', href: '/servicios' },
-  { key: 'nav.publishers', href: '/publishers' },
-  { key: 'nav.historias', href: '/historias' },
-  { key: 'nav.nota', href: '/nota' },
-  { key: 'nav.epilogo', href: '/epilogo' }
-]
+const navItemsByProposal: Record<'a' | 'b', { key: Key; href: string }[]> = {
+  a: [
+    { key: 'nav.manifiesto', href: '/a/#manifiesto' },
+    { key: 'nav.servicios', href: '/a/servicios' },
+    { key: 'nav.publishers', href: '/a/publishers' },
+    { key: 'nav.historias', href: '/a/historias' },
+    { key: 'nav.nota', href: '/a/nota' },
+    { key: 'nav.epilogo', href: '/a/epilogo' }
+  ],
+  b: [
+    { key: 'nav.b_servicios', href: '/b/#servicios' },
+    { key: 'nav.b_casos', href: '/b/#casos' },
+    { key: 'nav.b_proceso', href: '/b/#proceso' },
+    { key: 'nav.b_contacto', href: '/b/#contacto' }
+  ]
+}
+
+const navItems = proposal ? navItemsByProposal[proposal] : []
 ---
 
 <header class="site-header" data-bordered="false">
   <div class="container">
-    <a class="wordmark t-wordmark" href={localizePath('/', locale)}>
+    <a class="wordmark t-wordmark" href={localizePath(home, locale)}>
       {t('brand.wordmark', locale)}
     </a>
+    {proposal && (
+      <a class="back-to-hub t-caption" href={localizePath('/', locale)} aria-label="Volver al hub de propuestas">
+        ← Propuestas
+      </a>
+    )}
 
     <nav class="primary" aria-label={t('aria.main_nav', locale)}>
       <ul>
         {
           navItems.map(({ key, href }) => {
             const active = isActive(href.replace(/#.*$/, ''))
-            const localized = href.startsWith('/#')
-              ? localizePath('/', locale) + href.slice(1)
-              : localizePath(href, locale)
+            const hashIdx = href.indexOf('#')
+            const base = hashIdx >= 0 ? href.slice(0, hashIdx) || '/' : href
+            const hash = hashIdx >= 0 ? href.slice(hashIdx) : ''
+            const localized = localizePath(base, locale) + hash
             return (
               <li>
                 <a
@@ -106,9 +127,10 @@ const navItems: { key: Key; href: string }[] = [
       <ul>
         {
           navItems.map(({ key, href }) => {
-            const localized = href.startsWith('/#')
-              ? localizePath('/', locale) + href.slice(1)
-              : localizePath(href, locale)
+            const hashIdx = href.indexOf('#')
+            const base = hashIdx >= 0 ? href.slice(0, hashIdx) || '/' : href
+            const hash = hashIdx >= 0 ? href.slice(hashIdx) : ''
+            const localized = localizePath(base, locale) + hash
             return (
               <li>
                 <a class="t-mobile-link" href={localized}>

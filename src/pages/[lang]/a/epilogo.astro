@@ -1,8 +1,8 @@
 ---
-import Base from '../../layouts/Base.astro'
-import EpilogoPage from '../../components/pages/EpilogoPage.astro'
-import { locales, defaultLocale, type Locale } from '../../i18n/config'
-import { t } from '../../i18n/t'
+import Base from '../../../layouts/Base.astro'
+import EpilogoPage from '../../../components/pages/EpilogoPage.astro'
+import { locales, defaultLocale, type Locale } from '../../../i18n/config'
+import { t } from '../../../i18n/t'
 
 export function getStaticPaths() {
   return locales
@@ -13,9 +13,9 @@ export function getStaticPaths() {
 const lang = Astro.params.lang as Locale
 ---
 
-<Base
+<Base proposal="a"
   locale={lang}
-  pathname="/epilogo"
+  pathname="/a/epilogo"
   title={t('meta.epilogo.title', lang)}
   description={t('meta.epilogo.description', lang)}
 >

@@ -1,8 +1,8 @@
 ---
-import Base from '../../../layouts/Base.astro'
-import HistoriaDetail from '../../../components/pages/HistoriaDetail.astro'
-import { locales, defaultLocale, type Locale } from '../../../i18n/config'
-import { t } from '../../../i18n/t'
+import Base from '../../../../layouts/Base.astro'
+import HistoriaDetail from '../../../../components/pages/HistoriaDetail.astro'
+import { locales, defaultLocale, type Locale } from '../../../../i18n/config'
+import { t } from '../../../../i18n/t'
 
 export function getStaticPaths() {
   const slugs = [
@@ -21,9 +21,9 @@ const lang = Astro.params.lang as Locale
 const title = t(`historias.cases.${caseId}.title` as any, lang)
 ---
 
-<Base
+<Base proposal="a"
   locale={lang}
-  pathname={`/historias/${Astro.params.slug}`}
+  pathname={`/a/historias/${Astro.params.slug}`}
   title={`${title} — ${t('meta.historias.title', lang)}`}
   description={t(`historias.cases.${caseId}.excerpt` as any, lang)}
 >

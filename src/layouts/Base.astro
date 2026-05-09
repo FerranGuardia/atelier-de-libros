@@ -21,6 +21,9 @@ interface Props {
   /** Hide the chrome — used by /dev/* QA pages so they show only the
    * thing under test. */
   bare?: boolean
+  /** Proposal subtree this page lives in. Drives nav prefixing and the
+   * overscroll sequence. `undefined` = hub or stand-alone. */
+  proposal?: 'a' | 'b'
 }
 
 const detectedLocale = getLocaleFromUrl(Astro.url)
@@ -30,7 +33,8 @@ const {
   title = t('meta.home.title', locale),
   description = t('meta.home.description', locale),
   noindex = false,
-  bare = false
+  bare = false,
+  proposal
 } = Astro.props
 
 const site = Astro.site?.toString().replace(/\/$/, '') ?? ''
@@ -94,13 +98,98 @@ const canonical = site + localizePath(pathname, locale)
   <body data-locale={locale}>
     <a class="skip-to-content" href="#main">{t('aria.skip_to_content', locale)}</a>
     <Grain />
-    {!bare && <SiteHeader locale={locale} pathname={pathname} />}
+    {!bare && <SiteHeader locale={locale} pathname={pathname} proposal={proposal} />}
     <main id="main">
       <slot />
     </main>
     {!bare && <SiteFooter locale={locale} pathname={pathname} />}
 
     <script>
+      /* Overscroll → next page. Lectura editorial secuencial: cuando el
+       * usuario llega al fondo de una página y empuja hacia abajo una
+       * vez más (rueda, trackpad, swipe, ↓/PgDn/Espacio/End), navega a
+       * la siguiente. Una sola dirección, suave, sin scroll-jacking
+       * dentro de la página. La última página (/epilogo) no avanza. */
+      const SEQUENCES: Record<string, readonly string[]> = {
+        a: ['/a', '/a/servicios', '/a/publishers', '/a/historias', '/a/nota', '/a/epilogo']
+      }
+
+      function splitLocale(pathname: string): { locale: string; canonical: string } {
+        const m = pathname.match(/^\/(ca|fr|en|it)(\/.*)?$/)
+        if (m) return { locale: '/' + m[1], canonical: m[2] || '/' }
+        return { locale: '', canonical: pathname || '/' }
+      }
+
+      function nextHref(pathname: string): string | null {
+        const { locale, canonical } = splitLocale(pathname)
+        const stripped = canonical.replace(/\/$/, '') || '/'
+        const proposalKey = stripped.match(/^\/(a|b)\b/)?.[1]
+        if (!proposalKey) return null
+        const sequence = SEQUENCES[proposalKey]
+        const idx = sequence.indexOf(stripped)
+        if (idx < 0 || idx >= sequence.length - 1) return null
+        return locale + sequence[idx + 1]
+      }
+
+      function mountOverscrollNav() {
+        const target = nextHref(location.pathname)
+        if (!target) return
+
+        let firing = false
+        let lastTouchY = 0
+
+        const atBottom = () => {
+          const doc = document.documentElement
+          return window.scrollY + window.innerHeight >= doc.scrollHeight - 2
+        }
+        const trigger = async () => {
+          if (firing || !atBottom()) return
+          firing = true
+          const { navigate } = await import('astro:transitions/client')
+          navigate(target)
+        }
+
+        const onWheel = (e: WheelEvent) => {
+          if (e.deltaY > 0) trigger()
+        }
+        const onTouchStart = (e: TouchEvent) => {
+          lastTouchY = e.touches[0]?.clientY ?? 0
+        }
+        const onTouchMove = (e: TouchEvent) => {
+          const y = e.touches[0]?.clientY ?? 0
+          if (lastTouchY - y > 0) trigger()
+          lastTouchY = y
+        }
+        const onKey = (e: KeyboardEvent) => {
+          if (
+            atBottom() &&
+            (e.key === 'ArrowDown' ||
+              e.key === 'PageDown' ||
+              e.key === ' ' ||
+              e.key === 'End')
+          ) {
+            trigger()
+          }
+        }
+
+        window.addEventListener('wheel', onWheel, { passive: true })
+        window.addEventListener('touchstart', onTouchStart, { passive: true })
+        window.addEventListener('touchmove', onTouchMove, { passive: true })
+        window.addEventListener('keydown', onKey)
+
+        document.addEventListener(
+          'astro:before-swap',
+          () => {
+            window.removeEventListener('wheel', onWheel)
+            window.removeEventListener('touchstart', onTouchStart)
+            window.removeEventListener('touchmove', onTouchMove)
+            window.removeEventListener('keydown', onKey)
+          },
+          { once: true }
+        )
+      }
+      document.addEventListener('astro:page-load', mountOverscrollNav)
+
       /* T11 / T05 — single IntersectionObserver for entrance motions
        * (m-rise, m-fade-in, m-mask-wipe, m-stroke-draw). Components
        * declare data-motion only; this observer flips data-in-view at

@@ -21,7 +21,11 @@ const dict = {
     publishers: 'Publishers',
     historias: 'Historias',
     nota: 'La Nota',
-    epilogo: 'Epílogo'
+    epilogo: 'Epílogo',
+    b_servicios: 'Servicios',
+    b_casos: 'Casos',
+    b_proceso: 'Proceso',
+    b_contacto: 'Contacto'
   },
 
   cta: {
