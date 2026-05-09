@@ -1,0 +1,135 @@
+---
+/* Switcher flotante de propuestas — sólo visible en /a/* y /b/*. Permite
+ * volver al hub o saltar a la otra propuesta sin tocar la composición
+ * del header principal. Se puede cerrar y queda oculto durante la
+ * sesión (sessionStorage). */
+
+import { localizePath } from '../i18n/locale'
+import type { Locale } from '../i18n/config'
+
+interface Props {
+  proposal: 'a' | 'b'
+  locale: Locale
+}
+
+const { proposal, locale } = Astro.props
+
+const otherProposal = proposal === 'a' ? 'b' : 'a'
+const otherLabel = proposal === 'a' ? 'Propuesta B' : 'Propuesta A'
+---
+
+<aside class="proposal-switcher" data-proposal-switcher hidden>
+  <a class="ps-link ps-hub" href={localizePath('/', locale)}>
+    Hub
+  </a>
+  <a class="ps-link ps-other" href={localizePath(`/${otherProposal}/`, locale)}>
+    {otherLabel} →
+  </a>
+  <button
+    type="button"
+    class="ps-close"
+    aria-label="Ocultar el selector de propuestas"
+    data-proposal-close
+  >
+    ×
+  </button>
+</aside>
+
+<script>
+  /* The switcher is review chrome. We default it visible but let the
+   * reviewer dismiss it for the rest of the tab session. The hidden
+   * attribute is removed on mount so SSR doesn't paint it before JS
+   * gets a chance to honour the dismissal. */
+
+  const KEY = 'proposal-switcher-dismissed'
+
+  function mountProposalSwitcher() {
+    const root = document.querySelector<HTMLElement>('[data-proposal-switcher]')
+    if (!root) return
+
+    const dismissed = sessionStorage.getItem(KEY) === '1'
+    if (!dismissed) root.hidden = false
+
+    const close = root.querySelector<HTMLButtonElement>('[data-proposal-close]')
+    close?.addEventListener('click', () => {
+      sessionStorage.setItem(KEY, '1')
+      root.hidden = true
+    })
+  }
+
+  document.addEventListener('astro:page-load', mountProposalSwitcher)
+</script>
+
+<style>
+  .proposal-switcher {
+    position: fixed;
+    right: var(--space-6);
+    bottom: var(--space-6);
+    z-index: 70;
+    display: inline-flex;
+    align-items: stretch;
+    gap: 0;
+    background: var(--paper);
+    border: 1px solid var(--paper-deep);
+    box-shadow: 0 16px 40px -24px rgba(26, 26, 26, 0.3);
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    line-height: 1;
+  }
+
+  .proposal-switcher[hidden] {
+    display: none;
+  }
+
+  .ps-link {
+    padding: 12px 16px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: color var(--dur-fast) var(--ease);
+  }
+  .ps-link + .ps-link,
+  .ps-close {
+    border-left: 1px solid var(--paper-deep);
+  }
+  .ps-link:hover,
+  .ps-link:focus-visible {
+    color: var(--library-green);
+  }
+  .ps-other {
+    color: var(--ink);
+  }
+
+  .ps-close {
+    background: transparent;
+    border: 0;
+    border-left: 1px solid var(--paper-deep);
+    cursor: pointer;
+    padding: 0 14px;
+    font-size: 18px;
+    line-height: 1;
+    color: var(--ink-soft);
+  }
+  .ps-close:hover,
+  .ps-close:focus-visible {
+    color: var(--ink);
+  }
+
+  @media (max-width: 47.99rem) {
+    .proposal-switcher {
+      right: var(--space-3);
+      bottom: var(--space-3);
+      font-size: 11px;
+    }
+    .ps-link {
+      padding: 10px 12px;
+    }
+  }
+
+  @media print {
+    .proposal-switcher {
+      display: none;
+    }
+  }
+</style>

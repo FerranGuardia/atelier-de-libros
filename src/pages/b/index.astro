@@ -5,10 +5,9 @@
 
 import { Image } from 'astro:assets'
 import Base from '../../layouts/Base.astro'
-import editorialDesk from '../../assets/watercolor/editorial-desk.png'
-import readerIsland from '../../assets/watercolor/reader-paper-island.png'
-import libraryArch from '../../assets/watercolor/library-arch.png'
+import editorialOrbit from '../../assets/watercolor/editorial-orbit.png'
 import readingLectern from '../../assets/watercolor/reading-lectern.png'
+import compassPage from '../../assets/watercolor/compass-page.png'
 import inkPathValley from '../../assets/watercolor/ink-path-valley.png'
 
 const locale = 'es' as const
@@ -42,7 +41,7 @@ const servicios = [
 
 const casos = [
   {
-    img: libraryArch,
+    img: readingLectern,
     client: 'Hotel boutique',
     year: '2026',
     scope: 'Interiorismo · Curaduría',
@@ -50,7 +49,7 @@ const casos = [
     excerpt: 'Selección de 480 títulos. Identidad de lectura por planta.'
   },
   {
-    img: readingLectern,
+    img: compassPage,
     client: 'Marca de moda',
     year: '2025',
     scope: 'Pop-up · Campaña',
@@ -103,7 +102,7 @@ const proceso = [
       <div class="hero-text">
         <p class="eyebrow">Estilismo literario</p>
         <h1 class="hero-title">
-          Damos forma a lo que tu marca, tu espacio o tu figura todavía no sabe decir.
+          Elevamos tu historia. Le damos la forma y la plataforma que merece.
         </h1>
         <p class="hero-sub">
           Curaduría de libros, interiorismo narrativo, eventos y contenido.
@@ -121,7 +120,7 @@ const proceso = [
       </div>
       <div class="hero-image">
         <Image
-          src={editorialDesk}
+          src={editorialOrbit}
           alt=""
           widths={[480, 720, 960, 1280]}
           sizes="(min-width: 64rem) 48vw, 92vw"
@@ -352,7 +351,7 @@ const proceso = [
     font-size: clamp(2.2rem, 1.4rem + 2.8vw, 3.6rem);
     line-height: 1.1;
     margin: 0;
-    max-width: 18ch;
+    max-width: 24ch;
   }
   .hero-sub {
     color: var(--ink-soft);

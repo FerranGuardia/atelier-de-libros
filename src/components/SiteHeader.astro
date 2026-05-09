@@ -62,11 +62,6 @@ const navItems = proposal ? navItemsByProposal[proposal] : []
     <a class="wordmark t-wordmark" href={localizePath(home, locale)}>
       {t('brand.wordmark', locale)}
     </a>
-    {proposal && (
-      <a class="back-to-hub t-caption" href={localizePath('/', locale)} aria-label="Volver al hub de propuestas">
-        ← Propuestas
-      </a>
-    )}
 
     <nav class="primary" aria-label={t('aria.main_nav', locale)}>
       <ul>
@@ -269,10 +264,6 @@ const navItems = proposal ? navItemsByProposal[proposal] : []
     height: 64px;
   }
 
-  .wordmark {
-    justify-self: start;
-    grid-column: 1;
-  }
   .primary {
     justify-self: center;
     grid-column: 2;
@@ -307,6 +298,8 @@ const navItems = proposal ? navItemsByProposal[proposal] : []
   }
 
   .wordmark {
+    justify-self: start;
+    grid-column: 1;
     text-transform: uppercase;
     text-decoration: none;
     color: var(--ink);

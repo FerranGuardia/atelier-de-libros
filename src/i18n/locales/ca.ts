@@ -179,20 +179,17 @@ const dict: PartialDictionary = {
   epilogo: {
     page_title: 'Epíleg',
     intro:
-      'Si has arribat fins aquí, escriu-nos. No responem ràpid — responem a poc a poc.',
+      'Si has arribat fins aquí, escriu-nos. Explica’ns breument què tens en ment i tornem amb tu.',
     form: {
       name_label: 'Nom',
       email_label: 'Correu',
-      project_label: 'De quin projecte es tracta',
-      project_placeholder: 'Una marca, un espai, un esdeveniment, un llibre…',
-      book_question_label: 'Si la teva marca fos un llibre, quin seria el títol?',
-      book_question_help:
-        'No busquem la resposta correcta. Només la que escriuries sense pensar-t’ho dues vegades.',
-      message_label: 'Missatge',
-      submit_label: 'Enviar',
+      message_label: 'Explica’ns la teva intenció',
+      message_placeholder:
+        'Una marca, un espai, un esdeveniment, un llibre — o alguna cosa que encara no té forma.',
+      submit_label: 'Enviar a l’estudi',
       submitting_label: 'Enviant…',
       success_title: 'Rebut',
-      success_body: 'Tornem aviat, amb calma. Mentrestant, gràcies per llegir-nos.',
+      success_body: 'Gràcies per escriure’ns. Tornem amb tu tan aviat com ho haguem llegit.',
       error_title: 'Alguna cosa no s’ha enviat',
       error_body:
         'No hem pogut entregar el teu missatge. Torna-ho a provar d’aquí a un moment, o escriu directament a l’estudi.',

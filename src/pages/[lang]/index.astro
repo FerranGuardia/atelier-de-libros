@@ -3,8 +3,8 @@
 
 import { Image } from 'astro:assets'
 import Base from '../../layouts/Base.astro'
-import editorialDesk from '../../assets/watercolor/editorial-desk.png'
-import readerIsland from '../../assets/watercolor/reader-paper-island.png'
+import openBook from '../../assets/watercolor/open-book-landscape.png'
+import libraryArch from '../../assets/watercolor/library-arch.png'
 import { locales, defaultLocale, type Locale } from '../../i18n/config'
 
 export function getStaticPaths() {
@@ -26,7 +26,7 @@ const lang = Astro.params.lang as Locale
     <section class="cards">
       <a class="card" href={`/${lang}/a/`}>
         <div class="thumb">
-          <Image src={editorialDesk} alt="" widths={[480, 720, 1024]} sizes="(min-width: 64rem) 42vw, 92vw" quality={82} />
+          <Image src={openBook} alt="" widths={[480, 720, 1024]} sizes="(min-width: 64rem) 42vw, 92vw" quality={82} />
         </div>
         <div class="meta">
           <p class="num">A</p>
@@ -37,7 +37,7 @@ const lang = Astro.params.lang as Locale
 
       <a class="card" href="/b/">
         <div class="thumb">
-          <Image src={readerIsland} alt="" widths={[480, 720, 1024]} sizes="(min-width: 64rem) 42vw, 92vw" quality={82} />
+          <Image src={libraryArch} alt="" widths={[480, 720, 1024]} sizes="(min-width: 64rem) 42vw, 92vw" quality={82} />
         </div>
         <div class="meta">
           <p class="num">B</p>

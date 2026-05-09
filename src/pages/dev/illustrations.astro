@@ -1,59 +1,107 @@
 ---
-/* dev/illustrations.astro — temporary visual sheet for the T30 SVG set.
+/* dev/illustrations.astro — visual library for isolated watercolor assets.
  * Delete src/pages/dev/ before T40 deploy. */
 
+import { Image } from 'astro:assets'
 import Base from '../../layouts/Base.astro'
-import WatercolorSpot from '../../components/WatercolorSpot.astro'
 
-const items = [
-  { slug: 'open-book-landscape', label: 'open-book-landscape', aspect: '3/2' },
-  { slug: 'bookmark-orbit', label: 'bookmark-orbit', aspect: '4/5' },
+const cutoutImages = import.meta.glob('../../assets/watercolor/cutouts/*.png', {
+  eager: true
+}) as Record<string, { default: ImageMetadata }>
+
+const cutoutFor = (slug: string) =>
+  cutoutImages[`../../assets/watercolor/cutouts/${slug}-cutout.png`]?.default
+
+const categories = [
   {
-    slug: 'page-fold-constellation',
-    label: 'page-fold-constellation',
-    aspect: '3/2'
+    title: 'Biblioteca y escenas',
+    note: 'Piezas narrativas ya aisladas. Las hojas compuestas no aparecen aquí.',
+    items: [
+      { slug: 'library-arch', label: 'library arch', aspect: '3/4' },
+      { slug: 'reading-lectern', label: 'reading lectern', aspect: '3/4' }
+    ]
   },
-  { slug: 'compass-page', label: 'compass-page', aspect: '3/2' },
-  { slug: 'margin-notes', label: 'margin-notes', aspect: '3/2' },
-  { slug: 'editorial-orbit', label: 'editorial-orbit', aspect: '1/1' },
-  { slug: 'photo-frame-wash', label: 'photo-frame-wash', aspect: '3/2' },
-  { slug: 'ink-thread', label: 'ink-thread', aspect: '3/2' },
   {
-    slug: 'folded-flame',
-    label: 'folded-flame',
-    aspect: '1/1'
+    title: 'Libro, página y lectura',
+    note: 'Símbolos directos para manifiesto, servicios editoriales y cierres suaves.',
+    items: [
+      { slug: 'open-book-landscape', label: 'open book landscape', aspect: '3/2' },
+      { slug: 'page-fold-constellation', label: 'page fold constellation', aspect: '3/2' },
+      { slug: 'bookmark-orbit', label: 'bookmark orbit', aspect: '4/5' },
+      { slug: 'margin-notes', label: 'margin notes', aspect: '3/2' }
+    ]
   },
-  { slug: 'reader-paper-island', label: 'reader-paper-island', aspect: '3/4' },
-  { slug: 'offered-fragment', label: 'offered-fragment', aspect: '3/4' },
-  { slug: 'library-arch', label: 'library-arch', aspect: '3/4' },
-  { slug: 'diagonal-branches', label: 'diagonal-branches', aspect: '3/4' },
-  { slug: 'editorial-desk', label: 'editorial-desk', aspect: '3/4' },
-  { slug: 'ink-path-valley', label: 'ink-path-valley', aspect: '3/4' },
-  { slug: 'correction-wreath', label: 'correction-wreath', aspect: '3/4' },
-  { slug: 'reading-lectern', label: 'reading-lectern', aspect: '3/4' }
+  {
+    title: 'Dirección editorial',
+    note: 'Orientación, ritmo, corrección y sistema.',
+    items: [
+      { slug: 'compass-page', label: 'compass page', aspect: '3/2' },
+      { slug: 'editorial-orbit', label: 'editorial orbit', aspect: '1/1' },
+      { slug: 'correction-wreath', label: 'correction wreath', aspect: '1/1' },
+      { slug: 'ink-thread', label: 'ink thread', aspect: '3/2' }
+    ]
+  },
+  {
+    title: 'Gesto, paisaje y atmósfera',
+    note: 'Piezas poéticas para dialogar con una frase concreta.',
+    items: [
+      { slug: 'offered-fragment', label: 'offered fragment', aspect: '1/1' },
+      { slug: 'folded-flame', label: 'folded flame', aspect: '1/1' },
+      { slug: 'diagonal-branches', label: 'diagonal branches', aspect: '3/4' },
+      { slug: 'ink-path-valley', label: 'ink path valley', aspect: '3/4' },
+      { slug: 'photo-frame-wash', label: 'photo frame wash', aspect: '3/2' }
+    ]
+  }
 ] as const
 ---
 
 <Base title="Illustrations QA · Atelier de Libros" bare>
   <main class="qa">
     <header class="container intro">
-      <p class="qa-label">T30 · illustration set</p>
-      <h1 class="t-page-title">Watercolor spots</h1>
+      <p class="qa-label">Watercolor library</p>
+      <h1 class="t-page-title">Isolated cutouts</h1>
+      <p class="lead t-lead">
+        Una pieza por card, sobre papel limpio. Sin checkerboard y sin hojas compuestas.
+      </p>
     </header>
 
-    <section class="container sheet" aria-label="Illustration set">
-      {
-        items.map((item) => (
-          <article class:list={['sample', item.slug === 'bookmark-orbit' && 'portrait']}>
-            <WatercolorSpot
-              slug={item.slug}
-              aspect={item.aspect}
-            />
-            <p class="qa-label">{item.label}</p>
-          </article>
-        ))
-      }
-    </section>
+    {
+      categories.map((category) => (
+        <section class="container category" aria-labelledby={`cat-${category.title}`}>
+          <header class="category-head">
+            <div>
+              <p class="qa-label">Clasificación</p>
+              <h2 id={`cat-${category.title}`}>{category.title}</h2>
+            </div>
+            <p>{category.note}</p>
+          </header>
+
+          <div class="sheet">
+            {category.items.map((item) => {
+              const cutout = cutoutFor(item.slug)
+              return (
+                <article class="sample">
+                  <div class="preview">
+                    {cutout && (
+                      <Image
+                        src={cutout}
+                        alt=""
+                        widths={[240, 360, 520, 720]}
+                        sizes="(min-width: 75rem) 260px, (min-width: 48rem) 36vw, 74vw"
+                        loading="eager"
+                        decoding="async"
+                        style={`--asset-aspect: ${item.aspect};`}
+                      />
+                    )}
+                  </div>
+                  <p class="sample-label">{item.label}</p>
+                </article>
+              )
+            })}
+          </div>
+        </section>
+      ))
+    }
   </main>
 
   <style>
@@ -61,18 +109,53 @@ const items = [
       margin: var(--space-16) 0 var(--space-32);
     }
     .intro {
-      margin-bottom: var(--space-12);
+      margin-bottom: var(--space-16);
     }
     .intro > * {
       grid-column: 1 / -1;
     }
-    .qa-label {
+    .lead {
+      max-width: 54ch;
+      color: var(--ink-soft);
+      margin-top: var(--space-4);
+    }
+    .qa-label,
+    .sample-label {
       font-family: var(--font-body);
       font-size: var(--step--1);
       font-weight: 500;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--ink-soft);
+    }
+    .category {
+      padding-top: var(--space-12);
+      border-top: 1px solid var(--paper-deep);
+    }
+    .category + .category {
+      margin-top: var(--space-16);
+    }
+    .category-head {
+      display: grid;
+      gap: var(--space-4);
+      margin-bottom: var(--space-8);
+    }
+    .category-head h2 {
+      font-family: var(--font-display);
+      font-size: var(--step-3);
+      font-weight: 400;
+      line-height: 1.1;
+      margin-top: var(--space-2);
+    }
+    .category-head p:last-child {
+      max-width: 46ch;
+      color: var(--ink-soft);
+    }
+    @media (min-width: 64rem) {
+      .category-head {
+        grid-template-columns: minmax(0, 1fr) minmax(20rem, 30rem);
+        align-items: end;
+      }
     }
     .sheet {
       display: grid;
@@ -83,29 +166,33 @@ const items = [
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
-    @media (min-width: 64rem) {
+    @media (min-width: 75rem) {
       .sheet {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(4, minmax(0, 1fr));
       }
     }
     .sample {
       display: grid;
-      align-content: center;
-      min-height: 280px;
-      padding: var(--space-8);
-      border-top: 1px solid var(--paper-deep);
-      color: var(--library-green);
+      gap: var(--space-4);
+      align-items: start;
     }
-    .sample :global(.watercolor-spot) {
-      max-width: 360px;
-      margin-inline: auto;
-      opacity: 0.95;
+    .preview {
+      min-height: 260px;
+      display: grid;
+      place-items: center;
+      padding: var(--space-6);
+      overflow: hidden;
+      background: var(--paper);
+      border: 1px solid var(--paper-deep);
     }
-    .sample.portrait :global(.watercolor-spot) {
-      max-width: 190px;
+    .preview img {
+      width: 100%;
+      max-width: 260px;
+      max-height: 220px;
+      aspect-ratio: var(--asset-aspect);
+      object-fit: contain;
     }
-    .sample .qa-label {
-      margin-top: var(--space-6);
+    .sample-label {
       text-align: center;
     }
   </style>

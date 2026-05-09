@@ -6,8 +6,8 @@
  *
  * Italic Cormorant runs as body type ONLY here — deliberate exception. */
 
-import WatercolorSpot from '../WatercolorSpot.astro'
 import { t } from '../../i18n/t'
+import WatercolorSpot from '../WatercolorSpot.astro'
 import type { Locale } from '../../i18n/config'
 
 interface Props {
@@ -32,15 +32,19 @@ const axioms = [
   data-motion="m-rise"
 >
   <h2 id="manifesto-title" class="sr-only">{t('home.manifesto.eyebrow', locale)}</h2>
-  <hr class="ribbon" aria-hidden="true" />
-  <div class="column">
-    {axioms.map((line) => <p>{line}</p>)}
+  <div class="manifesto-layout">
+    <div class="copy">
+      <hr class="ribbon" aria-hidden="true" />
+      <div class="column">
+        {axioms.map((line) => <p>{line}</p>)}
+      </div>
+    </div>
+    <WatercolorSpot
+      class="manifesto-token"
+      slug="offered-fragment-token"
+      aspect="1/1"
+    />
   </div>
-  <WatercolorSpot
-    class="manifesto-ornament"
-    slug="diagonal-branches"
-    aspect="3/4"
-  />
 </section>
 <!-- /M01 DRAFT -->
 
@@ -58,6 +62,40 @@ const axioms = [
     }
   }
 
+  .manifesto-layout {
+    display: grid;
+    gap: var(--space-6, 24px);
+    align-items: center;
+  }
+  .copy {
+    max-width: 60ch;
+    margin-inline: auto;
+  }
+  :global(.watercolor-spot.manifesto-token) {
+    width: min(82vw, 320px);
+    justify-self: center;
+    opacity: 0.74;
+  }
+  @media (min-width: 64rem) {
+    .manifesto-layout {
+      max-width: 68rem;
+      margin-inline: auto;
+      grid-template-columns: minmax(300px, 420px) minmax(0, 58ch);
+      gap: var(--space-12);
+    }
+    .copy {
+      grid-column: 2;
+      margin-inline: 0;
+    }
+    :global(.watercolor-spot.manifesto-token) {
+      grid-column: 1;
+      grid-row: 1;
+      width: min(100%, 420px);
+      justify-self: end;
+      opacity: 0.78;
+    }
+  }
+
   .ribbon {
     width: 80px;
     height: 1px;
@@ -65,7 +103,6 @@ const axioms = [
     border: none;
     /* Off-centre toward the left — slight asymmetric pulse. */
     margin: 0 0 var(--space-8);
-    margin-left: max(0px, calc((100% - 60ch) / 2 - 80px));
   }
   @media (max-width: 47.99rem) {
     .ribbon {
@@ -75,7 +112,7 @@ const axioms = [
 
   .column {
     max-width: 60ch;
-    margin-inline: auto;
+    margin-inline: 0;
     /* Italic Cormorant as body — the deliberate exception. */
     font-family: var(--font-display);
     font-style: italic;
@@ -101,18 +138,5 @@ const axioms = [
 
   .column p + p {
     margin-top: var(--space-3);
-  }
-  .manifesto :global(.manifesto-ornament) {
-    display: none;
-  }
-  @media (min-width: 64rem) {
-    .manifesto :global(.manifesto-ornament) {
-      display: block;
-      width: clamp(260px, 23vw, 360px);
-      position: absolute;
-      left: max(var(--container-pad), calc(50% + 24ch));
-      top: calc(-1 * var(--space-8));
-      opacity: 0.44;
-    }
   }
 </style>

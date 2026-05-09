@@ -239,20 +239,16 @@ const dict = {
   epilogo: {
     page_title: 'Epílogo',
     intro:
-      'Si has llegado hasta aquí, escríbenos. No respondemos rápido — respondemos despacio.',
+      'Si has llegado hasta aquí, escríbenos. Cuéntanos brevemente qué tienes en mente y volvemos contigo.',
     form: {
       name_label: 'Nombre',
       email_label: 'Correo',
-      project_label: 'De qué proyecto se trata',
-      project_placeholder: 'Una marca, un espacio, un evento, un libro…',
-      book_question_label: 'Si tu marca fuera un libro, ¿cuál sería el título?',
-      book_question_help:
-        'No buscamos la respuesta correcta. Solo la que escribirías sin pensarlo dos veces.',
-      message_label: 'Mensaje',
-      submit_label: 'Enviar',
+      message_label: 'Cuéntanos tu intención',
+      message_placeholder: 'Una marca, un espacio, un evento, un libro — o algo que aún no tiene forma.',
+      submit_label: 'Enviar al estudio',
       submitting_label: 'Enviando…',
       success_title: 'Recibido',
-      success_body: 'Volvemos en breve, con calma. Mientras, gracias por leernos.',
+      success_body: 'Gracias por escribirnos. Volvemos contigo en cuanto lo hayamos leído.',
       error_title: 'Algo no se envió',
       error_body:
         'No hemos podido entregar tu mensaje. Vuelve a intentarlo en un momento, o escribe directamente al estudio.',

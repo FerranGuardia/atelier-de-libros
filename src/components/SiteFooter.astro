@@ -2,10 +2,10 @@
 /* Site footer. Studio block · legal + contact.
  * Bottom strip: copyright in --ink-whisper, centred. */
 
-import WatercolorSpot from './WatercolorSpot.astro'
 import { localizePath } from '../i18n/locale'
 import { t, type Key } from '../i18n/t'
 import type { Locale } from '../i18n/config'
+import WatercolorSpot from './WatercolorSpot.astro'
 
 interface Props {
   locale: Locale
@@ -23,14 +23,12 @@ const legal: { key: Key; href: string }[] = [
 
 <footer class="site-footer">
   <div class="container">
+    <div class="footer-token" aria-hidden="true">
+      <WatercolorSpot slug="ink-thread-cutout" aspect="3/2" />
+    </div>
     <section class="col studio">
       <p class="t-wordmark">{t('brand.wordmark', locale)}</p>
       <p class="tagline">{t('brand.tagline', locale)}</p>
-      <WatercolorSpot
-        class="footer-token"
-        slug="correction-wreath"
-        aspect="3/4"
-      />
       <p class="colofon t-caption measure-caption">{t('footer.colophon', locale)}</p>
     </section>
 
@@ -75,9 +73,33 @@ const legal: { key: Key; href: string }[] = [
   }
 
   .site-footer .container {
+    position: relative;
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--space-12);
+  }
+
+  .footer-token {
+    display: none;
+  }
+  @media (min-width: 64rem) {
+    .footer-token {
+      display: block;
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      display: grid;
+      place-items: center;
+    }
+    .footer-token :global(.watercolor-spot) {
+      width: min(38%, 420px);
+      opacity: 0.55;
+    }
+    .site-footer .col {
+      position: relative;
+      z-index: 1;
+    }
   }
   @media (min-width: 64rem) {
     .site-footer .container {
@@ -116,11 +138,6 @@ const legal: { key: Key; href: string }[] = [
     font-weight: 300;
     color: var(--ink-soft);
     margin-bottom: var(--space-6);
-  }
-  .studio :global(.footer-token) {
-    width: clamp(120px, 10vw, 170px);
-    margin-bottom: var(--space-6);
-    opacity: 0.5;
   }
   .colofon {
     color: var(--ink-soft);

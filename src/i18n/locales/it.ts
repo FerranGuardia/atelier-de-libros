@@ -179,20 +179,17 @@ const dict: PartialDictionary = {
   epilogo: {
     page_title: 'Epilogo',
     intro:
-      'Se sei arrivato fin qui, scrivici. Non rispondiamo in fretta — rispondiamo con calma.',
+      'Se sei arrivato fin qui, scrivici. Raccontaci brevemente cosa hai in mente e ti rispondiamo.',
     form: {
       name_label: 'Nome',
       email_label: 'Email',
-      project_label: 'Di che progetto si tratta',
-      project_placeholder: 'Una marca, uno spazio, un evento, un libro…',
-      book_question_label: 'Se la tua marca fosse un libro, quale sarebbe il titolo?',
-      book_question_help:
-        'Non cerchiamo la risposta giusta. Solo quella che scriveresti senza pensarci due volte.',
-      message_label: 'Messaggio',
-      submit_label: 'Inviare',
+      message_label: 'Raccontaci la tua intenzione',
+      message_placeholder:
+        'Una marca, uno spazio, un evento, un libro — o qualcosa che ancora non ha forma.',
+      submit_label: 'Inviare allo studio',
       submitting_label: 'Invio…',
       success_title: 'Ricevuto',
-      success_body: 'Torneremo presto, con calma. Nel frattempo, grazie per averci letto.',
+      success_body: 'Grazie per averci scritto. Ti rispondiamo non appena lo avremo letto.',
       error_title: 'Qualcosa non è stato inviato',
       error_body:
         'Non siamo riusciti a consegnare il tuo messaggio. Riprova tra un momento, o scrivi direttamente allo studio.',

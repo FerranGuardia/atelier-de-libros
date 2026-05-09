@@ -4,8 +4,8 @@
 
 import { Image } from 'astro:assets'
 import Base from '../layouts/Base.astro'
-import editorialDesk from '../assets/watercolor/editorial-desk.png'
-import readerIsland from '../assets/watercolor/reader-paper-island.png'
+import openBook from '../assets/watercolor/open-book-landscape.png'
+import libraryArch from '../assets/watercolor/library-arch.png'
 
 const locale = 'es' as const
 ---
@@ -29,7 +29,7 @@ const locale = 'es' as const
       <a class="card" href="/a/" aria-label="Abrir propuesta A — editorial">
         <div class="thumb">
           <Image
-            src={editorialDesk}
+            src={openBook}
             alt=""
             widths={[480, 720, 1024]}
             sizes="(min-width: 64rem) 42vw, 92vw"
@@ -47,7 +47,7 @@ const locale = 'es' as const
       <a class="card" href="/b/" aria-label="Abrir propuesta B — comercial">
         <div class="thumb">
           <Image
-            src={readerIsland}
+            src={libraryArch}
             alt=""
             widths={[480, 720, 1024]}
             sizes="(min-width: 64rem) 42vw, 92vw"
