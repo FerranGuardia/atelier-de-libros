@@ -1,56 +1,95 @@
 ---
-/* T24 — Publishers' Room body. Letter-style page (56ch measure).
- * Direct, business voice; pull-quote inline. M03 lorem until Mireia
- * delivers. */
+/* T24 redux — Clientes. Logo wall over the old letter-style body.
+ * Placeholder marks: real client roster pending Mireia. Logos render
+ * desaturated and low-contrast so the wall reads as a single hush.
+ * The two text wordmarks (politician, creator) are intentional — a
+ * client roster is rarely just visual marks. */
 
-import WatercolorSpot from '../WatercolorSpot.astro'
+import { Image } from 'astro:assets'
 import { t } from '../../i18n/t'
 import { localizePath } from '../../i18n/locale'
 import type { Locale } from '../../i18n/config'
+
+import loewe from '../../assets/clientes/loewe.png'
+import aesop from '../../assets/clientes/aesop.png'
+import massimoDutti from '../../assets/clientes/massimo-dutti.png'
+import vans from '../../assets/clientes/vans.png'
+import dcShoes from '../../assets/clientes/dc-shoes.png'
+import penguin from '../../assets/clientes/penguin-random-house.png'
 
 interface Props {
   locale: Locale
 }
 const { locale } = Astro.props
+
+type Mark =
+  | { kind: 'logo'; name: string; src: ImageMetadata; note?: string; scale?: number }
+  | { kind: 'word'; name: string; note?: string }
+
+const clients: Mark[] = [
+  { kind: 'logo', name: 'Loewe', src: loewe, note: 'Casa de moda — campaña editorial' },
+  { kind: 'logo', name: 'Aesop', src: aesop, note: 'Boticario — curaduría de tienda' },
+  { kind: 'logo', name: 'Massimo Dutti', src: massimoDutti, note: 'Showroom — biblioteca' },
+  { kind: 'word', name: 'Soho House', note: 'Hotel boutique — salón literario' },
+  { kind: 'word', name: 'Felipe González', note: 'Memorias — acompañamiento editorial' },
+  { kind: 'logo', name: 'DC Shoes', src: dcShoes, note: 'Streetwear — colaboración cultural', scale: 0.7 },
+  { kind: 'logo', name: 'Vans', src: vans, note: 'Streetwear — proyecto de tienda' },
+  { kind: 'word', name: 'AuronPlay', note: 'Creador — primer libro' },
+  { kind: 'logo', name: 'Penguin Random House', src: penguin, note: 'Sello editorial — fondo de catálogo' }
+]
 ---
 
-<article class="publishers" data-motion="m-rise">
+<article class="clientes" data-motion="m-rise">
   <header class="container intro">
-    <p class="eyebrow t-caption">Publishers</p>
+    <p class="eyebrow t-caption">{t('publishers.eyebrow', locale)}</p>
     <h1 class="t-page-title">{t('publishers.headline', locale)}</h1>
+    <p class="lead">{t('publishers.lead', locale)}</p>
   </header>
 
-  <div class="container letter measure-letter">
-    <p class="body">{t('publishers.body_1', locale)}</p>
-    <p class="body">{t('publishers.body_2', locale)}</p>
-    <blockquote class="pull">
-      <WatercolorSpot
-        class="pull-ornament"
-        slug="correction-wreath"
-        aspect="3/4"
-      />
-      <p>{t('publishers.pullquote', locale)}</p>
-    </blockquote>
-    <p class="body">{t('publishers.body_3', locale)}</p>
-    <p class="body">{t('publishers.body_4', locale)}</p>
+  <div class="container wall-wrap">
+    <ul class="wall" role="list">
+      {clients.map((c) => (
+        <li class="cell">
+          <div class="mark">
+            {c.kind === 'logo' ? (
+              <Image
+                src={c.src}
+                alt={c.name}
+                widths={[280, 560]}
+                sizes="(max-width: 47.99rem) 40vw, 220px"
+                style={c.scale ? `--mark-scale:${c.scale}` : undefined}
+                loading="lazy"
+              />
+            ) : (
+              <span class="word">{c.name}</span>
+            )}
+          </div>
+          {c.note && <p class="note t-caption">{c.note}</p>}
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <footer class="container outro">
+    <p class="footnote">{t('publishers.footnote', locale)}</p>
     <a
       class="cta"
-      href={localizePath('/epilogo?ref=publishers', locale)}
+      href={localizePath('/epilogo?ref=clientes', locale)}
       data-motion="m-underline-roll"
     >
       {t('publishers.cta', locale)}
     </a>
-    <!-- M03 LOREM -->
-  </div>
+  </footer>
 </article>
 
 <style>
-  .publishers {
+  .clientes {
     margin-top: var(--space-24);
     margin-bottom: var(--space-32);
   }
   .intro {
     margin-bottom: var(--space-16);
+    max-width: 56ch;
   }
   .eyebrow {
     text-transform: uppercase;
@@ -60,47 +99,107 @@ const { locale } = Astro.props
   }
   .intro h1 {
     max-width: 22ch;
-  }
-  .letter {
-    margin-inline: auto;
-    max-width: 56ch + 2 * var(--container-pad);
-  }
-  .body {
     margin-bottom: var(--space-6);
-    line-height: 1.65;
   }
-  .pull {
-    margin: var(--space-12) 0;
-    padding-left: var(--space-6);
-    border-left: 1px solid var(--library-green);
+  .lead {
+    color: var(--ink-soft);
+    line-height: 1.55;
+    font-size: var(--step-0);
+  }
+
+  .wall-wrap {
+    margin-top: var(--space-12);
+    margin-bottom: var(--space-16);
+  }
+  .wall {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: var(--space-2);
+    row-gap: var(--space-12);
+    border-top: 1px solid var(--paper-deep);
+    padding-top: var(--space-12);
+  }
+  @media (max-width: 47.99rem) {
+    .wall {
+      grid-template-columns: repeat(2, 1fr);
+      row-gap: var(--space-10);
+    }
+  }
+  .cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-3);
+  }
+  .mark {
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  .mark :global(img) {
+    max-width: calc(220px * var(--mark-scale, 1));
+    max-height: calc(56px * var(--mark-scale, 1));
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    /* Ink the marks. Reads as one register, like an index page. */
+    filter: grayscale(1) contrast(0.85) brightness(0.4);
+    opacity: 0.78;
+    transition:
+      opacity 700ms cubic-bezier(.2, .6, .2, 1),
+      filter 700ms cubic-bezier(.2, .6, .2, 1);
+  }
+  .cell:hover .mark :global(img) {
+    opacity: 1;
+    filter: grayscale(1) contrast(0.9) brightness(0.2);
+  }
+  @media (max-width: 47.99rem) {
+    .mark {
+      height: 56px;
+    }
+    .mark :global(img) {
+      max-width: calc(160px * var(--mark-scale, 1));
+      max-height: calc(40px * var(--mark-scale, 1));
+    }
+  }
+  .word {
     font-family: var(--font-display);
     font-style: italic;
     font-weight: 300;
-    font-size: var(--step-2);
+    font-size: var(--step-1);
     color: var(--ink);
-    line-height: 1.3;
-    max-width: 38ch;
-    position: relative;
+    letter-spacing: 0.01em;
+    line-height: 1;
   }
-  .pull p {
+  .note {
+    color: var(--ink-whisper);
+    font-size: var(--step--2);
+    line-height: 1.4;
+    max-width: 22ch;
     margin: 0;
   }
-  .pull :global(.pull-ornament) {
-    position: absolute;
-    width: clamp(190px, 22vw, 300px);
-    right: calc(-1 * var(--space-16));
-    top: 50%;
-    transform: translateY(-50%);
-    opacity: 0.44;
+
+  .outro {
+    max-width: 56ch;
+    margin-top: var(--space-16);
+    border-top: 1px solid var(--paper-deep);
+    padding-top: var(--space-10);
   }
-  @media (max-width: 47.99rem) {
-    .pull :global(.pull-ornament) {
-      display: none;
-    }
+  .footnote {
+    color: var(--ink-soft);
+    font-size: var(--step--1);
+    line-height: 1.55;
+    margin-bottom: var(--space-6);
+    max-width: 48ch;
   }
   .cta {
     display: inline-block;
-    margin-top: var(--space-8);
     font-family: var(--font-body);
     font-size: var(--step--1);
     font-weight: 500;

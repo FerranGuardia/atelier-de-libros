@@ -10,7 +10,7 @@ const dict: PartialDictionary = {
     home: 'Atelier',
     manifiesto: 'Manifeste',
     servicios: 'Services',
-    publishers: 'Publishers',
+    publishers: 'Clientes',
     historias: 'Histoires',
     nota: 'La Note',
     epilogo: 'Épilogue'
@@ -48,9 +48,9 @@ const dict: PartialDictionary = {
         'Quatre piliers : curation d’identité, intériorisme narratif, animation culturelle, événements d’auteur.'
     },
     publishers: {
-      title: 'Publishers’ Room — Atelier de Libros',
+      title: 'Clients — Atelier de Libros',
       description:
-        'Pour les maisons d’édition : vos livres dans les lieux où naît la tendance.'
+        'Une sélection de ceux qui nous ont confié leurs histoires : marques, lieux, auteurs et maisons d’édition.'
     },
     historias: {
       title: 'Histoires — Atelier de Libros',
@@ -146,9 +146,10 @@ const dict: PartialDictionary = {
   },
 
   publishers: {
-    page_title: 'Publishers’ Room',
-    headline: 'Vos livres dans les lieux où naît la tendance.',
-    cta: 'Demander le dossier'
+    page_title: 'Clients',
+    eyebrow: 'Clients',
+    headline: 'Ceux qui nous ont confié une histoire.',
+    cta: 'Écrire à l’atelier'
   },
 
   historias: {

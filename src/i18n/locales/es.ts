@@ -18,7 +18,7 @@ const dict = {
     home: 'Atelier',
     manifiesto: 'Manifiesto',
     servicios: 'Servicios',
-    publishers: 'Publishers',
+    publishers: 'Clientes',
     historias: 'Historias',
     nota: 'La Nota',
     epilogo: 'Epílogo',
@@ -60,9 +60,9 @@ const dict = {
         'Cuatro pilares: curaduría de identidad, interiorismo narrativo, dinamización cultural, eventos de autor.'
     },
     publishers: {
-      title: 'Publishers’ Room — Atelier de Libros',
+      title: 'Clientes — Atelier de Libros',
       description:
-        'Para sellos editoriales: vuestros libros en los espacios donde nace la tendencia.'
+        'Una selección de quienes nos han confiado sus historias: marcas de moda, hospitalidad, autores y sellos.'
     },
     historias: {
       title: 'Historias — Atelier de Libros',
@@ -163,19 +163,14 @@ const dict = {
   },
 
   publishers: {
-    page_title: 'Publishers’ Room',
-    headline: 'Vuestros libros en los espacios donde nace la tendencia.',
-    body_1:
-      '__LOREM_M03_1__ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
-    body_2:
-      '__LOREM_M03_2__ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    pullquote:
-      '__LOREM_M03_PULL__ Un fondo editorial no se vende — se traslada al lugar donde será encontrado.',
-    body_3:
-      '__LOREM_M03_3__ Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.',
-    body_4:
-      '__LOREM_M03_4__ Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.',
-    cta: 'Solicitar dossier'
+    page_title: 'Clientes',
+    eyebrow: 'Clientes',
+    headline: 'Quienes nos han confiado una historia.',
+    lead:
+      'Una selección abierta — marcas, espacios, autores y sellos que pidieron al estudio leer su catálogo en voz alta. Los nombres se acompañan; nunca se exhiben.',
+    footnote:
+      '__LOREM_M03_FOOT__ Selección provisional. La lista definitiva se compone con Mireia: algunos clientes prefieren no figurar, y se respeta.',
+    cta: 'Escribir al estudio'
   },
 
   historias: {
