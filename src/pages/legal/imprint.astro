@@ -1,0 +1,24 @@
+---
+import Base from '../../layouts/Base.astro'
+import LegalDoc from '../../components/pages/LegalDoc.astro'
+import { getLegal } from '../../content/legal'
+
+const locale = 'es' as const
+const { labels, imprint } = getLegal(locale)
+---
+
+<Base
+  locale={locale}
+  pathname="/legal/imprint"
+  title={imprint.metaTitle}
+  description={imprint.metaDescription}
+>
+  <LegalDoc
+    eyebrow={labels.eyebrow}
+    title={imprint.title}
+    lead={imprint.lead}
+    sections={imprint.sections}
+    updatedLabel={labels.updatedLabel}
+    updatedDate={labels.updatedDate}
+  />
+</Base>

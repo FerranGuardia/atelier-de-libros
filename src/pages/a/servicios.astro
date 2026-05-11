@@ -1,8 +1,9 @@
 ---
 /* T23 — Servicios "El Índice". Cuatro entradas sobrias.
  * Title + 4 items con un lorem M02 corto al lado de cada uno;
- * Mireia los reemplaza más adelante. La rosa de los vientos
- * (compass-page) ocupa el centro óptico entre los cuatro puntos. */
+ * Mireia los reemplaza más adelante. Las ramas en acuarela
+ * (diagonal-branches) se sitúan centradas detrás del índice
+ * como fondo discreto. */
 
 import Base from '../../layouts/Base.astro'
 import { t } from '../../i18n/t'
@@ -25,6 +26,9 @@ const items = [
   description={t('meta.servicios.description', locale)}
 >
   <article class="servicios" data-motion="m-rise">
+    <div class="branches" aria-hidden="true">
+      <WatercolorSpot slug="diagonal-branches-cutout" aspect="3/4" />
+    </div>
     <header class="container head">
       <h1 class="t-page-title">{t('servicios.page_title', locale)}</h1>
     </header>
@@ -61,17 +65,16 @@ const items = [
         }
       </ol>
 
-      <div class="compass" aria-hidden="true">
-        <WatercolorSpot slug="compass-page" aspect="2/3" />
-      </div>
     </div>
   </article>
 </Base>
 
 <style>
   .servicios {
+    position: relative;
     margin-top: var(--space-24);
     margin-bottom: var(--space-32);
+    overflow-x: clip;
   }
 
   .head {
@@ -202,22 +205,23 @@ const items = [
     margin: 0;
   }
 
-  .compass {
+  .branches {
     display: none;
   }
   @media (min-width: 64rem) {
-    .compass {
+    .branches {
       display: block;
       position: absolute;
       top: 50%;
-      right: calc(var(--container-pad) * -1);
+      right: 0;
       transform: translateY(-50%);
-      width: min(56%, 880px);
+      width: min(40vw, 608px);
       pointer-events: none;
       z-index: 0;
     }
-    .compass :global(.watercolor-spot) {
-      opacity: 0.78;
+    .branches :global(.watercolor-spot) {
+      opacity: 0.7;
+      transform: scaleX(-1);
     }
   }
 </style>

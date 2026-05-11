@@ -19,14 +19,15 @@ const axes = ['1', '2', '3'] as const
 ---
 
 <article class="editoriales" data-motion="m-rise">
-  <header class="container intro">
-    <p class="eyebrow t-caption">{t('publishers.eyebrow', locale)}</p>
-    <h1 class="t-page-title">{t('publishers.headline', locale)}</h1>
-    <p class="lead">{t('publishers.lead', locale)}</p>
-  </header>
-
-  <div class="container ornament" aria-hidden="true">
-    <WatercolorSpot slug="open-book-landscape" aspect="3/2" />
+  <div class="hero">
+    <header class="intro">
+      <p class="eyebrow t-caption">{t('publishers.eyebrow', locale)}</p>
+      <h1 class="t-page-title">{t('publishers.headline', locale)}</h1>
+      <p class="lead">{t('publishers.lead', locale)}</p>
+    </header>
+    <div class="ornament" aria-hidden="true">
+      <WatercolorSpot slug="open-book-landscape" aspect="3/2" />
+    </div>
   </div>
 
   <ol class="container axes" role="list">
@@ -64,9 +65,31 @@ const axes = ['1', '2', '3'] as const
     margin-bottom: var(--space-32);
   }
 
+  /* Hero band: intro text on the left with container padding,
+   * watercolor flush to the viewport's right edge, vertically
+   * centered together. Mobile: ornament hides, intro returns to
+   * container padding. */
+  .hero {
+    display: grid;
+    gap: var(--space-10);
+    margin-bottom: var(--space-16);
+  }
+  @media (min-width: 48rem) {
+    .hero {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      column-gap: var(--space-12);
+      align-items: center;
+      padding-inline-start: var(--container-pad);
+    }
+  }
+  @media (max-width: 47.99rem) {
+    .hero {
+      padding-inline: var(--container-pad);
+    }
+  }
+
   .intro {
     max-width: 64ch;
-    margin-bottom: var(--space-16);
   }
   .eyebrow {
     text-transform: uppercase;
@@ -85,9 +108,12 @@ const axes = ['1', '2', '3'] as const
   }
 
   .ornament {
-    max-width: 540px;
-    margin-bottom: var(--space-16);
     opacity: 0.78;
+  }
+  /* PNG has transparent margin around the brushstroke — anchor the
+   * painted content to the right edge so it sits flush in its corner. */
+  .ornament :global(.watercolor-spot) {
+    object-position: right center;
   }
   @media (max-width: 47.99rem) {
     .ornament {

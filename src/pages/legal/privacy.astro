@@ -1,0 +1,24 @@
+---
+import Base from '../../layouts/Base.astro'
+import LegalDoc from '../../components/pages/LegalDoc.astro'
+import { getLegal } from '../../content/legal'
+
+const locale = 'es' as const
+const { labels, privacy } = getLegal(locale)
+---
+
+<Base
+  locale={locale}
+  pathname="/legal/privacy"
+  title={privacy.metaTitle}
+  description={privacy.metaDescription}
+>
+  <LegalDoc
+    eyebrow={labels.eyebrow}
+    title={privacy.title}
+    lead={privacy.lead}
+    sections={privacy.sections}
+    updatedLabel={labels.updatedLabel}
+    updatedDate={labels.updatedDate}
+  />
+</Base>

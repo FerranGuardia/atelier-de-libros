@@ -1,7 +1,11 @@
 ---
 /* T28 — Epílogo / Contacto. Form with Formspree-compatible action.
- * Fields: name, email, project, qualifying-question (--step-1, larger
- * than the rest), message. Honeypot field + aria-live success region.
+ *
+ * Layout: one centered column (max ~42rem) shared by intro, form and
+ * direct-email block, so every horizontal edge — labels, inputs,
+ * submit, legal, divider — sits on the same axis on every viewport.
+ * Outer `.container` adds the safe padding; inner `.epilogo-column`
+ * caps the reading measure.
  *
  * The Formspree endpoint is a placeholder until T39 provisions a
  * real form ID. The form uses native HTML `action` + `method="post"`
@@ -22,73 +26,86 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/PLACEHOLDER_T39'
 ---
 
 <article class="epilogo" data-motion="m-rise">
-  <header class="container grid intro">
-    <div class="intro-copy">
+  <div class="hero">
+    <div class="ornament" aria-hidden="true">
+      <WatercolorSpot
+        class="intro-ornament"
+        slug="library-arch-cutout"
+        aspect="4/3"
+      />
+    </div>
+    <header class="intro">
       <h1 class="t-page-title">{t('epilogo.page_title', locale)}</h1>
-      <p class="lead t-lead measure-body">{t('epilogo.intro', locale)}</p>
-    </div>
-    <WatercolorSpot
-      class="intro-ornament"
-      slug="offered-fragment"
-      aspect="3/4"
-    />
-  </header>
-
-  <div
-    class="container form-wrap"
-    data-motion="m-form-success"
-    data-state="form"
-    id="contact-form-wrap"
-  >
-    <form
-      class="contact-form"
-      method="post"
-      action={FORMSPREE_ENDPOINT}
-      novalidate
-      aria-describedby="form-legal"
-    >
-      <p class="field">
-        <label for="f-name">{t('epilogo.form.name_label', locale)}</label>
-        <input id="f-name" name="name" type="text" required aria-required="true" />
-      </p>
-      <p class="field">
-        <label for="f-email">{t('epilogo.form.email_label', locale)}</label>
-        <input id="f-email" name="email" type="email" required aria-required="true" />
-      </p>
-
-      <p class="field">
-        <label for="f-message">{t('epilogo.form.message_label', locale)}</label>
-        <textarea
-          id="f-message"
-          name="message"
-          rows="6"
-          placeholder={t('epilogo.form.message_placeholder', locale)}
-        ></textarea>
-      </p>
-
-      <p class="field" aria-hidden="true" hidden>
-        <label for="f-honey">Leave this field empty</label>
-        <input id="f-honey" name="_gotcha" type="text" tabindex="-1" autocomplete="off" />
-      </p>
-
-      <p id="form-legal" class="legal t-caption">{t('epilogo.form.legal_consent', locale)}</p>
-
-      <button class="submit" type="submit">
-        <span class="submit-label">{t('epilogo.form.submit_label', locale)}</span>
-      </button>
-    </form>
-
-    <div data-form-success role="status" aria-live="polite">
-      <p class="success-title t-page-title">{t('epilogo.form.success_title', locale)}</p>
-      <p class="success-body t-lead measure-body">{t('epilogo.form.success_body', locale)}</p>
-    </div>
+      <p class="lead t-lead">{t('epilogo.intro', locale)}</p>
+    </header>
   </div>
 
-  <div class="container direct-email">
-    <span class="col-label">{t('epilogo.contact_email_label', locale)}</span>
-    <a class="email" href={`mailto:${t('epilogo.contact_email', locale)}`}>
-      {t('epilogo.contact_email', locale)}
-    </a>
+  <div class="container">
+    <div class="epilogo-column">
+
+      <div
+        class="form-wrap"
+        data-motion="m-form-success"
+        data-state="form"
+        id="contact-form-wrap"
+      >
+        <form
+          class="contact-form"
+          method="post"
+          action={FORMSPREE_ENDPOINT}
+          novalidate
+          aria-describedby="form-legal"
+        >
+          <div class="row">
+            <p class="field">
+              <label for="f-name">{t('epilogo.form.name_label', locale)}</label>
+              <input id="f-name" name="name" type="text" required aria-required="true" />
+            </p>
+            <p class="field">
+              <label for="f-email">{t('epilogo.form.email_label', locale)}</label>
+              <input id="f-email" name="email" type="email" required aria-required="true" />
+            </p>
+          </div>
+
+          <p class="field">
+            <label for="f-message">{t('epilogo.form.message_label', locale)}</label>
+            <textarea
+              id="f-message"
+              name="message"
+              rows="6"
+              placeholder={t('epilogo.form.message_placeholder', locale)}
+            ></textarea>
+          </p>
+
+          <p class="field honey" aria-hidden="true">
+            <label for="f-honey">Leave this field empty</label>
+            <input id="f-honey" name="_gotcha" type="text" tabindex="-1" autocomplete="off" />
+          </p>
+
+          <p id="form-legal" class="legal t-caption">
+            {t('epilogo.form.legal_consent', locale)}
+          </p>
+
+          <div class="actions">
+            <button class="submit" type="submit">
+              <span class="submit-label">{t('epilogo.form.submit_label', locale)}</span>
+            </button>
+          </div>
+        </form>
+
+        <div class="success" data-form-success role="status" aria-live="polite">
+          <p class="success-title t-page-title">{t('epilogo.form.success_title', locale)}</p>
+          <p class="success-body t-lead">{t('epilogo.form.success_body', locale)}</p>
+        </div>
+      </div>
+
+      <div class="direct-email">
+        <span class="col-label">{t('epilogo.contact_email_label', locale)}</span>
+        <a class="email" href={`mailto:${t('epilogo.contact_email', locale)}`}>
+          {t('epilogo.contact_email', locale)}
+        </a>
+      </div>
+    </div>
   </div>
 </article>
 
@@ -120,88 +137,159 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/PLACEHOLDER_T39'
 
 <style>
   .epilogo {
-    margin-top: var(--space-24);
+    margin-top: var(--space-32);
     margin-bottom: var(--space-32);
   }
-  .intro {
-    margin-bottom: var(--space-20);
-    align-items: end;
-  }
   @media (min-width: 64rem) {
-    .intro {
-      margin-bottom: var(--space-24);
-    }
-  }
-  .intro-copy {
-    grid-column: 1 / -1;
-  }
-  .intro h1 {
-    margin-bottom: var(--space-6);
-  }
-  .lead {
-    color: var(--ink-soft);
-    max-width: 56ch;
-  }
-  .intro :global(.intro-ornament) {
-    grid-column: 1 / -1;
-    width: min(72vw, 230px);
-    justify-self: end;
-    margin-top: var(--space-6);
-    opacity: 0.5;
-  }
-  @media (min-width: 64rem) {
-    .intro-copy {
-      grid-column: 1 / 7;
-    }
-    .intro :global(.intro-ornament) {
-      grid-column: 7 / 11;
-      width: min(100%, 340px);
-      justify-self: start;
-      align-self: center;
-      margin-top: 0;
-      opacity: 0.6;
+    .epilogo {
+      margin-top: var(--space-40, 160px);
+      margin-bottom: var(--space-40, 160px);
     }
   }
 
-  .form-wrap {
-    max-width: calc(42rem + 2 * var(--container-pad));
+  /* Single centered reading column. All children below — intro,
+   * form, direct-email — share this width so labels, inputs,
+   * submit, dividers all sit on the same vertical edges. */
+  .epilogo-column {
+    width: 100%;
+    max-width: 42rem;
     margin-inline: auto;
   }
 
+  /* ─── Intro ─────────────────────────────────────────────── */
+
+  .intro {
+    text-align: center;
+    margin-bottom: var(--space-24);
+  }
+  @media (min-width: 64rem) {
+    .intro {
+      margin-bottom: var(--space-32);
+    }
+  }
+  /* Hero band: watercolor flush to the viewport's left edge,
+   * intro text to its right, vertically centered together. The text
+   * keeps the standard container padding on its right edge. */
+  .hero {
+    display: grid;
+    gap: var(--space-10);
+    margin-bottom: var(--space-24);
+  }
+  @media (min-width: 48rem) {
+    .hero {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      column-gap: var(--space-12);
+      align-items: center;
+      padding-inline-end: var(--container-pad);
+    }
+  }
+  @media (max-width: 47.99rem) {
+    .hero {
+      padding-inline: var(--container-pad);
+    }
+  }
+  .hero .intro {
+    text-align: left;
+    margin-bottom: 0;
+  }
+  .hero .lead {
+    margin-inline: 0;
+  }
+  .ornament {
+    opacity: 0.78;
+  }
+  /* PNG has transparent margin around the brushstroke — anchor the
+   * painted content to the left edge so it sits flush in its corner. */
+  .ornament :global(.watercolor-spot) {
+    object-position: left center;
+  }
+  @media (max-width: 47.99rem) {
+    .ornament {
+      display: none;
+    }
+  }
+  .intro h1 {
+    margin-bottom: var(--space-8);
+  }
+  .lead {
+    color: var(--ink-soft);
+    margin-inline: auto;
+    max-width: 48ch;
+  }
+
+  /* ─── Form ──────────────────────────────────────────────── */
+
+  /* Generous, even rhythm between fields. Form sections stack with
+   * --space-10 (40px) on mobile, --space-12 (48px) on tablet+; the
+   * row of name+email keeps a tighter inner gap so the two fields
+   * still read as one beat. */
   .contact-form {
     display: grid;
-    gap: var(--space-6);
+    gap: var(--space-10);
+  }
+  @media (min-width: 40rem) {
+    .contact-form {
+      gap: var(--space-12);
+    }
+  }
+
+  .row {
+    display: grid;
+    gap: var(--space-8);
+  }
+  @media (min-width: 40rem) {
+    .row {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-6);
+    }
   }
 
   .field {
     margin: 0;
     display: grid;
-    gap: var(--space-3);
+    gap: var(--space-4);
+    min-width: 0;
   }
-  .field[hidden] {
-    display: none;
+  .field.honey {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
   }
 
   label {
     font-family: var(--font-body);
     font-size: var(--step--1);
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--ink-soft);
+    padding-inline-start: 2px;
   }
 
+  /* Inputs and textarea share interior padding (top/bottom and side)
+   * so the typed text never kisses the border. Padding grows on wider
+   * viewports for visual quiet — what the user called "accounting for
+   * margins inside the boxes". */
   input[type='text'],
   input[type='email'],
   textarea {
+    width: 100%;
     background: transparent;
     border: 1px solid var(--paper-deep);
-    padding: var(--space-4) var(--space-5);
+    padding: var(--space-5) var(--space-5);
     font-family: var(--font-body);
     font-size: var(--step-0);
-    line-height: 1.4;
+    line-height: 1.5;
     color: var(--ink);
-    width: 100%;
     transition: border-color 700ms cubic-bezier(0.2, 0.6, 0.2, 1);
+  }
+  @media (min-width: 40rem) {
+    input[type='text'],
+    input[type='email'],
+    textarea {
+      padding: var(--space-6) var(--space-6);
+    }
   }
   input::placeholder,
   textarea::placeholder {
@@ -219,32 +307,47 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/PLACEHOLDER_T39'
   }
   textarea {
     resize: vertical;
-    min-height: 9rem;
+    min-height: 11rem;
+    max-width: 100%;
   }
 
   .legal {
     color: var(--ink-soft);
-    margin: var(--space-2) 0 0;
-    line-height: 1.55;
+    margin: 0;
+    line-height: 1.65;
+    max-width: 56ch;
+    padding-inline-start: 2px;
+  }
+
+  /* The actions row gets its own breathing room above and below so
+   * the submit button doesn't feel sutured to the legal line. */
+  .actions {
+    display: flex;
+    margin-top: var(--space-4);
   }
 
   .submit {
-    justify-self: start;
-    margin-top: var(--space-4);
     background: transparent;
     border: 1px solid var(--ink);
     color: var(--ink);
-    padding: var(--space-4) var(--space-10);
+    padding: var(--space-5) var(--space-12);
     cursor: pointer;
     font-family: var(--font-body);
     font-size: var(--step--1);
     font-weight: 500;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    min-height: 44px;
+    min-height: 56px;
+    width: 100%;
     transition:
       background-color 700ms cubic-bezier(0.2, 0.6, 0.2, 1),
       color 700ms cubic-bezier(0.2, 0.6, 0.2, 1);
+  }
+  @media (min-width: 40rem) {
+    .submit {
+      width: auto;
+      min-width: 16rem;
+    }
   }
   .submit:hover,
   .submit:focus-visible {
@@ -252,21 +355,30 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/PLACEHOLDER_T39'
     color: var(--paper);
   }
 
-  [data-form-success] {
+  /* ─── Success state ─────────────────────────────────────── */
+
+  .success {
     display: none;
     text-align: center;
-    padding-block: var(--space-16);
+    padding-block: var(--space-20);
   }
-  [data-form-success] p + p {
-    margin-top: var(--space-6);
+  .success p + p {
+    margin-top: var(--space-8);
+  }
+  .success-body {
+    color: var(--ink-soft);
+    max-width: 48ch;
+    margin-inline: auto;
   }
 
   [data-state='success'] form {
     display: none;
   }
-  [data-state='success'] [data-form-success] {
+  [data-state='success'] .success {
     display: block;
   }
+
+  /* ─── Direct email ──────────────────────────────────────── */
 
   .direct-email {
     margin-top: var(--space-32);
@@ -274,14 +386,19 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/PLACEHOLDER_T39'
     border-top: 1px solid var(--paper-deep);
     text-align: center;
     display: grid;
-    gap: var(--space-4);
+    gap: var(--space-6);
     justify-items: center;
-    max-width: calc(42rem + 2 * var(--container-pad));
+  }
+  @media (min-width: 64rem) {
+    .direct-email {
+      margin-top: var(--space-40, 160px);
+      padding-top: var(--space-20, 80px);
+    }
   }
   .col-label {
     font-family: var(--font-body);
     font-size: var(--step--1);
-    letter-spacing: 0.08em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--ink-whisper);
   }
@@ -293,6 +410,10 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/PLACEHOLDER_T39'
     color: var(--ink);
     text-decoration: none;
     border-bottom: 1px solid var(--library-green);
-    padding-bottom: 4px;
+    padding: 0 2px 6px;
+    /* Long email + narrow viewport: allow the line to break rather
+     * than push past the column. */
+    word-break: break-word;
+    max-width: 100%;
   }
 </style>

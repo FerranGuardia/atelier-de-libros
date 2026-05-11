@@ -26,11 +26,7 @@ const dict = {
     publishers: 'Editoriales',
     historias: 'Historias',
     nota: 'La Nota',
-    epilogo: 'Epílogo',
-    b_servicios: 'Servicios',
-    b_casos: 'Casos',
-    b_proceso: 'Proceso',
-    b_contacto: 'Contacto'
+    epilogo: 'Epílogo'
   },
 
   cta: {

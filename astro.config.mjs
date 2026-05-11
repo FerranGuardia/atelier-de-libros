@@ -9,6 +9,13 @@ export default defineConfig({
   prefetch: {
     defaultStrategy: 'viewport'
   },
+  redirects: {
+    '/': '/a/',
+    '/ca': '/ca/a/',
+    '/fr': '/fr/a/',
+    '/en': '/en/a/',
+    '/it': '/it/a/'
+  },
   i18n: {
     defaultLocale: 'es',
     locales: ['es', 'ca', 'fr', 'en', 'it'],
