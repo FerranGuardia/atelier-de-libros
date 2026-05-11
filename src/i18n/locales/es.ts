@@ -7,10 +7,15 @@
  *   - sentence case for headings; no Title Case
  *   - "solo" not "sólo" (RAE 2010+)
  *
- * Keys with `__LOREM__` prefix are M02-M05 placeholders pending Mireia.
- * The M01 manifesto values are the Ferran-locked draft from
- * .claude/tasks-mireia/M01-drafts.md — Mireia revises on the rendered
- * page, not in this file.
+ * Copy is anchored in atelier-de-libros.md (Mireia's TFM):
+ *   - M01 manifesto: §1.1 tesis + §1.2 valores
+ *   - M02 servicios: §"Los pilares fundamentales" (sub-services verbatim)
+ *   - M03 editoriales: §2 "El Ecosistema Editorial" (tres ejes verbatim)
+ *   - M04 nota: §1.1 + §1.2 + §"El valor real"
+ *   - M05 historias: §Casos prácticos (los tres casos)
+ *
+ * Todo el texto sigue siendo borrador hasta que Mireia firme; lo
+ * revisa sobre la página renderizada, no en este archivo.
  */
 
 const dict = {
@@ -18,7 +23,7 @@ const dict = {
     home: 'Atelier',
     manifiesto: 'Manifiesto',
     servicios: 'Servicios',
-    publishers: 'Clientes',
+    publishers: 'Editoriales',
     historias: 'Historias',
     nota: 'La Nota',
     epilogo: 'Epílogo',
@@ -60,9 +65,9 @@ const dict = {
         'Cuatro pilares: curaduría de identidad, interiorismo narrativo, dinamización cultural, eventos de autor.'
     },
     publishers: {
-      title: 'Clientes — Atelier de Libros',
+      title: 'Para editoriales — El Atelier de Libros',
       description:
-        'Una selección de quienes nos han confiado sus historias: marcas de moda, hospitalidad, autores y sellos.'
+        'Product placement intelectual: activación de catálogo, contextualización estética y acceso a nuevos gatekeepers fuera del circuito convencional.'
     },
     historias: {
       title: 'Historias — Atelier de Libros',
@@ -81,29 +86,32 @@ const dict = {
   },
 
   brand: {
-    wordmark: 'Atelier de Libros',
+    wordmark: 'El Atelier de Libros',
     tagline: 'Estilismo literario'
   },
 
   home: {
     hero: {
-      headline_part_1: 'Curaduría literaria',
-      headline_part_2: 'el libro como identidad',
+      headline_part_1: 'Estilismo literario',
+      headline_part_2: 'el libro como conector cultural',
       subheadline:
-        'Diseñamos el alma intelectual de marcas, espacios y personas, una historia a la vez.',
+        'Comisariamos rincones, eventos e identidades a través del libro —para empresas, espacios y figuras públicas.',
       scroll_cue: 'Continuar'
     },
 
-    /* M01 — Mireia draft (lives on the page until she signs off). */
+    /* M01 — Anchored in TFM §1.1 (tesis) y §1.2 (Atemporalidad ·
+     * Intelectualidad · Personalidad). Frases entresacadas del TFM,
+     * editadas a primera persona del plural. */
     manifesto: {
       eyebrow: 'Manifiesto',
       axiom_1:
-        'Cuando un libro llega a nuestras manos, lo leemos. Entendemos su esencia, su mensaje, y buscamos la mejor manera de transformarlo en un recuerdo.',
+        'No decoramos estanterías: diseñamos atmósferas que invitan a la permanencia.',
       axiom_2:
-        'Elevar una historia es darle ritmo, símbolo y coherencia, dentro de la página y fuera de ella.',
+        'Trabajamos el libro como un conector cultural —un puente que une la estética con el intelecto.',
       axiom_3:
-        'Un libro es lo que aún resiste la prisa. En una conversación, en una identidad, en un ambiente.',
-      axiom_4: 'Una buena historia no fuerza el tiempo que requiere para ser contada.'
+        'Cada selección funciona como un espejo del mundo interior del cliente. No la pose; la autenticidad curada.',
+      axiom_4:
+        'En la era de la imagen rápida, la profundidad de un buen libro sigue siendo el mayor de los lujos.'
     },
 
     servicios_teaser: {
@@ -134,74 +142,119 @@ const dict = {
     intro:
       'Cuatro pilares. Se leen en orden o se saltan, como cualquier libro. Cada uno responde a una manera distinta de habitar la literatura.',
 
+    /* Sub-servicios (sub_a / sub_b) extraídos del TFM §"Los pilares
+     * fundamentales", capítulo a capítulo. Texto editorialmente
+     * compactado a primera persona del plural, sin invención. */
     items: {
       curaduria: {
         number: 'I',
         title: 'Curaduría de identidad y storytelling visual',
-        dedication: 'Para marcas que quieren leerse, no solo verse.',
-        body: '__LOREM_M02_1__ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+        dedication:
+          'Las lecturas de una marca o persona son su mejor carta de presentación.',
+        sub_a_title: 'Gestión de imagen pública',
+        sub_a_body:
+          'Asesoramos a directivos y figuras públicas sobre qué libros mostrar en sus plataformas, construyendo un relato coherente con sus valores. No la pose: la autenticidad curada.',
+        sub_b_title: 'It-books para campañas',
+        sub_b_body:
+          'Seleccionamos los it-books para campañas de moda y lanzamientos de producto, asegurando que la carga intelectual del título refuerce el mensaje de la colección.'
       },
       interiorismo: {
         number: 'II',
-        title: 'Interiorismo narrativo',
-        dedication: 'Para arquitectos y bibliófilos que entienden la pared como página.',
-        body: '__LOREM_M02_2__ Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.'
+        title: 'Interiorismo narrativo y diseño de espacios',
+        dedication:
+          'El libro deja de ser contenido para convertirse en un elemento arquitectónico y emocional.',
+        sub_a_title: 'Córners literarios',
+        sub_a_body:
+          'Transformamos zonas de espera y rincones desaprovechados —en hoteles, boutiques, clínicas— en oasis de pausa: la marca se percibe culta y acogedora.',
+        sub_b_title: 'Bibliotecas de autor',
+        sub_b_body:
+          'Para particulares o empresas, diseñamos colecciones con un sentido narrativo profundo, espejo del mundo interior de quien habita el espacio.'
       },
       cultural: {
         number: 'III',
         title: 'Dinamización cultural y community building',
-        dedication: 'Para empresas que confunden equipo con tribu — y quieren acertar.',
-        body: '__LOREM_M02_3__ At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.'
+        dedication:
+          'El libro es la excusa perfecta para generar fidelización a través del intelecto.',
+        sub_a_title: 'Clubes de lectura · «Book of the Week»',
+        sub_a_body:
+          'Programas periódicos de libro del mes para marcas, hoteles y restaurantes. Al recomendar una lectura, la marca deja de vender un producto y empieza a ofrecer una visión del mundo.',
+        sub_b_title: 'Contenido digital',
+        sub_b_body:
+          'Producimos fotografía, vídeo y reels donde el libro es el protagonista estético, alimentando la presencia digital con discurso y sustancia.'
       },
       eventos: {
         number: 'IV',
-        title: 'Eventos de autor',
-        dedication: 'Para anfitriones que recuerdan que un salón también se cura.',
-        body: '__LOREM_M02_4__ Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.'
+        title: 'Eventos de autor: el nuevo salón literario',
+        dedication:
+          'Recuperamos la esencia de los históricos salones franceses para la exclusividad contemporánea.',
+        sub_a_title: 'Salones literarios a medida',
+        sub_a_body:
+          'Encuentros donde el debate, la lectura en vivo y el networking se mezclan en un entorno diseñado al detalle. Branding cultural para marcas de lujo e instituciones.',
+        sub_b_title: 'Merchandising y objetos de culto',
+        sub_b_body:
+          'Papelería premium, invitaciones en formato libro (en la estela del caso Etro) y colecciones de accesorios inspiradas en grandes cubiertas clásicas.'
       }
     }
   },
 
+  /* Para editoriales — TFM §2 «El Ecosistema Editorial: Del Product
+   * Placement a la Prescripción Estética». Los tres ejes (backlist,
+   * contextualización, gatekeepers) están extraídos verbatim de §2.X.2. */
   publishers: {
-    page_title: 'Clientes',
-    eyebrow: 'Clientes',
-    headline: 'Quienes nos han confiado una historia.',
+    page_title: 'Para editoriales',
+    eyebrow: 'El ecosistema editorial',
+    headline: 'Del product placement a la prescripción estética.',
     lead:
-      'Una selección abierta — marcas, espacios, autores y sellos que pidieron al estudio leer su catálogo en voz alta. Los nombres se acompañan; nunca se exhiben.',
-    footnote:
-      '__LOREM_M03_FOOT__ Selección provisional. La lista definitiva se compone con Mireia: algunos clientes prefieren no figurar, y se respeta.',
-    cta: 'Escribir al estudio'
+      'En la era de la infoxicación, el valor de una editorial no reside solo en publicar, sino en prescribir. Operamos como curador de confianza para los sellos que buscan posicionar su fondo fuera de las librerías saturadas, en entornos de aspiracionalidad: hoteles boutique, campañas de moda, marcas personales.',
+    axis_1_eyebrow: 'I',
+    axis_1_title: 'Activación de catálogo · backlist',
+    axis_1_body:
+      'Las editoriales conservan fondos bibliográficos de inmenso valor que pierden vigencia en las mesas de novedades. Rescatamos esos títulos para integrarlos en proyectos de interiorismo narrativo —una segunda vida basada en su valor estético y contenido atemporal.',
+    axis_2_eyebrow: 'II',
+    axis_2_title: 'Contextualización estética',
+    axis_2_body:
+      'Insertamos el título en un Salón Literario o un córner de autor: se genera una asociación inmediata entre la calidad literaria y el estilo de vida de lujo —un entorno que el sello, por sí solo, rara vez puede construir.',
+    axis_3_eyebrow: 'III',
+    axis_3_title: 'Acceso a nuevos gatekeepers',
+    axis_3_body:
+      'A través del estudio, las editoriales acceden a prescriptores fuera del circuito literario convencional —interioristas, directivos, líderes de opinión y creativos—, expandiendo el radio de influencia del libro hacia sectores económicos transversales.',
+    closer:
+      'Una colaboración con editoriales no es una venta cruzada: es una estrategia de Brand Experience donde el lector no adquiere solo un texto, sino un símbolo de pertenencia a una comunidad culta y sofisticada.',
+    cta: 'Plantear una colaboración'
   },
 
+  /* Casos prácticos extraídos del TFM. Tres encargos hipotéticos
+   * documentados como ejercicio del Proyecto Final de Máster —
+   * fotografía aún pendiente. Texto verbatim del TFM §Casos prácticos. */
   historias: {
     page_title: 'Historias',
     intro:
-      'Una pequeña colección. Cada caso, un libro abierto — leído por la persona, la marca o el espacio que lo encargó.',
+      'Tres encargos documentados como ejercicio del Proyecto Final de Máster. Cada caso resuelve un pilar distinto del estilismo literario.',
     case_label: 'Caso',
     cases: {
-      lorem_1: {
-        slug: '_lorem-1',
-        eyebrow: 'I · Biblioteca privada',
-        title: 'Salón Marais',
-        location: 'Madrid · primavera de 2026',
+      casa_filomena: {
+        slug: 'casa-filomena',
+        eyebrow: 'I · Curaduría de identidad',
+        title: 'Casa Filomena',
+        location: 'Casa de huéspedes',
         excerpt:
-          '__LOREM_M05_1__ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Una biblioteca privada compuesta despacio, durante una temporada, en torno al gusto declarado de su anfitriona.'
+          'Colaboración con la casa de huéspedes para transformar su oferta alojativa en una experiencia cultural inmersiva. Diseño de una biblioteca de autor y córners literarios en las zonas comunes, con selección de títulos que reflejan el espíritu de la casa y una guía de lectura de cortesía para los huéspedes.'
       },
-      lorem_2: {
-        slug: '_lorem-2',
-        eyebrow: 'II · Identidad editorial',
-        title: 'Sello Albariza',
-        location: 'Barcelona · 2025',
+      hey_chabbela: {
+        slug: 'hey-chabbela',
+        eyebrow: 'II · The Literary Pop-Up',
+        title: 'Hey Chabbela',
+        location: 'Lanzamiento de colección cápsula',
         excerpt:
-          '__LOREM_M05_2__ Sed ut perspiciatis unde omnis iste. Una colección joven que necesitaba un punto de vista — no una nueva tipografía.'
+          'Para el lanzamiento de una colección cápsula de una marca de moda, creación de un evento efímero donde la colección se presenta integrada en una biblioteca temática. Diseño de la invitación en formato libro objeto —en la estela del caso Etro— y selección de los it-books que acompañan la campaña en redes sociales.'
       },
-      lorem_3: {
-        slug: '_lorem-3',
-        eyebrow: 'III · Salón de autora',
-        title: 'Velada en La Latina',
-        location: 'Madrid · invierno de 2025',
+      salon_literario: {
+        slug: 'salon-literario',
+        eyebrow: 'III · Salón literario',
+        title: 'Salón literario para figura pública',
+        location: 'Asesoría integral · directivo o influencer',
         excerpt:
-          '__LOREM_M05_3__ Nemo enim ipsam voluptatem. Una noche de presentación que se diseñó como capítulo, no como evento.'
+          'Asesoría integral para una figura pública que busca transicionar hacia un perfil más sofisticado y cultural —en el modelo de Dua Lipa o Emma Watson. Auditoría de su presencia digital para curar los libros que muestra; como evento de lanzamiento de la nueva identidad, organización de un salón literario privado en un espacio exclusivo, con temática de debate y merchandising literario personalizado.'
       }
     }
   },
@@ -217,22 +270,26 @@ const dict = {
       'Pendiente: registro fotográfico del proyecto.'
   },
 
+  /* La Nota — borrador anclado en el TFM (§1.1 tesis, §1.2 valores,
+   * §"El valor real para el cliente", §opening). Sigue siendo un draft
+   * a la espera de la voz personal de Mireia; el texto no inventa
+   * biografía: extrae las tesis del documento. */
   nota: {
     page_title: 'La Nota de la Autora',
     eyebrow: 'Una nota a quien lee',
     body_1:
-      '__LOREM_M04_1__ Empecé este oficio porque los libros me enseñaron antes que los maestros. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      'El estilismo literario es el arte de comisariar y dotar de significado estético y cultural a espacios, marcas y figuras públicas a través del universo del libro. No se trata de organizar información, como hace la biblioteconomía: se trata de construir una narrativa visual y aspiracional que proyecte sofisticación, valores y profundidad intelectual.',
     body_2:
-      '__LOREM_M04_2__ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+      'Trabajo desde tres convicciones. La primera es la atemporalidad: en un mercado de modas inmediatas, el libro aporta un sentido de permanencia —un lujo que no caduca con el tiempo.',
     body_3:
-      '__LOREM_M04_3__ Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.',
+      'La segunda es la intelectualidad. El objetivo no es decorar, sino dotar a cada proyecto de una carga narrativa profunda y una voz culta —transformar la cultura en un activo estratégico que comunique exclusividad.',
     body_4:
-      '__LOREM_M04_4__ Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.',
+      'La tercera es la personalidad. Cada selección funciona como un espejo del mundo interior del cliente. No la pose; la autenticidad curada. Solo así se construye un relato que conecta emocionalmente, de manera única.',
     body_5:
-      '__LOREM_M04_5__ At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate.',
+      'En lugar de ver el libro como algo que se guarda en una estantería, lo trato como un conector cultural: un puente que une la estética con el intelecto, transformando un lugar común en una experiencia con historia.',
     body_6:
-      '__LOREM_M04_6__ Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus.',
-    signature_credit: '— Mireia',
+      'En la era de la imagen rápida, la profundidad de un buen libro sigue siendo el mayor de los lujos.',
+    signature_credit: '— Mireia García Domènech',
     portrait_caption: 'Estudio. Madrid, 2026.'
   },
 

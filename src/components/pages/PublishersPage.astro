@@ -1,80 +1,56 @@
 ---
-/* T24 redux — Clientes. Logo wall over the old letter-style body.
- * Placeholder marks: real client roster pending Mireia. Logos render
- * desaturated and low-contrast so the wall reads as a single hush.
- * The two text wordmarks (politician, creator) are intentional — a
- * client roster is rarely just visual marks. */
+/* «Para editoriales» — TFM §2 (El Ecosistema Editorial: del product
+ * placement a la prescripción estética). Tres ejes verbatim extraídos
+ * de §2.X.2: activación de backlist, contextualización estética, acceso
+ * a nuevos gatekeepers. Sustituye el logo wall por una página de tesis
+ * editorial — ningún cliente se reclama hasta que exista. */
 
-import { Image } from 'astro:assets'
 import { t } from '../../i18n/t'
 import { localizePath } from '../../i18n/locale'
+import WatercolorSpot from '../WatercolorSpot.astro'
 import type { Locale } from '../../i18n/config'
-
-import loewe from '../../assets/clientes/loewe.png'
-import aesop from '../../assets/clientes/aesop.png'
-import massimoDutti from '../../assets/clientes/massimo-dutti.png'
-import vans from '../../assets/clientes/vans.png'
-import dcShoes from '../../assets/clientes/dc-shoes.png'
-import penguin from '../../assets/clientes/penguin-random-house.png'
 
 interface Props {
   locale: Locale
 }
 const { locale } = Astro.props
 
-type Mark =
-  | { kind: 'logo'; name: string; src: ImageMetadata; note?: string; scale?: number }
-  | { kind: 'word'; name: string; note?: string }
-
-const clients: Mark[] = [
-  { kind: 'logo', name: 'Loewe', src: loewe, note: 'Casa de moda — campaña editorial' },
-  { kind: 'logo', name: 'Aesop', src: aesop, note: 'Boticario — curaduría de tienda' },
-  { kind: 'logo', name: 'Massimo Dutti', src: massimoDutti, note: 'Showroom — biblioteca' },
-  { kind: 'word', name: 'Soho House', note: 'Hotel boutique — salón literario' },
-  { kind: 'word', name: 'Felipe González', note: 'Memorias — acompañamiento editorial' },
-  { kind: 'logo', name: 'DC Shoes', src: dcShoes, note: 'Streetwear — colaboración cultural', scale: 0.7 },
-  { kind: 'logo', name: 'Vans', src: vans, note: 'Streetwear — proyecto de tienda' },
-  { kind: 'word', name: 'AuronPlay', note: 'Creador — primer libro' },
-  { kind: 'logo', name: 'Penguin Random House', src: penguin, note: 'Sello editorial — fondo de catálogo' }
-]
+const axes = ['1', '2', '3'] as const
 ---
 
-<article class="clientes" data-motion="m-rise">
+<article class="editoriales" data-motion="m-rise">
   <header class="container intro">
     <p class="eyebrow t-caption">{t('publishers.eyebrow', locale)}</p>
     <h1 class="t-page-title">{t('publishers.headline', locale)}</h1>
     <p class="lead">{t('publishers.lead', locale)}</p>
   </header>
 
-  <div class="container wall-wrap">
-    <ul class="wall" role="list">
-      {clients.map((c) => (
-        <li class="cell">
-          <div class="mark">
-            {c.kind === 'logo' ? (
-              <Image
-                src={c.src}
-                alt={c.name}
-                widths={[280, 560]}
-                sizes="(max-width: 47.99rem) 40vw, 220px"
-                style={c.scale ? `--mark-scale:${c.scale}` : undefined}
-                loading="lazy"
-              />
-            ) : (
-              <span class="word">{c.name}</span>
-            )}
-          </div>
-          {c.note && <p class="note t-caption">{c.note}</p>}
-        </li>
-      ))}
-    </ul>
+  <div class="container ornament" aria-hidden="true">
+    <WatercolorSpot slug="open-book-landscape" aspect="3/2" />
   </div>
 
+  <ol class="container axes" role="list">
+    {
+      axes.map((n) => {
+        const eyebrow = t(`publishers.axis_${n}_eyebrow` as any, locale)
+        const title = t(`publishers.axis_${n}_title` as any, locale)
+        const body = t(`publishers.axis_${n}_body` as any, locale)
+        return (
+          <li class="axis" data-motion="m-rise">
+            <p class="axis-numeral">{eyebrow}</p>
+            <h2 class="axis-title">{title}</h2>
+            <p class="axis-body">{body}</p>
+          </li>
+        )
+      })
+    }
+  </ol>
+
   <footer class="container outro">
-    <p class="footnote">{t('publishers.footnote', locale)}</p>
+    <p class="closer">{t('publishers.closer', locale)}</p>
     <a
       class="cta"
-      href={localizePath('/epilogo?ref=clientes', locale)}
+      href={localizePath('/epilogo?ref=editoriales', locale)}
       data-motion="m-underline-roll"
     >
       {t('publishers.cta', locale)}
@@ -83,13 +59,14 @@ const clients: Mark[] = [
 </article>
 
 <style>
-  .clientes {
+  .editoriales {
     margin-top: var(--space-24);
     margin-bottom: var(--space-32);
   }
+
   .intro {
+    max-width: 64ch;
     margin-bottom: var(--space-16);
-    max-width: 56ch;
   }
   .eyebrow {
     text-transform: uppercase;
@@ -98,7 +75,7 @@ const clients: Mark[] = [
     margin-bottom: var(--space-3);
   }
   .intro h1 {
-    max-width: 22ch;
+    max-width: 24ch;
     margin-bottom: var(--space-6);
   }
   .lead {
@@ -107,96 +84,98 @@ const clients: Mark[] = [
     font-size: var(--step-0);
   }
 
-  .wall-wrap {
-    margin-top: var(--space-12);
+  .ornament {
+    max-width: 540px;
     margin-bottom: var(--space-16);
+    opacity: 0.78;
   }
-  .wall {
+  @media (max-width: 47.99rem) {
+    .ornament {
+      display: none;
+    }
+  }
+
+  .axes {
     list-style: none;
     margin: 0;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    column-gap: var(--space-2);
-    row-gap: var(--space-12);
+    gap: 0;
+  }
+
+  .axis {
+    display: grid;
+    grid-template-columns: 4ch 1fr;
+    column-gap: var(--space-6);
+    row-gap: var(--space-2);
+    align-items: baseline;
+    padding-block: var(--space-10);
     border-top: 1px solid var(--paper-deep);
-    padding-top: var(--space-12);
   }
-  @media (max-width: 47.99rem) {
-    .wall {
-      grid-template-columns: repeat(2, 1fr);
-      row-gap: var(--space-10);
+  .axis:last-child {
+    border-bottom: 1px solid var(--paper-deep);
+  }
+  @media (min-width: 64rem) {
+    .axis {
+      grid-template-columns: 5ch 1fr;
+      column-gap: var(--space-8);
+      padding-block: var(--space-16);
     }
   }
-  .cell {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: var(--space-3);
-  }
-  .mark {
-    height: 72px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-  }
-  .mark :global(img) {
-    max-width: calc(220px * var(--mark-scale, 1));
-    max-height: calc(56px * var(--mark-scale, 1));
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    /* Ink the marks. Reads as one register, like an index page. */
-    filter: grayscale(1) contrast(0.85) brightness(0.4);
-    opacity: 0.78;
-    transition:
-      opacity 700ms cubic-bezier(.2, .6, .2, 1),
-      filter 700ms cubic-bezier(.2, .6, .2, 1);
-  }
-  .cell:hover .mark :global(img) {
-    opacity: 1;
-    filter: grayscale(1) contrast(0.9) brightness(0.2);
-  }
-  @media (max-width: 47.99rem) {
-    .mark {
-      height: 56px;
-    }
-    .mark :global(img) {
-      max-width: calc(160px * var(--mark-scale, 1));
-      max-height: calc(40px * var(--mark-scale, 1));
-    }
-  }
-  .word {
+
+  .axis-numeral {
+    grid-row: 1 / span 2;
     font-family: var(--font-display);
     font-style: italic;
     font-weight: 300;
-    font-size: var(--step-1);
-    color: var(--ink);
-    letter-spacing: 0.01em;
+    font-size: var(--step-3);
+    color: var(--library-green);
     line-height: 1;
-  }
-  .note {
-    color: var(--ink-whisper);
-    font-size: var(--step--2);
-    line-height: 1.4;
-    max-width: 22ch;
     margin: 0;
+  }
+  @media (min-width: 64rem) {
+    .axis-numeral {
+      font-size: var(--step-4);
+    }
+  }
+
+  .axis-title {
+    grid-column: 2;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--step-2);
+    line-height: 1.2;
+    margin: 0;
+  }
+  @media (min-width: 64rem) {
+    .axis-title {
+      font-size: var(--step-3);
+    }
+  }
+
+  .axis-body {
+    grid-column: 2;
+    color: var(--ink-soft);
+    font-size: var(--step-0);
+    line-height: 1.6;
+    margin: 0;
+    max-width: 58ch;
   }
 
   .outro {
-    max-width: 56ch;
+    max-width: 64ch;
     margin-top: var(--space-16);
-    border-top: 1px solid var(--paper-deep);
     padding-top: var(--space-10);
   }
-  .footnote {
-    color: var(--ink-soft);
-    font-size: var(--step--1);
-    line-height: 1.55;
-    margin-bottom: var(--space-6);
-    max-width: 48ch;
+  .closer {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--ink);
+    font-size: var(--step-1);
+    line-height: 1.45;
+    margin-bottom: var(--space-8);
+    max-width: 56ch;
   }
   .cta {
     display: inline-block;

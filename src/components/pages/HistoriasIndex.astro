@@ -3,9 +3,9 @@
  * shown today; real cases land via the M05 backlog. */
 
 import { Image } from 'astro:assets'
-import salonMaraisImage from '../../assets/historias/_lorem-1/index.webp'
-import selloAlbarizaImage from '../../assets/historias/_lorem-2/index.webp'
-import veladaLatinaImage from '../../assets/historias/_lorem-3/index.webp'
+import casaFilomenaImage from '../../assets/historias/casa-filomena/index.webp'
+import heyChabbelaImage from '../../assets/historias/hey-chabbela/index.webp'
+import salonLiterarioImage from '../../assets/historias/salon-literario/index.webp'
 import { t } from '../../i18n/t'
 import { localizePath } from '../../i18n/locale'
 import type { Locale } from '../../i18n/config'
@@ -16,15 +16,15 @@ interface Props {
 const { locale } = Astro.props
 
 const cases = [
-  { id: 'lorem_1', slug: '_lorem-1' },
-  { id: 'lorem_2', slug: '_lorem-2' },
-  { id: 'lorem_3', slug: '_lorem-3' }
+  { id: 'casa_filomena', slug: 'casa-filomena' },
+  { id: 'hey_chabbela', slug: 'hey-chabbela' },
+  { id: 'salon_literario', slug: 'salon-literario' }
 ] as const
 
 const caseImages = {
-  lorem_1: salonMaraisImage,
-  lorem_2: selloAlbarizaImage,
-  lorem_3: veladaLatinaImage
+  casa_filomena: casaFilomenaImage,
+  hey_chabbela: heyChabbelaImage,
+  salon_literario: salonLiterarioImage
 }
 ---
 
@@ -69,7 +69,7 @@ const caseImages = {
                 </span>
               </a>
             </article>
-            <!-- M05 LOREM -->
+            <!-- M05 DRAFT (TFM §Casos prácticos) — fotografía pendiente -->
           </li>
         )
       })

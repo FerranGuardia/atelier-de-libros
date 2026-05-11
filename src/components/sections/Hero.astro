@@ -109,16 +109,16 @@ const { locale } = Astro.props
     background:
       radial-gradient(
         ellipse at 19% 48%,
-        rgba(245, 245, 240, 0.92) 0%,
-        rgba(245, 245, 240, 0.82) 28%,
-        rgba(245, 245, 240, 0.36) 52%,
-        rgba(245, 245, 240, 0) 72%
+        rgba(245, 242, 233, 0.92) 0%,
+        rgba(245, 242, 233, 0.82) 28%,
+        rgba(245, 242, 233, 0.36) 52%,
+        rgba(245, 242, 233, 0) 72%
       ),
       linear-gradient(
         90deg,
-        rgba(245, 245, 240, 0.78) 0%,
-        rgba(245, 245, 240, 0.46) 34%,
-        rgba(245, 245, 240, 0) 66%
+        rgba(245, 242, 233, 0.78) 0%,
+        rgba(245, 242, 233, 0.46) 34%,
+        rgba(245, 242, 233, 0) 66%
       );
   }
   @media (max-width: 47.99rem) {
@@ -181,8 +181,8 @@ const { locale } = Astro.props
     width: fit-content;
     max-width: 100%;
     text-shadow:
-      0 1px 0 rgba(245, 245, 240, 0.82),
-      0 12px 38px rgba(245, 245, 240, 0.72);
+      0 1px 0 rgba(245, 242, 233, 0.82),
+      0 12px 38px rgba(245, 242, 233, 0.72);
   }
 
   /* Hero typography is its own thing — competing with the watercolor
@@ -196,6 +196,13 @@ const { locale } = Astro.props
   #hero-title .line {
     display: block;
     white-space: nowrap;
+  }
+  /* The second line ("el libro como conector cultural") is long;
+   * below 48rem we let it wrap rather than overflow the viewport. */
+  @media (max-width: 47.99rem) {
+    #hero-title .line {
+      white-space: normal;
+    }
   }
 
   .subhead {

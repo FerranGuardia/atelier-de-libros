@@ -1,0 +1,129 @@
+---
+/* dev/tokens.astro — full literary token gallery. Every cutout, big,
+ * on paper, with its slug. Used for picking pieces by sight.
+ * Delete src/pages/dev/ before T40 deploy. */
+
+import { Image } from 'astro:assets'
+import Base from '../../layouts/Base.astro'
+
+const cutoutImages = import.meta.glob(
+  '../../assets/watercolor/cutouts/*.png',
+  { eager: true }
+) as Record<string, { default: ImageMetadata }>
+
+const tokens = Object.entries(cutoutImages)
+  .map(([path, mod]) => {
+    const slug = path.split('/').pop()!.replace(/-cutout\.png$/, '')
+    return { slug, src: mod.default }
+  })
+  .sort((a, b) => a.slug.localeCompare(b.slug))
+---
+
+<Base title="Tokens literarios · Atelier de Libros" bare>
+  <main class="qa">
+    <header class="container intro">
+      <p class="qa-label">Watercolor library</p>
+      <h1 class="t-page-title">Tokens literarios</h1>
+      <p class="lead t-lead">
+        Cada pieza aislada y a tamaño grande. Para escoger sin abrir la carpeta.
+      </p>
+    </header>
+
+    <div class="container grid">
+      {
+        tokens.map(({ slug, src }) => (
+          <figure class="token">
+            <div class="frame">
+              <Image
+                src={src}
+                alt=""
+                widths={[480, 720, 1024, 1280]}
+                sizes="(min-width: 80rem) 36vw, (min-width: 48rem) 46vw, 92vw"
+                loading="eager"
+                decoding="async"
+              />
+            </div>
+            <figcaption>{slug}</figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </main>
+
+  <style>
+    .qa {
+      margin: var(--space-16) 0 var(--space-32);
+    }
+    .intro {
+      margin-bottom: var(--space-16);
+    }
+    .intro > * {
+      grid-column: 1 / -1;
+    }
+    .lead {
+      max-width: 54ch;
+      color: var(--ink-soft);
+      margin-top: var(--space-4);
+    }
+    .qa-label {
+      font-family: var(--font-body);
+      font-size: var(--step--1);
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-12);
+    }
+    @media (min-width: 48rem) {
+      .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--space-16);
+      }
+    }
+    @media (min-width: 80rem) {
+      .grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .token {
+      display: grid;
+      gap: var(--space-4);
+      margin: 0;
+    }
+    .frame {
+      display: grid;
+      place-items: center;
+      min-height: 360px;
+      padding: var(--space-8);
+      background: var(--paper);
+      border: 1px solid var(--paper-deep);
+    }
+    @media (min-width: 48rem) {
+      .frame {
+        min-height: 420px;
+      }
+    }
+    .frame img {
+      display: block;
+      max-width: 100%;
+      max-height: 480px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+    }
+    figcaption {
+      font-family: var(--font-body);
+      font-size: var(--step--1);
+      letter-spacing: 0.04em;
+      color: var(--ink-soft);
+      text-align: center;
+    }
+  </style>
+</Base>

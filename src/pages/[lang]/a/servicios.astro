@@ -1,9 +1,10 @@
 ---
-/* T23 — Servicios for non-default locales. Mirror of /servicios. */
+/* T23 — Servicios for non-default locales. Mirror of /a/servicios. */
 
 import Base from '../../../layouts/Base.astro'
 import { locales, defaultLocale, type Locale } from '../../../i18n/config'
 import { t } from '../../../i18n/t'
+import WatercolorSpot from '../../../components/WatercolorSpot.astro'
 
 export function getStaticPaths() {
   return locales
@@ -28,30 +29,45 @@ const items = [
   description={t('meta.servicios.description', lang)}
 >
   <article class="servicios" data-motion="m-rise">
-    <header class="container intro">
-      <div class="intro-copy">
-        <h1 class="t-page-title">{t('servicios.page_title', lang)}</h1>
-        <p class="lead t-lead measure-body">{t('servicios.intro', lang)}</p>
-      </div>
+    <header class="container head">
+      <h1 class="t-page-title">{t('servicios.page_title', lang)}</h1>
     </header>
 
-    <div class="chapters container">
-      {
-        items.map(({ key }) => {
-          const number = t(`servicios.items.${key}.number` as any, lang)
-          const title = t(`servicios.items.${key}.title` as any, lang)
-          const dedication = t(`servicios.items.${key}.dedication` as any, lang)
-          const body = t(`servicios.items.${key}.body` as any, lang)
-          return (
-            <article id={`capitulo-${key}`} class="capitulo" data-motion="m-rise">
-              <p class="numeral">{number}</p>
-              <h2 class="t-section-title">{title}</h2>
-              <p class="dedication t-lead">{dedication}</p>
-              <p class="body measure-body">{body}</p>
-            </article>
-          )
-        })
-      }
+    <div class="container layout">
+      <ol class="indice">
+        {
+          items.map(({ key }) => {
+            const number = t(`servicios.items.${key}.number` as any, lang)
+            const title = t(`servicios.items.${key}.title` as any, lang)
+            const dedication = t(`servicios.items.${key}.dedication` as any, lang)
+            const subAtitle = t(`servicios.items.${key}.sub_a_title` as any, lang)
+            const subAbody = t(`servicios.items.${key}.sub_a_body` as any, lang)
+            const subBtitle = t(`servicios.items.${key}.sub_b_title` as any, lang)
+            const subBbody = t(`servicios.items.${key}.sub_b_body` as any, lang)
+            return (
+              <li id={`capitulo-${key}`} class="entry" data-motion="m-rise">
+                <p class="numeral">{number}</p>
+                <h2 class="title">{title}</h2>
+                <p class="dedication">{dedication}</p>
+                <ul class="subservices">
+                  <li>
+                    <h3 class="sub-title">{subAtitle}</h3>
+                    <p class="sub-body">{subAbody}</p>
+                  </li>
+                  <li>
+                    <h3 class="sub-title">{subBtitle}</h3>
+                    <p class="sub-body">{subBbody}</p>
+                  </li>
+                </ul>
+              </li>
+            )
+          })
+        }
+      </ol>
+
+      <div class="compass" aria-hidden="true">
+        <WatercolorSpot slug="compass-page" aspect="2/3" />
+      </div>
     </div>
   </article>
 </Base>
@@ -61,85 +77,151 @@ const items = [
     margin-top: var(--space-24);
     margin-bottom: var(--space-32);
   }
-  .intro {
-    margin-bottom: var(--space-24);
-    align-items: end;
+
+  .head {
+    margin-bottom: var(--space-16);
   }
-  .intro-copy {
-    grid-column: 1 / -1;
+  .head h1 {
+    margin: 0;
   }
-  .intro h1 {
-    margin-bottom: var(--space-6);
-  }
-  .lead {
-    color: var(--ink-soft);
-    max-width: 56ch;
-  }
-  @media (min-width: 64rem) {
-    .intro-copy {
-      grid-column: 1 / 8;
-    }
-  }
-  .chapters {
-    display: grid;
-    gap: var(--space-32);
-  }
-  .capitulo {
+
+  .layout {
+    position: relative;
     display: grid;
     grid-template-columns: 1fr;
-    gap: var(--space-3);
-    padding-block: var(--space-12);
+    gap: var(--space-16);
+  }
+
+  .indice {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .entry {
+    display: grid;
+    grid-template-columns: 4ch 1fr;
+    column-gap: var(--space-6);
+    row-gap: var(--space-1);
+    align-items: baseline;
+    padding-block: var(--space-8);
     border-top: 1px solid var(--paper-deep);
   }
+  .entry:last-child {
+    border-bottom: 1px solid var(--paper-deep);
+  }
   @media (min-width: 64rem) {
-    .capitulo {
-      grid-template-columns: 5ch minmax(34rem, 60ch);
-      grid-template-areas: 'num title' '. ded' '. body';
+    .entry {
+      grid-template-columns: 5ch 1fr;
       column-gap: var(--space-8);
+      padding-block: var(--space-20, 80px);
       row-gap: var(--space-3);
-      justify-content: start;
-    }
-    .capitulo .numeral {
-      grid-area: num;
-    }
-    .capitulo h2 {
-      grid-area: title;
-    }
-    .capitulo .dedication {
-      grid-area: ded;
-    }
-    .capitulo .body {
-      grid-area: body;
-      max-width: 60ch;
     }
   }
+
   .numeral {
+    grid-row: 1 / span 2;
     font-family: var(--font-display);
     font-style: italic;
     font-weight: 300;
     font-size: var(--step-3);
     color: var(--library-green);
     line-height: 1;
+    margin: 0;
   }
   @media (min-width: 64rem) {
     .numeral {
       font-size: var(--step-4);
-      align-self: start;
     }
   }
-  .capitulo h2 {
+
+  .title {
+    grid-column: 2;
     font-family: var(--font-display);
     font-weight: 400;
-    font-size: var(--step-3);
-    line-height: 1.15;
+    font-size: var(--step-2);
+    line-height: 1.2;
+    margin: 0;
   }
+  @media (min-width: 64rem) {
+    .title {
+      font-size: var(--step-3);
+    }
+  }
+
   .dedication {
+    grid-column: 2;
     color: var(--ink-soft);
-    margin-top: var(--space-2);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: var(--step-0);
+    line-height: 1.4;
+    margin: 0;
+    max-width: 48ch;
   }
-  .body {
-    color: var(--ink);
-    line-height: 1.6;
-    margin-top: var(--space-6);
+  @media (min-width: 64rem) {
+    .dedication {
+      font-size: var(--step-1);
+    }
+  }
+
+  .subservices {
+    grid-column: 2;
+    list-style: none;
+    margin: var(--space-6) 0 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-6);
+  }
+  @media (min-width: 64rem) {
+    .subservices {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-10);
+      margin-top: var(--space-8);
+    }
+  }
+  .subservices > li {
+    max-width: 44ch;
+  }
+
+  .sub-title {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: var(--step--1);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--library-green);
+    margin: 0 0 var(--space-2);
+  }
+
+  .sub-body {
+    color: var(--ink-soft);
+    font-size: var(--step-0);
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  .compass {
+    display: none;
+  }
+  @media (min-width: 64rem) {
+    .compass {
+      display: block;
+      position: absolute;
+      top: 50%;
+      right: calc(var(--container-pad) * -1);
+      transform: translateY(-50%);
+      width: min(56%, 880px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .compass :global(.watercolor-spot) {
+      opacity: 0.78;
+    }
   }
 </style>

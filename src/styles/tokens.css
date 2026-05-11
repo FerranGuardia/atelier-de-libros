@@ -8,8 +8,8 @@
    * any viewport. Use *-soft / *-whisper deliberately, not
    * decoratively.
    */
-  --paper: #f5f5f0;
-  --paper-deep: #edede6; /* dividers without strokes; 1px borders, never fills */
+  --paper: #f5f2e9; /* TFM §2.3.1 cream — Pantone 7527 C */
+  --paper-deep: #ebe7da; /* dividers without strokes; 1px borders, never fills */
   --ink: #1a1a1a;
   --ink-soft: rgba(26, 26, 26, 0.6); /* secondary text, body size or larger only */
   --ink-whisper: rgba(26, 26, 26, 0.32); /* footer fine print, captions */
