@@ -88,7 +88,7 @@ const dict = {
 
   home: {
     hero: {
-      headline_part_1: 'Estilismo literario',
+      headline_part_1: 'Curaduría literaria',
       headline_part_2: 'el libro como conector cultural',
       subheadline:
         'Comisariamos rincones, eventos e identidades a través del libro —para empresas, espacios, figuras públicas y particulares.',
