@@ -4,7 +4,6 @@
 import Base from '../../../layouts/Base.astro'
 import { locales, defaultLocale, type Locale } from '../../../i18n/config'
 import { t } from '../../../i18n/t'
-import WatercolorSpot from '../../../components/WatercolorSpot.astro'
 
 export function getStaticPaths() {
   return locales
@@ -29,11 +28,9 @@ const items = [
   description={t('meta.servicios.description', lang)}
 >
   <article class="servicios" data-motion="m-rise">
-    <div class="branches" aria-hidden="true">
-      <WatercolorSpot slug="diagonal-branches-cutout" aspect="3/4" />
-    </div>
     <header class="container head">
       <h1 class="t-page-title">{t('servicios.page_title', lang)}</h1>
+      <p class="kicker t-caption">{t('servicios.kicker', lang)}</p>
     </header>
 
     <div class="container layout">
@@ -85,6 +82,14 @@ const items = [
   }
   .head h1 {
     margin: 0;
+  }
+  .kicker {
+    margin-top: var(--space-4);
+    color: var(--library-green);
+    font-family: var(--font-body);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
   }
 
   .layout {
@@ -208,23 +213,4 @@ const items = [
     margin: 0;
   }
 
-  .branches {
-    display: none;
-  }
-  @media (min-width: 64rem) {
-    .branches {
-      display: block;
-      position: absolute;
-      top: 50%;
-      right: 0;
-      transform: translateY(-50%);
-      width: min(40vw, 608px);
-      pointer-events: none;
-      z-index: 0;
-    }
-    .branches :global(.watercolor-spot) {
-      opacity: 0.7;
-      transform: scaleX(-1);
-    }
-  }
 </style>

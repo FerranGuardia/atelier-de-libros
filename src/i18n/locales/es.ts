@@ -91,7 +91,7 @@ const dict = {
       headline_part_1: 'Estilismo literario',
       headline_part_2: 'el libro como conector cultural',
       subheadline:
-        'Comisariamos rincones, eventos e identidades a través del libro —para empresas, espacios y figuras públicas.',
+        'Comisariamos rincones, eventos e identidades a través del libro —para empresas, espacios, figuras públicas y particulares.',
       scroll_cue: 'Continuar'
     },
 
@@ -105,9 +105,9 @@ const dict = {
       axiom_2:
         'Trabajamos el libro como un conector cultural —un puente que une la estética con el intelecto.',
       axiom_3:
-        'Cada selección funciona como un espejo del mundo interior del cliente. No la pose; la autenticidad curada.',
+        'Cada selección funciona como un espejo del mundo interior del cliente. Queremos ayudarte a explicar tu propia historia a través de las voces del universo literario.',
       axiom_4:
-        'En la era de la imagen rápida, la profundidad de un buen libro sigue siendo el mayor de los lujos.'
+        'En una era en la que todos buscamos autenticidad, la profundidad de un buen libro sigue siendo el mayor de los lujos.'
     },
 
     servicios_teaser: {
@@ -135,6 +135,7 @@ const dict = {
 
   servicios: {
     page_title: 'El Índice',
+    kicker: 'Nuestros servicios',
     intro:
       'Cuatro pilares. Se leen en orden o se saltan, como cualquier libro. Cada uno responde a una manera distinta de habitar la literatura.',
 
@@ -149,7 +150,7 @@ const dict = {
           'Las lecturas de una marca o persona son su mejor carta de presentación.',
         sub_a_title: 'Gestión de imagen pública',
         sub_a_body:
-          'Asesoramos a directivos y figuras públicas sobre qué libros mostrar en sus plataformas, construyendo un relato coherente con sus valores. No la pose: la autenticidad curada.',
+          'Asesoría para marcas, empresas y personas sobre qué libros mostrar en redes o eventos. Selección de it-books para campañas de moda, lanzamientos o branding. Construcción de narrativa visual coherente con los valores del cliente.',
         sub_b_title: 'It-books para campañas',
         sub_b_body:
           'Seleccionamos los it-books para campañas de moda y lanzamientos de producto, asegurando que la carga intelectual del título refuerce el mensaje de la colección.'
@@ -182,10 +183,10 @@ const dict = {
         number: 'IV',
         title: 'Eventos de autor: el nuevo salón literario',
         dedication:
-          'Recuperamos la esencia de los históricos salones franceses para la exclusividad contemporánea.',
+          'Servicio especializado en experiencias literarias exclusivas.',
         sub_a_title: 'Salones literarios a medida',
         sub_a_body:
-          'Encuentros donde el debate, la lectura en vivo y el networking se mezclan en un entorno diseñado al detalle. Branding cultural para marcas de lujo e instituciones.',
+          'Salones diseñados a medida para marcas, empresas o figuras públicas: lecturas en vivo, debates, microcharlas y encuentros con autores. Diseñamos la escenografía literaria y la ambientación estética, y producimos el contenido visual del evento.',
         sub_b_title: 'Merchandising y objetos de culto',
         sub_b_body:
           'Papelería premium, invitaciones en formato libro (en la estela del caso Etro) y colecciones de accesorios inspiradas en grandes cubiertas clásicas.'
@@ -199,9 +200,9 @@ const dict = {
   publishers: {
     page_title: 'Para editoriales',
     eyebrow: 'El ecosistema editorial',
-    headline: 'Del product placement a la prescripción estética.',
+    headline: 'Integración editorial y colaboraciones de marca.',
     lead:
-      'En la era de la infoxicación, el valor de una editorial no reside solo en publicar, sino en prescribir. Operamos como curador de confianza para los sellos que buscan posicionar su fondo fuera de las librerías saturadas, en entornos de aspiracionalidad: hoteles boutique, campañas de moda, marcas personales.',
+      'Integramos libros en hoteles boutique, espacios comerciales, restaurantes, sets de rodaje y entornos corporativos, además de seleccionar títulos para campañas visuales, editoriales, eventos y proyectos curatoriales, creando experiencias culturales y proyectando el libro hasta donde nunca había llegado.',
     axis_1_eyebrow: 'I',
     axis_1_title: 'Activación de catálogo · backlist',
     axis_1_body:
@@ -215,7 +216,7 @@ const dict = {
     axis_3_body:
       'A través del estudio, las editoriales acceden a prescriptores fuera del circuito literario convencional —interioristas, directivos, líderes de opinión y creativos—, expandiendo el radio de influencia del libro hacia sectores económicos transversales.',
     closer:
-      'Una colaboración con editoriales no es una venta cruzada: es una estrategia de Brand Experience donde el lector no adquiere solo un texto, sino un símbolo de pertenencia a una comunidad culta y sofisticada.',
+      'Llevamos los libros allí donde nadie espera encontrarlos y los convertimos en protagonistas de nuevos escenarios.',
     cta: 'Plantear una colaboración'
   },
 
@@ -286,13 +287,13 @@ const dict = {
     body_6:
       'En la era de la imagen rápida, la profundidad de un buen libro sigue siendo el mayor de los lujos.',
     signature_credit: '— Mireia García Domènech',
-    portrait_caption: 'Estudio. Madrid, 2026.'
+    portrait_caption: 'Estudio. Barcelona, 2026.'
   },
 
   epilogo: {
     page_title: 'Epílogo',
     intro:
-      'Si has llegado hasta aquí, escríbenos. Cuéntanos brevemente qué tienes en mente y volvemos contigo.',
+      'Si has llegado hasta aquí, escríbenos. Cada proyecto tiene una historia que contar. Nosotras averiguamos su título. ¿Quieres encontrar el tuyo?',
     form: {
       name_label: 'Nombre',
       email_label: 'Correo',
@@ -308,7 +309,7 @@ const dict = {
       legal_consent:
         'Al enviar, aceptas que conservemos tu mensaje el tiempo necesario para responderte.'
     },
-    contact_email: 'estudio@atelierdelibros.com',
+    contact_email: 'elatelierdelibros@gmail.com',
     contact_email_label: 'Escribir directamente'
   },
 

@@ -78,19 +78,20 @@ const dict: PartialDictionary = {
       headline_part_1: 'Curadoria literària',
       headline_part_2: 'el llibre com a identitat',
       subheadline:
-        'Dissenyem l’ànima intel·lectual de marques, espais i persones, una història a la vegada.',
+        'Comissariem racons, esdeveniments i identitats a través del llibre —per a empreses, espais, figures públiques i particulars.',
       scroll_cue: 'Continuar'
     },
 
     manifesto: {
       eyebrow: 'Manifest',
       axiom_1:
-        'Quan un llibre arriba a les nostres mans, el llegim. N’entenem l’essència, el missatge, i busquem la millor manera de transformar-lo en un record.',
+        'No decorem prestatgeries: dissenyem atmosferes que conviden a la permanència.',
       axiom_2:
-        'Elevar una història és donar-li ritme, símbol i coherència, dins de la pàgina i fora.',
+        'Treballem el llibre com un connector cultural —un pont que uneix l’estètica amb l’intel·lecte.',
       axiom_3:
-        'Un llibre és el que encara resisteix la pressa. En una conversa, en una identitat, en un ambient.',
-      axiom_4: 'Una bona història no força el temps que necessita per ser contada.'
+        'Cada selecció funciona com un mirall del món interior del client. Volem ajudar-te a explicar la teva pròpia història a través de les veus de l’univers literari.',
+      axiom_4:
+        'En una era en què tots busquem autenticitat, la profunditat d’un bon llibre continua sent el més gran dels luxes.'
     },
 
     servicios_teaser: {
@@ -125,7 +126,13 @@ const dict: PartialDictionary = {
       curaduria: {
         number: 'I',
         title: 'Curadoria d’identitat i storytelling visual',
-        dedication: 'Per a marques que volen llegir-se, no només veure’s.'
+        dedication: 'Per a marques que volen llegir-se, no només veure’s.',
+        sub_a_title: 'Gestió d’imatge pública',
+        sub_a_body:
+          'Assessorem marques, empreses i persones sobre quins llibres mostrar a les xarxes i en esdeveniments, construint una narrativa visual coherent amb els valors del client.',
+        sub_b_title: 'It-books per a campanyes',
+        sub_b_body:
+          'Seleccionem els it-books per a campanyes de moda i llançaments de producte, assegurant que la càrrega intel·lectual del títol reforci el missatge de la col·lecció.'
       },
       interiorismo: {
         number: 'II',
@@ -140,16 +147,35 @@ const dict: PartialDictionary = {
       eventos: {
         number: 'IV',
         title: 'Esdeveniments d’autor',
-        dedication: 'Per a amfitrions que recorden que un saló també es cura.'
+        dedication: 'Servei especialitzat en experiències literàries exclusives.',
+        sub_a_title: 'Salons literaris a mida',
+        sub_a_body:
+          'Salons dissenyats a mida per a marques, empreses o figures públiques: lectures en directe, debats, microxerrades i trobades amb autors. Dissenyem l’escenografia literària i l’ambientació estètica, i produïm el contingut visual de l’esdeveniment.',
+        sub_b_title: 'Marxandatge i objectes de culte',
+        sub_b_body:
+          'Papereria premium, invitacions en format llibre (en l’estela del cas Etro) i col·leccions d’accessoris inspirades en grans cobertes clàssiques.'
       }
     }
   },
 
   publishers: {
-    page_title: 'Clients',
-    eyebrow: 'Clients',
-    headline: 'Qui ens ha confiat una història.',
-    cta: 'Escriure a l’estudi'
+    page_title: 'Per a editorials',
+    eyebrow: 'L’ecosistema editorial',
+    headline: 'Integració editorial i col·laboracions de marca.',
+    lead:
+      'Integrem llibres en hotels boutique, espais comercials, restaurants, sets de rodatge i entorns corporatius, a més de seleccionar títols per a campanyes visuals, editorials, esdeveniments i projectes curatorials, creant experiències culturals i projectant el llibre fins on mai no havia arribat.',
+    axis_1_title: 'Activació de catàleg · backlist',
+    axis_1_body:
+      'Les editorials conserven fons bibliogràfics d’un valor immens que perden vigència a les taules de novetats. Rescatem aquests títols per integrar-los en projectes d’interiorisme narratiu —una segona vida basada en el seu valor estètic i el seu contingut atemporal.',
+    axis_2_title: 'Contextualització estètica',
+    axis_2_body:
+      'Inserim el títol en un Saló Literari o un racó d’autor: es genera una associació immediata entre la qualitat literària i l’estil de vida de luxe —un entorn que el segell, tot sol, rarament pot construir.',
+    axis_3_title: 'Accés a nous gatekeepers',
+    axis_3_body:
+      'A través de l’estudi, les editorials accedeixen a prescriptors fora del circuit literari convencional —interioristes, directius, líders d’opinió i creatius—, ampliant el radi d’influència del llibre cap a sectors econòmics transversals.',
+    closer:
+      'Portem els llibres allà on ningú espera trobar-los i els convertim en protagonistes de nous escenaris.',
+    cta: 'Plantejar una col·laboració'
   },
 
   historias: {
@@ -173,13 +199,13 @@ const dict: PartialDictionary = {
     page_title: 'La Nota de l’Autora',
     eyebrow: 'Una nota a qui llegeix',
     signature_credit: '— Mireia',
-    portrait_caption: 'Estudi. Madrid, 2026.'
+    portrait_caption: 'Estudi. Barcelona, 2026.'
   },
 
   epilogo: {
     page_title: 'Epíleg',
     intro:
-      'Si has arribat fins aquí, escriu-nos. Explica’ns breument què tens en ment i tornem amb tu.',
+      'Si has arribat fins aquí, escriu-nos. Cada projecte té una història per explicar. Nosaltres n’esbrinem el títol. Vols trobar el teu?',
     form: {
       name_label: 'Nom',
       email_label: 'Correu',
@@ -196,7 +222,7 @@ const dict: PartialDictionary = {
       legal_consent:
         'En enviar, acceptes que conservem el teu missatge el temps necessari per respondre’t.'
     },
-    contact_email: 'estudio@atelierdelibros.com',
+    contact_email: 'elatelierdelibros@gmail.com',
     contact_email_label: 'Escriure directament'
   },
 

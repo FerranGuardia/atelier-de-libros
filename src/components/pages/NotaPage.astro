@@ -35,20 +35,6 @@ const { locale } = Astro.props
       <p>{t('nota.body_5', locale)}</p>
       <p>{t('nota.body_6', locale)}</p>
       <p class="signature">
-        <span class="signature-img" aria-label={t('aria.pending_signature', locale)}>
-          <!-- M04-signature PENDING — src/assets/illustrations/signature.svg -->
-          <svg viewBox="0 0 200 60" aria-hidden="true">
-            <path
-              d="M10 40 Q 30 12 60 30 T 110 30 T 160 28"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-dasharray="2 4"
-            />
-          </svg>
-        </span>
         <span class="signature-credit">{t('nota.signature_credit', locale)}</span>
       </p>
       <!-- M04 DRAFT (anclado en TFM §1.1/§1.2) — tasks-mireia/M04 -->
@@ -117,17 +103,6 @@ const { locale } = Astro.props
 
   .signature {
     margin-top: var(--space-12);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-  }
-  .signature-img {
-    display: block;
-    color: var(--library-green);
-  }
-  .signature-img svg {
-    width: 200px;
-    height: 60px;
   }
   .signature-credit {
     font-family: var(--font-display);

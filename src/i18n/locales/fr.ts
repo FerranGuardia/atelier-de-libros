@@ -78,19 +78,20 @@ const dict: PartialDictionary = {
       headline_part_1: 'Curation littéraire',
       headline_part_2: 'le livre comme identité',
       subheadline:
-        'Nous dessinons l’âme intellectuelle des marques, des lieux et des personnes, une histoire à la fois.',
+        'Nous concevons des coins, des événements et des identités à travers le livre —pour les entreprises, les lieux, les personnalités publiques et les particuliers.',
       scroll_cue: 'Continuer'
     },
 
     manifesto: {
       eyebrow: 'Manifeste',
       axiom_1:
-        'Quand un livre nous parvient, nous le lisons. Nous en saisissons l’essence, le message, et nous cherchons la meilleure façon de le transformer en souvenir.',
+        'Nous ne décorons pas des étagères : nous concevons des atmosphères qui invitent à demeurer.',
       axiom_2:
-        'Élever une histoire, c’est lui donner rythme, symbole et cohérence, dans la page et au-delà.',
+        'Nous travaillons le livre comme un connecteur culturel —un pont qui unit l’esthétique et l’intellect.',
       axiom_3:
-        'Un livre est ce qui résiste encore à la hâte. Dans une conversation, dans une identité, dans une atmosphère.',
-      axiom_4: 'Une bonne histoire ne force pas le temps qu’il lui faut pour être racontée.'
+        'Chaque sélection agit comme un miroir du monde intérieur du client. Nous voulons vous aider à raconter votre propre histoire à travers les voix de l’univers littéraire.',
+      axiom_4:
+        'À une époque où nous cherchons tous l’authenticité, la profondeur d’un bon livre demeure le plus grand des luxes.'
     },
 
     servicios_teaser: {
@@ -125,7 +126,13 @@ const dict: PartialDictionary = {
       curaduria: {
         number: 'I',
         title: 'Curation d’identité et storytelling visuel',
-        dedication: 'Pour les marques qui veulent être lues, pas seulement vues.'
+        dedication: 'Pour les marques qui veulent être lues, pas seulement vues.',
+        sub_a_title: 'Gestion d’image publique',
+        sub_a_body:
+          'Nous conseillons les marques, les entreprises et les personnes sur les livres à montrer sur leurs réseaux et lors d’événements, en construisant une narration visuelle cohérente avec les valeurs du client.',
+        sub_b_title: 'It-books pour les campagnes',
+        sub_b_body:
+          'Nous sélectionnons les it-books pour les campagnes de mode et les lancements de produit, en veillant à ce que la charge intellectuelle du titre renforce le message de la collection.'
       },
       interiorismo: {
         number: 'II',
@@ -140,16 +147,35 @@ const dict: PartialDictionary = {
       eventos: {
         number: 'IV',
         title: 'Événements d’auteur',
-        dedication: 'Pour les hôtes qui se rappellent qu’un salon, aussi, se cure.'
+        dedication: 'Un service spécialisé dans les expériences littéraires exclusives.',
+        sub_a_title: 'Salons littéraires sur mesure',
+        sub_a_body:
+          'Des salons conçus sur mesure pour les marques, les entreprises ou les personnalités publiques : lectures en direct, débats, micro-conférences et rencontres avec des auteurs. Nous concevons la scénographie littéraire et l’ambiance esthétique, et nous produisons le contenu visuel de l’événement.',
+        sub_b_title: 'Merchandising et objets de culte',
+        sub_b_body:
+          'Papeterie premium, invitations en forme de livre (dans le sillage du cas Etro) et collections d’accessoires inspirées des grandes couvertures classiques.'
       }
     }
   },
 
   publishers: {
-    page_title: 'Clients',
-    eyebrow: 'Clients',
-    headline: 'Ceux qui nous ont confié une histoire.',
-    cta: 'Écrire à l’atelier'
+    page_title: 'Pour les maisons d’édition',
+    eyebrow: 'L’écosystème éditorial',
+    headline: 'Intégration éditoriale et collaborations de marque.',
+    lead:
+      'Nous intégrons des livres dans des hôtels boutique, des espaces commerciaux, des restaurants, des plateaux de tournage et des environnements corporatifs, en plus de sélectionner des titres pour des campagnes visuelles, des éditoriaux, des événements et des projets curatoriaux, créant des expériences culturelles et projetant le livre là où il n’était jamais parvenu.',
+    axis_1_title: 'Activation de catalogue · backlist',
+    axis_1_body:
+      'Les maisons d’édition conservent des fonds bibliographiques d’une immense valeur qui perdent leur actualité sur les tables de nouveautés. Nous repêchons ces titres pour les intégrer à des projets d’intériorisme narratif —une seconde vie fondée sur leur valeur esthétique et leur contenu intemporel.',
+    axis_2_title: 'Contextualisation esthétique',
+    axis_2_body:
+      'Nous insérons le titre dans un Salon littéraire ou un coin d’auteur : une association immédiate se crée entre la qualité littéraire et l’art de vivre du luxe —un environnement que la maison, seule, peut rarement construire.',
+    axis_3_title: 'Accès à de nouveaux gatekeepers',
+    axis_3_body:
+      'À travers l’atelier, les maisons d’édition accèdent à des prescripteurs hors du circuit littéraire conventionnel —architectes d’intérieur, dirigeants, leaders d’opinion et créatifs—, élargissant le rayon d’influence du livre vers des secteurs économiques transversaux.',
+    closer:
+      'Nous portons les livres là où personne ne s’attend à les trouver et nous en faisons les protagonistes de nouveaux décors.',
+    cta: 'Proposer une collaboration'
   },
 
   historias: {
@@ -173,13 +199,13 @@ const dict: PartialDictionary = {
     page_title: 'La Note de l’Auteure',
     eyebrow: 'Une note à qui lit',
     signature_credit: '— Mireia',
-    portrait_caption: 'Atelier. Madrid, 2026.'
+    portrait_caption: 'Atelier. Barcelone, 2026.'
   },
 
   epilogo: {
     page_title: 'Épilogue',
     intro:
-      'Si vous êtes arrivé jusqu’ici, écrivez-nous. Dites-nous brièvement ce que vous avez en tête et nous reviendrons vers vous.',
+      'Si vous êtes arrivé jusqu’ici, écrivez-nous. Chaque projet a une histoire à raconter. Nous, nous en trouvons le titre. Voulez-vous trouver le vôtre ?',
     form: {
       name_label: 'Nom',
       email_label: 'Courriel',
@@ -196,7 +222,7 @@ const dict: PartialDictionary = {
       legal_consent:
         'En envoyant, vous acceptez que nous conservions votre message le temps nécessaire pour vous répondre.'
     },
-    contact_email: 'estudio@atelierdelibros.com',
+    contact_email: 'elatelierdelibros@gmail.com',
     contact_email_label: 'Écrire directement'
   },
 

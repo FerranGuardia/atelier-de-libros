@@ -13,7 +13,7 @@
 
 import type { Locale } from '../i18n/config'
 
-export const STUDIO_EMAIL = 'estudio@atelierdelibros.com'
+export const STUDIO_EMAIL = 'elatelierdelibros@gmail.com'
 
 export interface LegalSection {
   heading: string

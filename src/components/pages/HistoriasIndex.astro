@@ -5,7 +5,6 @@
 import { Image } from 'astro:assets'
 import casaFilomenaImage from '../../assets/historias/casa-filomena/index.webp'
 import heyChabbelaImage from '../../assets/historias/hey-chabbela/index.webp'
-import salonLiterarioImage from '../../assets/historias/salon-literario/index.webp'
 import { t } from '../../i18n/t'
 import { localizePath } from '../../i18n/locale'
 import type { Locale } from '../../i18n/config'
@@ -17,14 +16,12 @@ const { locale } = Astro.props
 
 const cases = [
   { id: 'casa_filomena', slug: 'casa-filomena' },
-  { id: 'hey_chabbela', slug: 'hey-chabbela' },
-  { id: 'salon_literario', slug: 'salon-literario' }
+  { id: 'hey_chabbela', slug: 'hey-chabbela' }
 ] as const
 
 const caseImages = {
   casa_filomena: casaFilomenaImage,
-  hey_chabbela: heyChabbelaImage,
-  salon_literario: salonLiterarioImage
+  hey_chabbela: heyChabbelaImage
 }
 ---
 

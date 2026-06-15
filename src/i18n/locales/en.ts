@@ -78,19 +78,20 @@ const dict: PartialDictionary = {
       headline_part_1: 'Literary curation',
       headline_part_2: 'the book as identity',
       subheadline:
-        'We design the intellectual soul of brands, spaces and people, one story at a time.',
+        'We curate corners, events and identities through the book—for companies, spaces, public figures and private clients.',
       scroll_cue: 'Continue'
     },
 
     manifesto: {
       eyebrow: 'Manifesto',
       axiom_1:
-        'When a book reaches our hands, we read it. We grasp its essence, its message, and we look for the best way to turn it into a memory.',
+        'We don’t decorate shelves: we design atmospheres that invite you to stay.',
       axiom_2:
-        'To raise a story is to give it rhythm, symbol and coherence—on the page and beyond it.',
+        'We treat the book as a cultural connector—a bridge between the aesthetic and the intellect.',
       axiom_3:
-        'A book is what still resists hurry. In a conversation, in an identity, in a room.',
-      axiom_4: 'A good story does not force the time it needs to be told.'
+        'Every selection works as a mirror of the client’s inner world. We want to help you tell your own story through the voices of the literary universe.',
+      axiom_4:
+        'In an age when we are all looking for authenticity, the depth of a good book remains the greatest of luxuries.'
     },
 
     servicios_teaser: {
@@ -125,7 +126,13 @@ const dict: PartialDictionary = {
       curaduria: {
         number: 'I',
         title: 'Identity curation and visual storytelling',
-        dedication: 'For brands that want to be read, not only seen.'
+        dedication: 'For brands that want to be read, not only seen.',
+        sub_a_title: 'Public image management',
+        sub_a_body:
+          'We advise brands, companies and individuals on which books to show on their channels and at events, building a visual narrative consistent with the client’s values.',
+        sub_b_title: 'It-books for campaigns',
+        sub_b_body:
+          'We select the it-books for fashion campaigns and product launches, making sure the intellectual weight of the title reinforces the collection’s message.'
       },
       interiorismo: {
         number: 'II',
@@ -140,16 +147,35 @@ const dict: PartialDictionary = {
       eventos: {
         number: 'IV',
         title: 'Author events',
-        dedication: 'For hosts who remember that a salon, too, is curated.'
+        dedication: 'A service devoted to exclusive literary experiences.',
+        sub_a_title: 'Bespoke literary salons',
+        sub_a_body:
+          'Salons designed to measure for brands, companies or public figures: live readings, debates, micro-talks and encounters with authors. We design the literary set and the aesthetic atmosphere, and we produce the event’s visual content.',
+        sub_b_title: 'Merchandising and cult objects',
+        sub_b_body:
+          'Premium stationery, book-shaped invitations (in the wake of the Etro case) and accessory collections inspired by great classic covers.'
       }
     }
   },
 
   publishers: {
-    page_title: 'Clients',
-    eyebrow: 'Clients',
-    headline: 'Those who trusted us with a story.',
-    cta: 'Write to the studio'
+    page_title: 'For publishers',
+    eyebrow: 'The publishing ecosystem',
+    headline: 'Editorial integration and brand collaborations.',
+    lead:
+      'We place books in boutique hotels, retail spaces, restaurants, film sets and corporate environments, and we select titles for visual campaigns, editorials, events and curatorial projects—creating cultural experiences and carrying the book where it had never reached before.',
+    axis_1_title: 'Backlist activation',
+    axis_1_body:
+      'Publishers hold catalogues of immense value that lose currency on the new-release tables. We rescue those titles and fold them into narrative interior-design projects—a second life built on their aesthetic value and timeless content.',
+    axis_2_title: 'Aesthetic contextualisation',
+    axis_2_body:
+      'We place the title in a Literary Salon or an author’s corner: an immediate association forms between literary quality and a luxury lifestyle—an environment the imprint, alone, can rarely build.',
+    axis_3_title: 'Access to new gatekeepers',
+    axis_3_body:
+      'Through the studio, publishers reach tastemakers outside the conventional literary circuit—interior designers, executives, opinion leaders and creatives—widening the book’s radius of influence into adjacent economic sectors.',
+    closer:
+      'We take books where no one expects to find them and turn them into the protagonists of new settings.',
+    cta: 'Propose a collaboration'
   },
 
   historias: {
@@ -173,13 +199,13 @@ const dict: PartialDictionary = {
     page_title: 'The Author’s Note',
     eyebrow: 'A note to whoever is reading',
     signature_credit: '— Mireia',
-    portrait_caption: 'Studio. Madrid, 2026.'
+    portrait_caption: 'Studio. Barcelona, 2026.'
   },
 
   epilogo: {
     page_title: 'Epilogue',
     intro:
-      'If you have come this far, write to us. Tell us briefly what you have in mind and we will come back to you.',
+      'If you have come this far, write to us. Every project has a story to tell. We find its title. Would you like to find yours?',
     form: {
       name_label: 'Name',
       email_label: 'Email',
@@ -196,7 +222,7 @@ const dict: PartialDictionary = {
       legal_consent:
         'By sending, you agree that we may keep your message for as long as it takes us to reply.'
     },
-    contact_email: 'estudio@atelierdelibros.com',
+    contact_email: 'elatelierdelibros@gmail.com',
     contact_email_label: 'Write directly'
   },
 

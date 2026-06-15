@@ -78,19 +78,20 @@ const dict: PartialDictionary = {
       headline_part_1: 'Curatela letteraria',
       headline_part_2: 'il libro come identità',
       subheadline:
-        'Disegniamo l’anima intellettuale di marche, spazi e persone, una storia alla volta.',
+        'Curiamo angoli, eventi e identità attraverso il libro —per aziende, spazi, figure pubbliche e privati.',
       scroll_cue: 'Continuare'
     },
 
     manifesto: {
       eyebrow: 'Manifesto',
       axiom_1:
-        'Quando un libro ci arriva tra le mani, lo leggiamo. Ne cogliamo l’essenza, il messaggio, e cerchiamo il modo migliore per trasformarlo in un ricordo.',
+        'Non decoriamo scaffali: disegniamo atmosfere che invitano a restare.',
       axiom_2:
-        'Elevare una storia significa darle ritmo, simbolo e coerenza, dentro la pagina e oltre.',
+        'Trattiamo il libro come un connettore culturale —un ponte che unisce l’estetica e l’intelletto.',
       axiom_3:
-        'Un libro è ciò che ancora resiste alla fretta. In una conversazione, in un’identità, in un ambiente.',
-      axiom_4: 'Una buona storia non forza il tempo che le serve per essere raccontata.'
+        'Ogni selezione funziona come uno specchio del mondo interiore del cliente. Vogliamo aiutarti a raccontare la tua storia attraverso le voci dell’universo letterario.',
+      axiom_4:
+        'In un’epoca in cui tutti cerchiamo autenticità, la profondità di un buon libro resta il più grande dei lussi.'
     },
 
     servicios_teaser: {
@@ -125,7 +126,13 @@ const dict: PartialDictionary = {
       curaduria: {
         number: 'I',
         title: 'Curatela d’identità e storytelling visivo',
-        dedication: 'Per le marche che vogliono essere lette, non solo viste.'
+        dedication: 'Per le marche che vogliono essere lette, non solo viste.',
+        sub_a_title: 'Gestione dell’immagine pubblica',
+        sub_a_body:
+          'Consigliamo marchi, aziende e persone su quali libri mostrare sui propri canali e agli eventi, costruendo una narrazione visiva coerente con i valori del cliente.',
+        sub_b_title: 'It-books per le campagne',
+        sub_b_body:
+          'Selezioniamo gli it-books per le campagne di moda e i lanci di prodotto, assicurandoci che il peso intellettuale del titolo rafforzi il messaggio della collezione.'
       },
       interiorismo: {
         number: 'II',
@@ -140,16 +147,35 @@ const dict: PartialDictionary = {
       eventos: {
         number: 'IV',
         title: 'Eventi d’autore',
-        dedication: 'Per gli ospiti che ricordano che anche un salotto si cura.'
+        dedication: 'Un servizio dedicato a esperienze letterarie esclusive.',
+        sub_a_title: 'Salotti letterari su misura',
+        sub_a_body:
+          'Salotti disegnati su misura per marchi, aziende o figure pubbliche: letture dal vivo, dibattiti, micro-conferenze e incontri con autori. Disegniamo la scenografia letteraria e l’ambientazione estetica, e produciamo il contenuto visivo dell’evento.',
+        sub_b_title: 'Merchandising e oggetti di culto',
+        sub_b_body:
+          'Cartoleria premium, inviti in forma di libro (sulla scia del caso Etro) e collezioni di accessori ispirate alle grandi copertine classiche.'
       }
     }
   },
 
   publishers: {
-    page_title: 'Clienti',
-    eyebrow: 'Clienti',
-    headline: 'Chi ci ha affidato una storia.',
-    cta: 'Scrivere allo studio'
+    page_title: 'Per le case editrici',
+    eyebrow: 'L’ecosistema editoriale',
+    headline: 'Integrazione editoriale e collaborazioni di marca.',
+    lead:
+      'Integriamo libri in hotel boutique, spazi commerciali, ristoranti, set cinematografici e ambienti corporate, oltre a selezionare titoli per campagne visive, editoriali, eventi e progetti curatoriali, creando esperienze culturali e portando il libro dove non era mai arrivato.',
+    axis_1_title: 'Attivazione di catalogo · backlist',
+    axis_1_body:
+      'Le case editrici conservano fondi bibliografici di immenso valore che perdono attualità sui tavoli delle novità. Recuperiamo questi titoli per integrarli in progetti di interior design narrativo —una seconda vita fondata sul loro valore estetico e sul contenuto senza tempo.',
+    axis_2_title: 'Contestualizzazione estetica',
+    axis_2_body:
+      'Inseriamo il titolo in un Salotto letterario o in un angolo d’autore: si crea un’associazione immediata tra la qualità letteraria e lo stile di vita del lusso —un ambiente che il marchio, da solo, raramente può costruire.',
+    axis_3_title: 'Accesso a nuovi gatekeeper',
+    axis_3_body:
+      'Attraverso lo studio, le case editrici raggiungono prescrittori fuori dal circuito letterario convenzionale —interior designer, dirigenti, opinion leader e creativi—, ampliando il raggio d’influenza del libro verso settori economici trasversali.',
+    closer:
+      'Portiamo i libri dove nessuno si aspetta di trovarli e li trasformiamo in protagonisti di nuovi scenari.',
+    cta: 'Proporre una collaborazione'
   },
 
   historias: {
@@ -173,13 +199,13 @@ const dict: PartialDictionary = {
     page_title: 'La Nota dell’Autrice',
     eyebrow: 'Una nota a chi legge',
     signature_credit: '— Mireia',
-    portrait_caption: 'Studio. Madrid, 2026.'
+    portrait_caption: 'Studio. Barcellona, 2026.'
   },
 
   epilogo: {
     page_title: 'Epilogo',
     intro:
-      'Se sei arrivato fin qui, scrivici. Raccontaci brevemente cosa hai in mente e ti rispondiamo.',
+      'Se sei arrivato fin qui, scrivici. Ogni progetto ha una storia da raccontare. Noi ne troviamo il titolo. Vuoi trovare il tuo?',
     form: {
       name_label: 'Nome',
       email_label: 'Email',
@@ -196,7 +222,7 @@ const dict: PartialDictionary = {
       legal_consent:
         'Inviando, accetti che conserviamo il tuo messaggio per il tempo necessario a risponderti.'
     },
-    contact_email: 'estudio@atelierdelibros.com',
+    contact_email: 'elatelierdelibros@gmail.com',
     contact_email_label: 'Scrivere direttamente'
   },
 
