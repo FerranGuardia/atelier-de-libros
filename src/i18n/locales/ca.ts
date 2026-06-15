@@ -195,15 +195,6 @@ const dict: PartialDictionary = {
     headline: 'Integració editorial i col·laboracions de marca.',
     lead:
       'Integrem llibres en hotels boutique, espais comercials, restaurants, sets de rodatge i entorns corporatius, a més de seleccionar títols per a campanyes visuals, editorials, esdeveniments i projectes curatorials, creant experiències culturals i projectant el llibre fins on mai no havia arribat.',
-    axis_1_title: 'Activació de catàleg · backlist',
-    axis_1_body:
-      'Les editorials conserven fons bibliogràfics d’un valor immens que perden vigència a les taules de novetats. Rescatem aquests títols per integrar-los en projectes d’interiorisme narratiu —una segona vida basada en el seu valor estètic i el seu contingut atemporal.',
-    axis_2_title: 'Contextualització estètica',
-    axis_2_body:
-      'Inserim el títol en un Saló Literari o un racó d’autor: es genera una associació immediata entre la qualitat literària i l’estil de vida de luxe —un entorn que el segell, tot sol, rarament pot construir.',
-    axis_3_title: 'Accés a nous gatekeepers',
-    axis_3_body:
-      'A través de l’estudi, les editorials accedeixen a prescriptors fora del circuit literari convencional —interioristes, directius, líders d’opinió i creatius—, ampliant el radi d’influència del llibre cap a sectors econòmics transversals.',
     closer:
       'Portem els llibres allà on ningú espera trobar-los i els convertim en protagonistes de nous escenaris.',
     cta: 'Plantejar una col·laboració'

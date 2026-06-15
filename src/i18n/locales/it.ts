@@ -195,15 +195,6 @@ const dict: PartialDictionary = {
     headline: 'Integrazione editoriale e collaborazioni di marca.',
     lead:
       'Integriamo libri in hotel boutique, spazi commerciali, ristoranti, set cinematografici e ambienti corporate, oltre a selezionare titoli per campagne visive, editoriali, eventi e progetti curatoriali, creando esperienze culturali e portando il libro dove non era mai arrivato.',
-    axis_1_title: 'Attivazione di catalogo · backlist',
-    axis_1_body:
-      'Le case editrici conservano fondi bibliografici di immenso valore che perdono attualità sui tavoli delle novità. Recuperiamo questi titoli per integrarli in progetti di interior design narrativo —una seconda vita fondata sul loro valore estetico e sul contenuto senza tempo.',
-    axis_2_title: 'Contestualizzazione estetica',
-    axis_2_body:
-      'Inseriamo il titolo in un Salotto letterario o in un angolo d’autore: si crea un’associazione immediata tra la qualità letteraria e lo stile di vita del lusso —un ambiente che il marchio, da solo, raramente può costruire.',
-    axis_3_title: 'Accesso a nuovi gatekeeper',
-    axis_3_body:
-      'Attraverso lo studio, le case editrici raggiungono prescrittori fuori dal circuito letterario convenzionale —interior designer, dirigenti, opinion leader e creativi—, ampliando il raggio d’influenza del libro verso settori economici trasversali.',
     closer:
       'Portiamo i libri dove nessuno si aspetta di trovarli e li trasformiamo in protagonisti di nuovi scenari.',
     cta: 'Proporre una collaborazione'

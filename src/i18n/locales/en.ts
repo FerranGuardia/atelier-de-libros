@@ -195,15 +195,6 @@ const dict: PartialDictionary = {
     headline: 'Editorial integration and brand collaborations.',
     lead:
       'We place books in boutique hotels, retail spaces, restaurants, film sets and corporate environments, and we select titles for visual campaigns, editorials, events and curatorial projects—creating cultural experiences and carrying the book where it had never reached before.',
-    axis_1_title: 'Backlist activation',
-    axis_1_body:
-      'Publishers hold catalogues of immense value that lose currency on the new-release tables. We rescue those titles and fold them into narrative interior-design projects—a second life built on their aesthetic value and timeless content.',
-    axis_2_title: 'Aesthetic contextualisation',
-    axis_2_body:
-      'We place the title in a Literary Salon or an author’s corner: an immediate association forms between literary quality and a luxury lifestyle—an environment the imprint, alone, can rarely build.',
-    axis_3_title: 'Access to new gatekeepers',
-    axis_3_body:
-      'Through the studio, publishers reach tastemakers outside the conventional literary circuit—interior designers, executives, opinion leaders and creatives—widening the book’s radius of influence into adjacent economic sectors.',
     closer:
       'We take books where no one expects to find them and turn them into the protagonists of new settings.',
     cta: 'Propose a collaboration'

@@ -1,9 +1,8 @@
 ---
-/* «Para editoriales» — TFM §2 (El Ecosistema Editorial: del product
- * placement a la prescripción estética). Tres ejes verbatim extraídos
- * de §2.X.2: activación de backlist, contextualización estética, acceso
- * a nuevos gatekeepers. Sustituye el logo wall por una página de tesis
- * editorial — ningún cliente se reclama hasta que exista. */
+/* «Para editoriales» — página de tesis editorial. Copy de Mireia:
+ * «Integración editorial y colaboraciones de marca». Un solo bloque
+ * (eyebrow + headline + lead + closer); los tres ejes del TFM se
+ * retiraron a petición de Mireia. */
 
 import { t } from '../../i18n/t'
 import { localizePath } from '../../i18n/locale'
@@ -14,8 +13,6 @@ interface Props {
   locale: Locale
 }
 const { locale } = Astro.props
-
-const axes = ['1', '2', '3'] as const
 ---
 
 <article class="editoriales" data-motion="m-rise">
@@ -29,23 +26,6 @@ const axes = ['1', '2', '3'] as const
       <WatercolorSpot slug="open-book-landscape" aspect="3/2" />
     </div>
   </div>
-
-  <ol class="container axes" role="list">
-    {
-      axes.map((n) => {
-        const eyebrow = t(`publishers.axis_${n}_eyebrow` as any, locale)
-        const title = t(`publishers.axis_${n}_title` as any, locale)
-        const body = t(`publishers.axis_${n}_body` as any, locale)
-        return (
-          <li class="axis" data-motion="m-rise">
-            <p class="axis-numeral">{eyebrow}</p>
-            <h2 class="axis-title">{title}</h2>
-            <p class="axis-body">{body}</p>
-          </li>
-        )
-      })
-    }
-  </ol>
 
   <footer class="container outro">
     <p class="closer">{t('publishers.closer', locale)}</p>

@@ -233,18 +233,6 @@ const dict = {
     headline: 'Integración editorial y colaboraciones de marca.',
     lead:
       'Integramos libros en hoteles boutique, espacios comerciales, restaurantes, sets de rodaje y entornos corporativos, además de seleccionar títulos para campañas visuales, editoriales, eventos y proyectos curatoriales, creando experiencias culturales y proyectando el libro hasta donde nunca había llegado.',
-    axis_1_eyebrow: 'I',
-    axis_1_title: 'Activación de catálogo · backlist',
-    axis_1_body:
-      'Las editoriales conservan fondos bibliográficos de inmenso valor que pierden vigencia en las mesas de novedades. Rescatamos esos títulos para integrarlos en proyectos de interiorismo narrativo —una segunda vida basada en su valor estético y contenido atemporal.',
-    axis_2_eyebrow: 'II',
-    axis_2_title: 'Contextualización estética',
-    axis_2_body:
-      'Insertamos el título en un Salón Literario o un córner de autor: se genera una asociación inmediata entre la calidad literaria y el estilo de vida de lujo —un entorno que el sello, por sí solo, rara vez puede construir.',
-    axis_3_eyebrow: 'III',
-    axis_3_title: 'Acceso a nuevos gatekeepers',
-    axis_3_body:
-      'A través del estudio, las editoriales acceden a prescriptores fuera del circuito literario convencional —interioristas, directivos, líderes de opinión y creativos—, expandiendo el radio de influencia del libro hacia sectores económicos transversales.',
     closer:
       'Llevamos los libros allí donde nadie espera encontrarlos y los convertimos en protagonistas de nuevos escenarios.',
     cta: 'Plantear una colaboración'
