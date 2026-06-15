@@ -70,7 +70,7 @@ const dict: PartialDictionary = {
 
   brand: {
     wordmark: 'Atelier de Libros',
-    tagline: 'Estilisme literari'
+    tagline: 'Curadoria literària'
   },
 
   home: {
@@ -119,6 +119,7 @@ const dict: PartialDictionary = {
 
   servicios: {
     page_title: 'L’Índex',
+    kicker: 'Els nostres serveis',
     intro:
       'Quatre pilars. Es llegeixen en ordre o se salten, com qualsevol llibre. Cadascun respon a una manera diferent d’habitar la literatura.',
 
@@ -154,6 +155,36 @@ const dict: PartialDictionary = {
         sub_b_title: 'Marxandatge i objectes de culte',
         sub_b_body:
           'Papereria premium, invitacions en format llibre (en l’estela del cas Etro) i col·leccions d’accessoris inspirades en grans cobertes clàssiques.'
+      }
+    },
+    extensions: {
+      visuales: {
+        title: 'Produccions visuals',
+        lead:
+          'Servei que integra llibres com a elements estratègics en campanyes visuals.',
+        body:
+          'Selecció de llibres per a sessions fotogràfiques, editorials, desfilades o pop-ups. Creació d’escenografies literàries. Props per a modelatge i storytelling visual.'
+      },
+      imagen: {
+        title: 'Gestió d’imatge',
+        lead:
+          'Servei d’assessoria cultural i estètica per a personalitats públiques.',
+        body:
+          'Selecció de llibres per a xarxes socials, entrevistes o aparicions públiques. Construcció d’una identitat literària coherent. Auditoria de presència digital i narrativa cultural.'
+      },
+      contenido: {
+        title: 'Contingut digital i comunicació literària',
+        lead:
+          'Servei de creació de contingut visual i narratiu basat en llibres.',
+        body:
+          'Producció de fotografies, vídeos, reels i stories. Copywriting literari per a campanyes. Narratives visuals per a xarxes socials.'
+      },
+      merchandising: {
+        title: 'Marxandatge, papereria i material promocional',
+        lead:
+          'Servei de disseny i producció d’objectes literaris exclusius.',
+        body:
+          'Disseny editorial i maquetació de peces especials.'
       }
     }
   },

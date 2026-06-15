@@ -83,7 +83,7 @@ const dict = {
 
   brand: {
     wordmark: 'El Atelier de Libros',
-    tagline: 'Estilismo literario'
+    tagline: 'Curaduría literaria'
   },
 
   home: {
@@ -191,6 +191,36 @@ const dict = {
         sub_b_body:
           'Papelería premium, invitaciones en formato libro (en la estela del caso Etro) y colecciones de accesorios inspiradas en grandes cubiertas clásicas.'
       }
+    },
+    extensions: {
+      visuales: {
+        title: 'Producciones visuales',
+        lead:
+          'Servicio que integra libros como elementos estratégicos en campañas visuales.',
+        body:
+          'Selección de libros para sesiones fotográficas, editoriales, desfiles o pop-ups. Creación de escenografías literarias. Props para modelaje y storytelling visual.'
+      },
+      imagen: {
+        title: 'Gestión de imagen',
+        lead:
+          'Servicio de asesoría cultural y estética para personalidades públicas.',
+        body:
+          'Selección de libros para redes sociales, entrevistas o apariciones públicas. Construcción de una identidad literaria coherente. Auditoría de presencia digital y narrativa cultural.'
+      },
+      contenido: {
+        title: 'Contenido digital y comunicación literaria',
+        lead:
+          'Servicio de creación de contenido visual y narrativo basado en libros.',
+        body:
+          'Producción de fotografías, vídeos, reels y stories. Copywriting literario para campañas. Narrativas visuales para redes sociales.'
+      },
+      merchandising: {
+        title: 'Merchandising, papelería y material promocional',
+        lead:
+          'Servicio de diseño y producción de objetos literarios exclusivos.',
+        body:
+          'Diseño editorial y maquetación de piezas especiales.'
+      }
     }
   },
 
@@ -220,13 +250,13 @@ const dict = {
     cta: 'Plantear una colaboración'
   },
 
-  /* Casos prácticos extraídos del TFM. Tres encargos hipotéticos
+  /* Casos prácticos extraídos del TFM. Dos encargos hipotéticos
    * documentados como ejercicio del Proyecto Final de Máster —
    * fotografía aún pendiente. Texto verbatim del TFM §Casos prácticos. */
   historias: {
     page_title: 'Historias',
     intro:
-      'Tres encargos documentados como ejercicio del Proyecto Final de Máster. Cada caso resuelve un pilar distinto del estilismo literario.',
+      'Dos encargos documentados como ejercicio del Proyecto Final de Máster. Cada caso resuelve un pilar distinto del estilismo literario.',
     case_label: 'Caso',
     cases: {
       casa_filomena: {
@@ -244,14 +274,6 @@ const dict = {
         location: 'Lanzamiento de colección cápsula',
         excerpt:
           'Para el lanzamiento de una colección cápsula de una marca de moda, creación de un evento efímero donde la colección se presenta integrada en una biblioteca temática. Diseño de la invitación en formato libro objeto —en la estela del caso Etro— y selección de los it-books que acompañan la campaña en redes sociales.'
-      },
-      salon_literario: {
-        slug: 'salon-literario',
-        eyebrow: 'III · Salón literario',
-        title: 'Salón literario para figura pública',
-        location: 'Asesoría integral · directivo o influencer',
-        excerpt:
-          'Asesoría integral para una figura pública que busca transicionar hacia un perfil más sofisticado y cultural —en el modelo de Dua Lipa o Emma Watson. Auditoría de su presencia digital para curar los libros que muestra; como evento de lanzamiento de la nueva identidad, organización de un salón literario privado en un espacio exclusivo, con temática de debate y merchandising literario personalizado.'
       }
     }
   },

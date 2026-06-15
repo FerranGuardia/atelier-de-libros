@@ -70,7 +70,7 @@ const dict: PartialDictionary = {
 
   brand: {
     wordmark: 'Atelier de Libros',
-    tagline: 'Literary styling'
+    tagline: 'Literary curation'
   },
 
   home: {
@@ -119,6 +119,7 @@ const dict: PartialDictionary = {
 
   servicios: {
     page_title: 'The Index',
+    kicker: 'Our services',
     intro:
       'Four pillars. Read in order, or skipped, like any book. Each answers a different way of inhabiting literature.',
 
@@ -154,6 +155,36 @@ const dict: PartialDictionary = {
         sub_b_title: 'Merchandising and cult objects',
         sub_b_body:
           'Premium stationery, book-shaped invitations (in the wake of the Etro case) and accessory collections inspired by great classic covers.'
+      }
+    },
+    extensions: {
+      visuales: {
+        title: 'Visual productions',
+        lead:
+          'A service that integrates books as strategic elements in visual campaigns.',
+        body:
+          'Book selection for photo shoots, editorials, runway shows or pop-ups. Creation of literary sets. Props for modelling and visual storytelling.'
+      },
+      imagen: {
+        title: 'Image management',
+        lead:
+          'A cultural and aesthetic advisory service for public personalities.',
+        body:
+          'Book selection for social media, interviews or public appearances. Construction of a coherent literary identity. Audit of digital presence and cultural narrative.'
+      },
+      contenido: {
+        title: 'Digital content and literary communication',
+        lead:
+          'A service for creating visual and narrative content based on books.',
+        body:
+          'Production of photography, videos, reels and stories. Literary copywriting for campaigns. Visual narratives for social media.'
+      },
+      merchandising: {
+        title: 'Merchandising, stationery and promotional material',
+        lead:
+          'A service for designing and producing exclusive literary objects.',
+        body:
+          'Editorial design and layout of special pieces.'
       }
     }
   },

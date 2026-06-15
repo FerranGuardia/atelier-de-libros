@@ -70,7 +70,7 @@ const dict: PartialDictionary = {
 
   brand: {
     wordmark: 'Atelier de Libros',
-    tagline: 'Stylisme littéraire'
+    tagline: 'Curation littéraire'
   },
 
   home: {
@@ -119,6 +119,7 @@ const dict: PartialDictionary = {
 
   servicios: {
     page_title: 'L’Index',
+    kicker: 'Nos services',
     intro:
       'Quatre piliers. Ils se lisent dans l’ordre ou s’enjambent, comme tout livre. Chacun répond à une façon différente d’habiter la littérature.',
 
@@ -154,6 +155,36 @@ const dict: PartialDictionary = {
         sub_b_title: 'Merchandising et objets de culte',
         sub_b_body:
           'Papeterie premium, invitations en forme de livre (dans le sillage du cas Etro) et collections d’accessoires inspirées des grandes couvertures classiques.'
+      }
+    },
+    extensions: {
+      visuales: {
+        title: 'Productions visuelles',
+        lead:
+          'Un service qui intègre les livres comme éléments stratégiques dans les campagnes visuelles.',
+        body:
+          'Sélection de livres pour séances photo, éditoriaux, défilés ou pop-ups. Création de scénographies littéraires. Props pour le modelage et le storytelling visuel.'
+      },
+      imagen: {
+        title: 'Gestion d’image',
+        lead:
+          'Un service de conseil culturel et esthétique pour personnalités publiques.',
+        body:
+          'Sélection de livres pour les réseaux sociaux, les interviews ou les apparitions publiques. Construction d’une identité littéraire cohérente. Audit de présence digitale et de narration culturelle.'
+      },
+      contenido: {
+        title: 'Contenu digital et communication littéraire',
+        lead:
+          'Un service de création de contenu visuel et narratif fondé sur les livres.',
+        body:
+          'Production de photographies, vidéos, reels et stories. Copywriting littéraire pour les campagnes. Narrations visuelles pour les réseaux sociaux.'
+      },
+      merchandising: {
+        title: 'Merchandising, papeterie et matériel promotionnel',
+        lead:
+          'Un service de conception et de production d’objets littéraires exclusifs.',
+        body:
+          'Design éditorial et mise en page de pièces spéciales.'
       }
     }
   },

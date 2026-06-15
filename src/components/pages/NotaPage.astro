@@ -1,11 +1,7 @@
 ---
-/* T27 — La Nota de la Autora. Drop-cap on first paragraph, italic
- * Cormorant lead, Inter body essay (M04 lorem), portrait (PendingImage,
- * 4:5), signature (PendingImage SVG-style placeholder until M04
- * delivers). */
+/* T27 — La Nota de la Autora. Editorial article with portrait slot. */
 
 import PendingImage from '../PendingImage.astro'
-import WatercolorSpot from '../WatercolorSpot.astro'
 import { t } from '../../i18n/t'
 import type { Locale } from '../../i18n/config'
 
@@ -23,11 +19,6 @@ const { locale } = Astro.props
 
   <div class="container layout">
     <div class="body measure-letter">
-      <WatercolorSpot
-        class="page-ornament"
-        slug="margin-notes"
-        aspect="3/4"
-      />
       <p class="drop-cap">{t('nota.body_1', locale)}</p>
       <p>{t('nota.body_2', locale)}</p>
       <p>{t('nota.body_3', locale)}</p>
@@ -56,12 +47,17 @@ const { locale } = Astro.props
 
 <style>
   .nota {
-    margin-top: var(--space-24);
+    margin-top: var(--space-16);
     margin-bottom: var(--space-32);
+  }
+  @media (min-width: 64rem) {
+    .nota {
+      margin-top: var(--space-20);
+    }
   }
 
   .intro {
-    margin-bottom: var(--space-16);
+    margin-bottom: var(--space-10);
   }
   .eyebrow {
     text-transform: uppercase;
@@ -72,12 +68,13 @@ const { locale } = Astro.props
 
   .layout {
     display: grid;
-    gap: var(--space-12);
+    gap: var(--space-10);
+    align-items: start;
   }
   @media (min-width: 64rem) {
     .layout {
-      grid-template-columns: 1fr 22rem;
-      gap: var(--space-16);
+      grid-template-columns: minmax(0, 42rem) 20rem;
+      gap: var(--space-14);
       align-items: start;
     }
     .body {
@@ -94,11 +91,8 @@ const { locale } = Astro.props
     margin-bottom: var(--space-6);
     line-height: 1.7;
   }
-  .body :global(.page-ornament) {
-    width: clamp(240px, 28vw, 360px);
-    margin: calc(-1 * var(--space-4)) 0 var(--space-8) auto;
-    color: var(--library-green);
-    opacity: 0.5;
+  .body p:first-child {
+    margin-top: 0;
   }
 
   .signature {

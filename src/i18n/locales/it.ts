@@ -70,7 +70,7 @@ const dict: PartialDictionary = {
 
   brand: {
     wordmark: 'Atelier de Libros',
-    tagline: 'Stilismo letterario'
+    tagline: 'Curatela letteraria'
   },
 
   home: {
@@ -119,6 +119,7 @@ const dict: PartialDictionary = {
 
   servicios: {
     page_title: 'L’Indice',
+    kicker: 'I nostri servizi',
     intro:
       'Quattro pilastri. Si leggono in ordine o si saltano, come ogni libro. Ognuno risponde a un modo diverso di abitare la letteratura.',
 
@@ -154,6 +155,36 @@ const dict: PartialDictionary = {
         sub_b_title: 'Merchandising e oggetti di culto',
         sub_b_body:
           'Cartoleria premium, inviti in forma di libro (sulla scia del caso Etro) e collezioni di accessori ispirate alle grandi copertine classiche.'
+      }
+    },
+    extensions: {
+      visuales: {
+        title: 'Produzioni visive',
+        lead:
+          'Un servizio che integra i libri come elementi strategici nelle campagne visive.',
+        body:
+          'Selezione di libri per shooting fotografici, editoriali, sfilate o pop-up. Creazione di scenografie letterarie. Props per modellazione e storytelling visivo.'
+      },
+      imagen: {
+        title: 'Gestione dell’immagine',
+        lead:
+          'Un servizio di consulenza culturale ed estetica per personalità pubbliche.',
+        body:
+          'Selezione di libri per social media, interviste o apparizioni pubbliche. Costruzione di un’identità letteraria coerente. Audit della presenza digitale e della narrazione culturale.'
+      },
+      contenido: {
+        title: 'Contenuto digitale e comunicazione letteraria',
+        lead:
+          'Un servizio di creazione di contenuti visivi e narrativi basati sui libri.',
+        body:
+          'Produzione di fotografie, video, reel e stories. Copywriting letterario per campagne. Narrazioni visive per social media.'
+      },
+      merchandising: {
+        title: 'Merchandising, cartoleria e materiale promozionale',
+        lead:
+          'Un servizio di design e produzione di oggetti letterari esclusivi.',
+        body:
+          'Design editoriale e impaginazione di pezzi speciali.'
       }
     }
   },

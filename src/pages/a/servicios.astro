@@ -12,6 +12,13 @@ const items = [
   { key: 'cultural' },
   { key: 'eventos' }
 ] as const
+
+const extensions = [
+  'visuales',
+  'imagen',
+  'contenido',
+  'merchandising'
+] as const
 ---
 
 <Base proposal="a"
@@ -58,6 +65,17 @@ const items = [
         }
       </ol>
 
+      <section class="extensions" aria-label={t('servicios.kicker', locale)}>
+        {
+          extensions.map((key) => (
+            <article class="extension" data-motion="m-rise">
+              <h2>{t(`servicios.extensions.${key}.title` as any, locale)}</h2>
+              <p class="extension-lead">{t(`servicios.extensions.${key}.lead` as any, locale)}</p>
+              <p class="extension-body">{t(`servicios.extensions.${key}.body` as any, locale)}</p>
+            </article>
+          ))
+        }
+      </section>
     </div>
   </article>
 </Base>
@@ -206,4 +224,48 @@ const items = [
     margin: 0;
   }
 
+  .extensions {
+    display: grid;
+    gap: var(--space-4);
+    margin-top: var(--space-8);
+  }
+  @media (min-width: 48rem) {
+    .extensions {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-6);
+      margin-top: var(--space-12);
+    }
+  }
+  .extension {
+    border: 1px solid var(--paper-deep);
+    padding: var(--space-8);
+    min-height: 18rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .extension h2 {
+    font-family: var(--font-body);
+    font-size: var(--step-0);
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin: 0 0 var(--space-6);
+    max-width: 18ch;
+  }
+  .extension-lead {
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.55;
+    margin: 0 0 var(--space-6);
+    max-width: 34ch;
+  }
+  .extension-body {
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin: 0;
+    max-width: 38ch;
+  }
 </style>
