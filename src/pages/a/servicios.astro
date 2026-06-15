@@ -124,9 +124,9 @@ const extensions = [
     display: grid;
     grid-template-columns: 4ch 1fr;
     column-gap: var(--space-6);
-    row-gap: var(--space-1);
+    row-gap: var(--space-3);
     align-items: baseline;
-    padding-block: var(--space-8);
+    padding-block: var(--space-10);
     border-top: 1px solid var(--paper-deep);
   }
   .entry:last-child {
@@ -137,7 +137,7 @@ const extensions = [
       grid-template-columns: 5ch 1fr;
       column-gap: var(--space-8);
       padding-block: var(--space-20, 80px);
-      row-gap: var(--space-3);
+      row-gap: var(--space-5);
     }
   }
 
@@ -191,16 +191,16 @@ const extensions = [
   .subservices {
     grid-column: 2;
     list-style: none;
-    margin: var(--space-6) 0 0;
+    margin: var(--space-8) 0 0;
     padding: 0;
     display: grid;
-    gap: var(--space-6);
+    gap: var(--space-8);
   }
   @media (min-width: 64rem) {
     .subservices {
       grid-template-columns: 1fr 1fr;
-      gap: var(--space-10);
-      margin-top: var(--space-8);
+      gap: var(--space-12);
+      margin-top: var(--space-10);
     }
   }
   .subservices > li {
@@ -214,7 +214,7 @@ const extensions = [
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--library-green);
-    margin: 0 0 var(--space-2);
+    margin: 0 0 var(--space-3);
   }
 
   .sub-body {
