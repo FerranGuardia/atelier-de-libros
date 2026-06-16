@@ -47,6 +47,13 @@ svg {
   max-width: 100%;
 }
 
+/* Keep intrinsic aspect: without this, an <img> whose width is set in CSS
+ * still honours its `height` presentation attribute and squashes. */
+img,
+picture {
+  height: auto;
+}
+
 input,
 button,
 textarea,
@@ -74,14 +81,15 @@ a {
   color: var(--ink);
 }
 
-/* Photographic assets toned to the paper palette. Mireia's photos arrive
- * in full colour; this warms and desaturates them toward the site's sepia
- * so they sit beside the Cormorant/Inter, paper-and-ink language without
- * shouting. `.img-blend` additionally multiplies the cream backdrop into
- * the paper, so a still-life floats like the watercolours it replaces. */
-.img-sepia {
-  filter: sepia(0.15) saturate(0.92) brightness(1.03) contrast(0.98);
+/* Photographic assets toned to the bone-paper palette. Mireia's photos
+ * arrive in full colour; this desaturates and lifts them toward the site's
+ * «papel hueso» — a soft warm off-white, NOT a brown sepia — so they sit
+ * beside the Cormorant/Inter language without shouting. `.img-blend`
+ * additionally multiplies the cream backdrop into the paper, so a
+ * still-life floats like the watercolours it replaces. */
+.img-paper {
+  filter: saturate(0.4) brightness(1.05) contrast(0.95) sepia(0.06);
 }
-.img-sepia.img-blend {
+.img-paper.img-blend {
   mix-blend-mode: multiply;
 }
