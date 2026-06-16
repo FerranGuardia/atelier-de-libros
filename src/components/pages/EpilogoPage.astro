@@ -11,8 +11,9 @@
  * real form ID. The form uses native HTML `action` + `method="post"`
  * so it works without JS — JS layers the m-form-success transition. */
 
+import { Image } from 'astro:assets'
+import epilogoPhoto from '../../assets/photos/epilogo-book.png'
 import { t } from '../../i18n/t'
-import WatercolorSpot from '../WatercolorSpot.astro'
 import type { Locale } from '../../i18n/config'
 
 interface Props {
@@ -28,10 +29,16 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/PLACEHOLDER_T39'
 <article class="epilogo" data-motion="m-rise">
   <div class="hero">
     <div class="ornament" aria-hidden="true">
-      <WatercolorSpot
-        class="intro-ornament"
-        slug="library-arch-cutout"
-        aspect="4/3"
+      <Image
+        class="watercolor-spot intro-ornament img-sepia img-blend"
+        src={epilogoPhoto}
+        alt=""
+        widths={[240, 360, 520, 720]}
+        sizes="(min-width: 48rem) 40vw, 70vw"
+        loading="lazy"
+        decoding="async"
+        quality={86}
+        aria-hidden="true"
       />
     </div>
     <header class="intro">

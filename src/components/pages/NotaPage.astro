@@ -1,7 +1,8 @@
 ---
 /* T27 — La Nota de la Autora. Editorial article with portrait slot. */
 
-import PendingImage from '../PendingImage.astro'
+import { Image } from 'astro:assets'
+import portraitSrc from '../../assets/portrait/mireia.jpg'
 import { t } from '../../i18n/t'
 import type { Locale } from '../../i18n/config'
 
@@ -32,15 +33,17 @@ const { locale } = Astro.props
     </div>
 
     <aside class="portrait">
-      <PendingImage
-        prompt="M04-portrait"
-        aspect="4/5"
-        label="Mireia"
-        hint="Retrato del estudio · 4/5"
-        ariaLabel={t('aria.pending_image', locale)}
+      <Image
+        class="portrait-photo img-sepia"
+        src={portraitSrc}
+        alt="Mireia García Domènech"
+        widths={[320, 480, 640, 800]}
+        sizes="(min-width: 64rem) 20rem, 100vw"
+        loading="lazy"
+        decoding="async"
+        quality={82}
       />
       <p class="portrait-caption t-caption">{t('nota.portrait_caption', locale)}</p>
-      <!-- M04-portrait PENDING — src/assets/portrait/mireia.{webp,jpg} -->
     </aside>
   </div>
 </article>
@@ -104,6 +107,14 @@ const { locale } = Astro.props
     font-weight: 400;
     font-size: var(--step-1);
     color: var(--ink);
+  }
+
+  .portrait-photo {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: center 28%;
   }
 
   .portrait .portrait-caption {

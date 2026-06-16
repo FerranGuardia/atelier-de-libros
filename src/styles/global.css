@@ -73,3 +73,15 @@ a {
   background: var(--library-green-soft);
   color: var(--ink);
 }
+
+/* Photographic assets toned to the paper palette. Mireia's photos arrive
+ * in full colour; this warms and desaturates them toward the site's sepia
+ * so they sit beside the Cormorant/Inter, paper-and-ink language without
+ * shouting. `.img-blend` additionally multiplies the cream backdrop into
+ * the paper, so a still-life floats like the watercolours it replaces. */
+.img-sepia {
+  filter: sepia(0.32) saturate(0.8) brightness(1.04) contrast(0.96);
+}
+.img-sepia.img-blend {
+  mix-blend-mode: multiply;
+}

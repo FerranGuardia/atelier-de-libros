@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Valoración económica — Atelier de Libros · Mooveteam</title>
+<style>
+  :root {
+    --ink: #111827;
+    --gray: #6b7280;
+    --gray-light: #9ca3af;
+    --hairline: #e5e7eb;
+    --grad: linear-gradient(90deg, #556AA4 0%, #AB5188 54%, #E1424C 100%);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  @page { size: A4; margin: 0; }
+  html, body { background: #fff; }
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    width: 210mm;
+    min-height: 297mm;
+    padding: 22mm 20mm 16mm;
+    font-size: 10.5pt;
+    line-height: 1.55;
+    display: flex;
+    flex-direction: column;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .doc-meta { text-align: right; }
+  .doc-type {
+    font-size: 8pt;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 4px;
+  }
+  .doc-title { font-size: 17pt; font-weight: 600; letter-spacing: -.01em; }
+  .doc-ref { font-size: 9pt; color: var(--gray); margin-top: 6px; }
+
+  .rule { height: 3px; background: var(--grad); border-radius: 2px; margin: 11mm 0 10mm; }
+
+  .parties { display: flex; gap: 14mm; margin-bottom: 10mm; }
+  .party { flex: 1; }
+  .party h2 {
+    font-size: 7.5pt;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--gray-light);
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+  .party p { font-size: 10pt; }
+  .party .muted { color: var(--gray); font-size: 9.5pt; }
+
+  .intro { color: var(--ink); margin-bottom: 9mm; max-width: 158mm; }
+
+  table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+  thead th {
+    font-size: 7.5pt;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--gray-light);
+    font-weight: 600;
+    text-align: left;
+    padding: 0 0 7px;
+    border-bottom: 1px solid var(--ink);
+  }
+  thead th:last-child, td.num { text-align: right; white-space: nowrap; }
+  tbody td { padding: 12px 0; border-bottom: 1px solid var(--hairline); vertical-align: top; }
+  td .concept { font-weight: 600; }
+  td .detail { color: var(--gray); font-size: 9.5pt; margin-top: 2px; max-width: 130mm; }
+  tfoot td { padding: 14px 0 0; }
+  tfoot .total-label { font-size: 8pt; letter-spacing: .2em; text-transform: uppercase; color: var(--gray); font-weight: 600; }
+  tfoot .total { font-size: 16pt; font-weight: 600; text-align: right; }
+  tfoot .range { text-align: right; color: var(--gray); font-size: 9pt; }
+
+  .notes { margin-top: 9mm; color: var(--gray); font-size: 9pt; max-width: 158mm; }
+  .notes li { margin-left: 14px; margin-bottom: 3px; }
+
+  footer {
+    margin-top: auto;
+    padding-top: 6mm;
+    border-top: 1px solid var(--hairline);
+    display: flex;
+    justify-content: space-between;
+    font-size: 8pt;
+    color: var(--gray-light);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <!-- Logo Mooveteam (logo_dark.svg) -->
+  <svg xmlns="http://www.w3.org/2000/svg" width="132" height="45" viewBox="0 0 158 54" fill="none"><path d="M138.653 22.5202C133.577 20.802 125.098 26.4475 120.799 34.5475C119.903 34.3634 118.59 33.8111 117.813 33.3202C117.813 33.3202 120.56 24.6066 113.813 22.5816C108.916 21.1088 106.826 29.7611 113.215 34.6088C114.171 35.4066 115.365 36.2657 116.5 36.8179C117.395 37.3088 118.231 37.6157 119.127 37.9838C121.575 38.8429 124.203 38.9043 124.203 38.9043C124.203 38.9043 126.89 39.027 128.741 38.5975C139.31 36.0816 144.266 24.4225 138.653 22.5202ZM114.111 31.5407C108.737 27.7975 111.125 24.6679 111.125 24.6679C112.917 22.827 115.186 27.0611 114.111 31.5407ZM125.576 34.977C125.576 34.977 128.562 29.7611 132.144 27.9816C137.698 25.2202 134.652 34.6088 125.576 34.977ZM135.847 40.1929C136.862 41.4202 135.847 43.1998 135.847 43.1998C123.904 54.8588 115.664 48.9679 118.888 38.8429C119.067 38.9043 121.157 39.702 123.904 40.0088C122.949 44.7338 129.995 44.1202 135.847 40.1929ZM56.0106 33.1975C53.9206 36.2043 52.5472 39.3952 51.8307 41.2361C47.6508 46.8816 44.6651 49.7043 41.9781 49.7043C34.8723 49.7043 39.8284 37.3702 47.3522 27.7975C51.4127 22.6429 48.6062 23.1338 45.0831 24.6679C42.6349 25.9566 40.4853 27.4907 38.6342 29.1475C38.6342 29.1475 38.5744 29.1475 38.5744 29.2088C38.5147 29.2702 38.455 29.2702 38.455 29.3316C37.4399 30.3134 32.9614 34.6702 29.2593 40.8066C29.2593 40.8066 29.4384 40.6838 29.737 40.3157C30.4535 39.2111 34.514 34.4248 37.7982 31.2952C37.7385 31.4179 37.7385 31.5407 37.6788 31.6634C34.932 39.6407 31.3492 45.4702 27.5276 44.0588C22.8103 42.3407 27.1096 33.9952 36.5442 26.0179C37.1413 23.9929 36.0665 23.6861 34.6334 24.1157C24.2434 27.3066 18.6304 45.0407 18.7498 48.7225C18.6304 49.5816 19.2872 49.7043 18.2124 49.7043C15.0476 49.7043 12.0023 48.0475 12.3008 45.5929C12.8382 41.1748 18.0333 32.5838 23.8851 26.4475C25.0196 23.3793 22.7506 22.2134 18.7498 24.3611C12.062 28.2884 8.12093 35.0384 8.12093 35.0384C6.80725 36.7566 6.80725 28.1043 6.80725 28.1043C16.4807 19.2679 25.7362 20.2498 26.6916 24.2384C34.096 19.2679 40.1867 20.127 39.291 24.6679C52.8458 17.6725 57.2645 23.9316 53.8609 29.0861C50.4573 34.302 43.8292 42.2179 44.6054 44.8566C45.322 47.3725 51.4127 39.027 54.5178 34.977C54.9955 34.4248 55.4732 33.8111 56.0106 33.1975ZM116.082 37.677C112.857 43.6907 106.707 49.5816 100.437 49.5816C93.6893 49.5816 93.8088 43.1998 96.0779 38.5975C97.5707 35.4679 99.6606 32.7679 101.691 29.9452C106.169 23.5634 99.1829 22.827 92.9728 25.9566C92.9728 25.9566 92.0174 26.202 89.5692 27.9202C80.9705 33.8725 78.0446 43.4452 81.8662 43.4452C85.9267 43.4452 91.5994 34.4248 90.0469 29.0861C91.4203 27.552 93.6893 26.6316 93.6893 26.6316C98.8843 32.5225 89.808 49.7657 78.6417 49.7657C74.2827 49.7657 72.133 45.102 74.223 38.7202C74.223 38.7202 77.1489 29.577 86.3447 25.0361C86.3447 25.0361 80.3734 22.0293 71.7747 26.6316C71.7747 26.6316 70.6999 27.0611 68.7891 28.2884C61.0264 33.3202 57.2645 43.1998 61.0862 43.1998C65.1466 43.1998 71.5956 34.6702 69.3862 29.3316C70.6402 28.1043 72.4316 27.1838 72.4316 27.1838C77.9849 32.1543 69.3862 49.5816 58.2199 49.5816C53.8609 49.5816 51.7113 44.9179 53.8012 38.5361C53.8012 38.5361 55.3537 33.4429 59.8919 29.5157C67.9531 23.0725 79.3583 19.7588 89.0915 23.6861C101.691 19.5134 109.215 24.9134 106.05 31.8475C105.274 33.5657 102.885 37.3702 100.974 40.377C98.0484 44.8566 107.961 44.9793 112.738 35.4066C112.857 35.4679 114.41 36.8793 116.082 37.677ZM38.5744 29.2088L38.3953 29.3316C38.455 29.3316 38.5147 29.2702 38.5744 29.2088Z" fill="#111827"></path><path d="M144.863 31.8478C147.789 29.5774 150.536 26.141 151.193 20.6797C152.029 13.6228 147.252 3.80465 137.937 3.49783C131.249 3.31374 112.857 3.49783 112.857 3.49783C112.857 3.49783 106.229 3.06829 105.751 10.4319C105.751 11.1069 105.632 17.366 112.32 17.366C120.441 17.4274 131.428 17.2433 138.474 17.3047C144.326 17.366 149.999 23.0728 144.983 30.4365C144.983 30.4365 144.803 30.6206 144.326 31.1728C143.669 31.9092 144.087 32.5228 144.863 31.8478Z" fill="url(#paint0_linear_326_1767)"></path><path d="M117.216 8.52948H116.022V8.03857H118.948V8.52948H117.754V13.4386H117.216V8.52948Z" fill="white"></path><path d="M119.724 8.1001H122.59V8.59101H120.262V10.5546H122.531V11.0456H120.262V13.0706H122.59V13.5001H119.724V8.1001Z" fill="white"></path><path d="M125.397 8.1001H125.994L128.263 13.5001H127.666L126.89 11.6592H124.441L123.665 13.5001H123.128L125.397 8.1001ZM126.711 11.1683L125.695 8.71373L124.68 11.1683H126.711Z" fill="white"></path><path d="M128.98 8.1001H129.816L131.726 12.7024L133.637 8.1001H134.473V13.5001H133.936V8.71373L131.965 13.5001H131.488L129.517 8.71373V13.5001H128.98V8.1001Z" fill="white"></path><defs><linearGradient id="paint0_linear_326_1767" x1="105.751" y1="17.7775" x2="151.287" y2="17.7775" gradientUnits="userSpaceOnUse"><stop offset="0.00331078" stop-color="#556AA4"></stop><stop offset="0.5361" stop-color="#AB5188"></stop><stop offset="1" stop-color="#E1424C"></stop></linearGradient></defs></svg>
+  <div class="doc-meta">
+    <p class="doc-type">Documento informativo</p>
+    <p class="doc-title">Valoración económica</p>
+    <p class="doc-ref">Ref. VAL-2026-001 &nbsp;·&nbsp; Barcelona, 10 de junio de 2026</p>
+  </div>
+</header>
+
+<div class="rule"></div>
+
+<section class="parties">
+  <div class="party">
+    <h2>Preparado para</h2>
+    <p><strong>Atelier de Libros</strong></p>
+    <p class="muted">Proyecto de Trabajo de Fin de Máster<br>A la atención de Mireia</p>
+  </div>
+  <div class="party">
+    <h2>Preparado por</h2>
+    <p><strong>Mooveteam SL</strong></p>
+    <p class="muted">Barcelona 08018<br>ferran@mooveteam.com</p>
+  </div>
+</section>
+
+<p class="intro">
+  Valoración orientativa del coste de diseño y desarrollo del sitio web
+  <strong>Atelier de Libros</strong>: sitio estático multilingüe (cinco idiomas)
+  construido con Astro y TypeScript, con diseño visual a medida y publicación
+  en infraestructura cloud (Cloudflare&nbsp;Pages).
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Concepto</th>
+      <th>Importe</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <p class="concept">Diseño visual y dirección de arte</p>
+        <p class="detail">Lenguaje visual, tipografía, color y dirección de movimiento para la identidad web de la marca.</p>
+      </td>
+      <td class="num">30,00&nbsp;€</td>
+    </tr>
+    <tr>
+      <td>
+        <p class="concept">Desarrollo front-end</p>
+        <p class="detail">Maquetación y desarrollo con Astro + TypeScript, CSS a medida, estructura multilingüe en cinco idiomas y páginas legales.</p>
+      </td>
+      <td class="num">40,00&nbsp;€</td>
+    </tr>
+    <tr>
+      <td>
+        <p class="concept">Despliegue y configuración</p>
+        <p class="detail">Puesta en producción en Cloudflare Pages, configuración de caché y optimización de rendimiento.</p>
+      </td>
+      <td class="num">15,00&nbsp;€</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td class="total-label">Total estimado</td>
+      <td class="total">85,00&nbsp;€</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td class="range">Rango orientativo según alcance final: 60&nbsp;–&nbsp;100&nbsp;€</td>
+    </tr>
+  </tfoot>
+</table>
+
+<ul class="notes">
+  <li>Importes expresados sin IVA.</li>
+  <li>Documento informativo emitido a efectos de presupuestación académica (Trabajo de Fin de Máster).</li>
+  <li>No constituye factura, presupuesto vinculante ni compromiso contractual.</li>
+</ul>
+
+<footer>
+  <span>© 2026 Mooveteam SL · Barcelona 08018</span>
+  <span>mooveteam.com</span>
+</footer>
+
+</body>
+</html>
