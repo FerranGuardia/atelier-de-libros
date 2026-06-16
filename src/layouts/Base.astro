@@ -46,6 +46,13 @@ const canonical = site + localizePath(pathname, locale)
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script is:inline>
+      /* Pre-paint: mark JS available so entrance motions (motion.css) may
+       * start hidden and be revealed by the observer. Without this flag the
+       * no-JS fallback keeps content visible — a blocked or failed reveal
+       * script can never leave whole sections invisible. */
+      document.documentElement.classList.add('js-ready')
+    </script>
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex,nofollow" />}
@@ -205,13 +212,22 @@ const canonical = site + localizePath(pathname, locale)
         const io = new IntersectionObserver(
           (entries) => {
             for (const entry of entries) {
-              if (entry.isIntersecting) {
+              if (!entry.isIntersecting) continue
+              /* Reveal at 25% visibility — or the moment it intersects if
+               * the target is taller than the viewport, since a tall
+               * section can never reach 25% on a small screen and would
+               * otherwise stay hidden forever. */
+              const viewH = entry.rootBounds?.height ?? window.innerHeight
+              if (
+                entry.intersectionRatio >= 0.25 ||
+                entry.boundingClientRect.height > viewH * 0.75
+              ) {
                 entry.target.setAttribute('data-in-view', '')
                 io.unobserve(entry.target)
               }
             }
           },
-          { threshold: 0.25 }
+          { threshold: [0, 0.25] }
         )
         for (const el of targets) io.observe(el)
       }

@@ -102,6 +102,24 @@
   }
 }
 
+/* ─── No-JS / failed-script fallback ───────────────────────────────────
+ * The entrance motions above start hidden and are revealed by the
+ * IntersectionObserver in Base.astro (it adds data-in-view) once JS runs.
+ * If JS never runs — disabled, blocked by an extension, an older browser,
+ * a failed/slow load — that reveal never happens and whole sections stay
+ * invisible. A pre-paint script in Base adds `.js-ready` to <html>; absent
+ * it, force every entrance target to its final, visible state so content
+ * is never hidden behind absent JS. */
+html:not(.js-ready) [data-motion='m-rise'],
+html:not(.js-ready) [data-motion='m-fade-in'],
+html:not(.js-ready) [data-motion='m-mask-wipe'],
+html:not(.js-ready) [data-motion='m-stroke-draw'] {
+  opacity: 1 !important;
+  transform: none !important;
+  clip-path: none !important;
+  stroke-dashoffset: 0 !important;
+}
+
 /* ─── m-parallax-soft ─────────────────────────────────────────────────
  * Scroll-linked translateY; throttled, max −24px. Component sets
  * --parallax-y from a scroll listener. No fight with native scroll. */
