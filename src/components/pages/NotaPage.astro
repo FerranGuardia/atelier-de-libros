@@ -110,11 +110,10 @@ const { locale } = Astro.props
   }
 
   .portrait-photo {
+    /* Mireia's portrait is landscape; show it at its natural ratio rather
+     * than cropping it into a tall frame (which distorted/over-cropped it). */
     width: 100%;
     height: auto;
-    aspect-ratio: 4 / 5;
-    object-fit: cover;
-    object-position: center 28%;
   }
 
   .portrait .portrait-caption {

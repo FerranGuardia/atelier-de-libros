@@ -80,7 +80,7 @@ a {
  * shouting. `.img-blend` additionally multiplies the cream backdrop into
  * the paper, so a still-life floats like the watercolours it replaces. */
 .img-sepia {
-  filter: sepia(0.32) saturate(0.8) brightness(1.04) contrast(0.96);
+  filter: sepia(0.15) saturate(0.92) brightness(1.03) contrast(0.98);
 }
 .img-sepia.img-blend {
   mix-blend-mode: multiply;
