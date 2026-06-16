@@ -10,7 +10,7 @@ const dict: PartialDictionary = {
     home: 'Atelier',
     manifiesto: 'Manifest',
     servicios: 'Serveis',
-    publishers: 'Clientes',
+    publishers: 'Editorials',
     historias: 'Històries',
     nota: 'La Nota',
     epilogo: 'Epíleg'
@@ -138,12 +138,24 @@ const dict: PartialDictionary = {
       interiorismo: {
         number: 'II',
         title: 'Interiorisme narratiu',
-        dedication: 'Per a arquitectes i bibliòfils que entenen la paret com a pàgina.'
+        dedication: 'Per a arquitectes i bibliòfils que entenen la paret com a pàgina.',
+        sub_a_title: 'Racons literaris',
+        sub_a_body:
+          'Transformem zones d’espera i racons desaprofitats —en hotels, boutiques, clíniques— en oasis de pausa: la marca es percep culta i acollidora.',
+        sub_b_title: 'Biblioteques d’autor',
+        sub_b_body:
+          'Per a particulars o empreses, dissenyem col·leccions amb un sentit narratiu profund, mirall del món interior de qui habita l’espai.'
       },
       cultural: {
         number: 'III',
         title: 'Dinamització cultural i community building',
-        dedication: 'Per a empreses que confonen equip amb tribu — i volen encertar-ho.'
+        dedication: 'Per a empreses que confonen equip amb tribu — i volen encertar-ho.',
+        sub_a_title: 'Clubs de lectura · «Book of the Week»',
+        sub_a_body:
+          'Programes periòdics de llibre del mes per a marques, hotels i restaurants. En recomanar una lectura, la marca deixa de vendre un producte i comença a oferir una visió del món.',
+        sub_b_title: 'Contingut digital',
+        sub_b_body:
+          'Produïm fotografia, vídeo i reels on el llibre és el protagonista estètic, alimentant la presència digital amb discurs i substància.'
       },
       eventos: {
         number: 'IV',
@@ -204,7 +216,25 @@ const dict: PartialDictionary = {
     page_title: 'Històries',
     intro:
       'Una petita col·lecció. Cada cas, un llibre obert — llegit per la persona, la marca o l’espai que el va encarregar.',
-    case_label: 'Cas'
+    case_label: 'Cas',
+    cases: {
+      casa_filomena: {
+        slug: 'casa-filomena',
+        eyebrow: 'I · Curadoria d’identitat',
+        title: 'Casa Filomena',
+        location: 'Casa d’hostes',
+        excerpt:
+          'Col·laboració amb la casa d’hostes per transformar la seva oferta d’allotjament en una experiència cultural immersiva. Disseny d’una biblioteca d’autor i racons literaris a les zones comunes, amb selecció de títols que reflecteixen l’esperit de la casa i una guia de lectura de cortesia per als hostes.'
+      },
+      hey_chabbela: {
+        slug: 'hey-chabbela',
+        eyebrow: 'II · The Literary Pop-Up',
+        title: 'Hey Chabbela',
+        location: 'Llançament de col·lecció càpsula',
+        excerpt:
+          'Per al llançament d’una col·lecció càpsula d’una marca de moda, creació d’un esdeveniment efímer on la col·lecció es presenta integrada en una biblioteca temàtica. Disseny de la invitació en format llibre objecte —en l’estela del cas Etro— i selecció dels it-books que acompanyen la campanya a les xarxes socials.'
+      }
+    }
   },
 
   historia_detail: {
@@ -220,6 +250,18 @@ const dict: PartialDictionary = {
   nota: {
     page_title: 'La Nota de l’Autora',
     eyebrow: 'Una nota a qui llegeix',
+    body_1:
+      'L’estilisme literari és l’art de comissariar i dotar de significat estètic i cultural espais, marques i figures públiques a través de l’univers del llibre. No es tracta d’organitzar informació, com fa la biblioteconomia: es tracta de construir una narrativa visual i aspiracional que projecti sofisticació, valors i profunditat intel·lectual.',
+    body_2:
+      'Treballo des de tres conviccions. La primera és l’atemporalitat: en un mercat de modes immediates, el llibre aporta un sentit de permanència —un luxe que no caduca amb el temps.',
+    body_3:
+      'La segona és la intel·lectualitat. L’objectiu no és decorar, sinó dotar cada projecte d’una càrrega narrativa profunda i una veu culta —transformar la cultura en un actiu estratègic que comuniqui exclusivitat.',
+    body_4:
+      'La tercera és la personalitat. Cada selecció funciona com un mirall del món interior del client. No la pose; l’autenticitat curada. Només així es construeix un relat que connecta emocionalment, de manera única.',
+    body_5:
+      'En lloc de veure el llibre com una cosa que es guarda en una prestatgeria, el tracto com un connector cultural: un pont que uneix l’estètica amb l’intel·lecte, transformant un lloc comú en una experiència amb història.',
+    body_6:
+      'En l’era de la imatge ràpida, la profunditat d’un bon llibre continua sent el més gran dels luxes.',
     signature_credit: '— Mireia',
     portrait_caption: 'Estudi. Barcelona, 2026.'
   },

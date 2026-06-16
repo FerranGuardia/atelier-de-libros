@@ -10,7 +10,7 @@ const dict: PartialDictionary = {
     home: 'Atelier',
     manifiesto: 'Manifesto',
     servicios: 'Services',
-    publishers: 'Clientes',
+    publishers: 'Publishers',
     historias: 'Stories',
     nota: 'The Note',
     epilogo: 'Epilogue'
@@ -138,12 +138,24 @@ const dict: PartialDictionary = {
       interiorismo: {
         number: 'II',
         title: 'Narrative interior design',
-        dedication: 'For architects and bibliophiles who treat the wall as a page.'
+        dedication: 'For architects and bibliophiles who treat the wall as a page.',
+        sub_a_title: 'Literary corners',
+        sub_a_body:
+          'We turn waiting areas and overlooked corners —in hotels, boutiques, clinics— into oases of pause: the brand reads as cultured and welcoming.',
+        sub_b_title: 'Author’s libraries',
+        sub_b_body:
+          'For individuals or companies, we design collections with a deep narrative sense, a mirror of the inner world of whoever inhabits the space.'
       },
       cultural: {
         number: 'III',
         title: 'Cultural programming and community building',
-        dedication: 'For companies that mistake team for tribe—and want to get it right.'
+        dedication: 'For companies that mistake team for tribe—and want to get it right.',
+        sub_a_title: 'Reading clubs · “Book of the Week”',
+        sub_a_body:
+          'Recurring book-of-the-month programmes for brands, hotels and restaurants. By recommending a read, the brand stops selling a product and begins to offer a view of the world.',
+        sub_b_title: 'Digital content',
+        sub_b_body:
+          'We produce photography, video and reels where the book is the aesthetic protagonist, feeding the digital presence with discourse and substance.'
       },
       eventos: {
         number: 'IV',
@@ -204,7 +216,25 @@ const dict: PartialDictionary = {
     page_title: 'Stories',
     intro:
       'A small collection. Each case, an open book—read by the person, the brand or the space that commissioned it.',
-    case_label: 'Case'
+    case_label: 'Case',
+    cases: {
+      casa_filomena: {
+        slug: 'casa-filomena',
+        eyebrow: 'I · Identity curation',
+        title: 'Casa Filomena',
+        location: 'Guest house',
+        excerpt:
+          'A collaboration with the guest house to turn its lodging offer into an immersive cultural experience. Design of an author’s library and literary corners in the common areas, with a selection of titles reflecting the spirit of the house and a courtesy reading guide for guests.'
+      },
+      hey_chabbela: {
+        slug: 'hey-chabbela',
+        eyebrow: 'II · The Literary Pop-Up',
+        title: 'Hey Chabbela',
+        location: 'Capsule collection launch',
+        excerpt:
+          'For the launch of a fashion brand’s capsule collection, the creation of an ephemeral event where the collection is presented within a themed library. Design of the invitation as a book-object —in the wake of the Etro case— and a selection of the it-books that accompany the campaign on social media.'
+      }
+    }
   },
 
   historia_detail: {
@@ -220,6 +250,18 @@ const dict: PartialDictionary = {
   nota: {
     page_title: 'The Author’s Note',
     eyebrow: 'A note to whoever is reading',
+    body_1:
+      'Literary styling is the art of curating and giving aesthetic and cultural meaning to spaces, brands and public figures through the universe of the book. It is not about organising information, as library science does: it is about building a visual, aspirational narrative that projects sophistication, values and intellectual depth.',
+    body_2:
+      'I work from three convictions. The first is timelessness: in a market of immediate trends, the book brings a sense of permanence —a luxury that does not expire with time.',
+    body_3:
+      'The second is intellectuality. The aim is not to decorate, but to give each project a deep narrative charge and a cultured voice —to turn culture into a strategic asset that communicates exclusivity.',
+    body_4:
+      'The third is personality. Every selection works as a mirror of the client’s inner world. Not the pose; curated authenticity. Only this way is a story built that connects emotionally, in a singular way.',
+    body_5:
+      'Instead of seeing the book as something kept on a shelf, I treat it as a cultural connector: a bridge between the aesthetic and the intellect, turning a commonplace into an experience with a story.',
+    body_6:
+      'In the age of the quick image, the depth of a good book remains the greatest of luxuries.',
     signature_credit: '— Mireia',
     portrait_caption: 'Studio. Barcelona, 2026.'
   },

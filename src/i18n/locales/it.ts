@@ -10,7 +10,7 @@ const dict: PartialDictionary = {
     home: 'Atelier',
     manifiesto: 'Manifesto',
     servicios: 'Servizi',
-    publishers: 'Clientes',
+    publishers: 'Editori',
     historias: 'Storie',
     nota: 'La Nota',
     epilogo: 'Epilogo'
@@ -138,12 +138,24 @@ const dict: PartialDictionary = {
       interiorismo: {
         number: 'II',
         title: 'Interior design narrativo',
-        dedication: 'Per architetti e bibliofili che intendono la parete come pagina.'
+        dedication: 'Per architetti e bibliofili che intendono la parete come pagina.',
+        sub_a_title: 'Angoli letterari',
+        sub_a_body:
+          'Trasformiamo zone d’attesa e angoli trascurati —in hotel, boutique, cliniche— in oasi di pausa: il marchio si percepisce colto e accogliente.',
+        sub_b_title: 'Biblioteche d’autore',
+        sub_b_body:
+          'Per privati o aziende, disegniamo collezioni dal senso narrativo profondo, specchio del mondo interiore di chi abita lo spazio.'
       },
       cultural: {
         number: 'III',
         title: 'Animazione culturale e community building',
-        dedication: 'Per le aziende che confondono squadra con tribù — e vogliono fare centro.'
+        dedication: 'Per le aziende che confondono squadra con tribù — e vogliono fare centro.',
+        sub_a_title: 'Club di lettura · «Book of the Week»',
+        sub_a_body:
+          'Programmi periodici di libro del mese per marchi, hotel e ristoranti. Raccomandando una lettura, il marchio smette di vendere un prodotto e inizia a offrire una visione del mondo.',
+        sub_b_title: 'Contenuto digitale',
+        sub_b_body:
+          'Produciamo fotografia, video e reel dove il libro è il protagonista estetico, alimentando la presenza digitale con discorso e sostanza.'
       },
       eventos: {
         number: 'IV',
@@ -204,7 +216,25 @@ const dict: PartialDictionary = {
     page_title: 'Storie',
     intro:
       'Una piccola collezione. Ogni caso, un libro aperto — letto dalla persona, dalla marca o dallo spazio che lo ha commissionato.',
-    case_label: 'Caso'
+    case_label: 'Caso',
+    cases: {
+      casa_filomena: {
+        slug: 'casa-filomena',
+        eyebrow: 'I · Curatela d’identità',
+        title: 'Casa Filomena',
+        location: 'Casa per ospiti',
+        excerpt:
+          'Collaborazione con la casa per ospiti per trasformare la sua offerta ricettiva in un’esperienza culturale immersiva. Progettazione di una biblioteca d’autore e di angoli letterari nelle zone comuni, con una selezione di titoli che riflettono lo spirito della casa e una guida di lettura di cortesia per gli ospiti.'
+      },
+      hey_chabbela: {
+        slug: 'hey-chabbela',
+        eyebrow: 'II · The Literary Pop-Up',
+        title: 'Hey Chabbela',
+        location: 'Lancio di collezione capsule',
+        excerpt:
+          'Per il lancio di una collezione capsule di un marchio di moda, creazione di un evento effimero in cui la collezione è presentata integrata in una biblioteca tematica. Progettazione dell’invito in formato libro-oggetto —sulla scia del caso Etro— e selezione degli it-books che accompagnano la campagna sui social.'
+      }
+    }
   },
 
   historia_detail: {
@@ -220,6 +250,18 @@ const dict: PartialDictionary = {
   nota: {
     page_title: 'La Nota dell’Autrice',
     eyebrow: 'Una nota a chi legge',
+    body_1:
+      'Lo stilismo letterario è l’arte di curare e dare significato estetico e culturale a spazi, marchi e figure pubbliche attraverso l’universo del libro. Non si tratta di organizzare informazioni, come fa la biblioteconomia: si tratta di costruire una narrazione visiva e aspirazionale che proietti raffinatezza, valori e profondità intellettuale.',
+    body_2:
+      'Lavoro a partire da tre convinzioni. La prima è l’atemporalità: in un mercato di mode immediate, il libro porta un senso di permanenza —un lusso che non scade con il tempo.',
+    body_3:
+      'La seconda è l’intellettualità. L’obiettivo non è decorare, ma dare a ogni progetto una carica narrativa profonda e una voce colta —trasformare la cultura in un asset strategico che comunichi esclusività.',
+    body_4:
+      'La terza è la personalità. Ogni selezione funziona come uno specchio del mondo interiore del cliente. Non la posa; l’autenticità curata. Solo così si costruisce un racconto che connette emotivamente, in modo unico.',
+    body_5:
+      'Invece di vedere il libro come qualcosa da riporre su uno scaffale, lo tratto come un connettore culturale: un ponte che unisce l’estetica e l’intelletto, trasformando un luogo comune in un’esperienza con una storia.',
+    body_6:
+      'Nell’era dell’immagine rapida, la profondità di un buon libro resta il più grande dei lussi.',
     signature_credit: '— Mireia',
     portrait_caption: 'Studio. Barcellona, 2026.'
   },

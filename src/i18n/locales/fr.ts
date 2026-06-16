@@ -10,7 +10,7 @@ const dict: PartialDictionary = {
     home: 'Atelier',
     manifiesto: 'Manifeste',
     servicios: 'Services',
-    publishers: 'Clientes',
+    publishers: 'Éditeurs',
     historias: 'Histoires',
     nota: 'La Note',
     epilogo: 'Épilogue'
@@ -138,12 +138,24 @@ const dict: PartialDictionary = {
       interiorismo: {
         number: 'II',
         title: 'Intériorisme narratif',
-        dedication: 'Pour les architectes et bibliophiles qui voient le mur comme une page.'
+        dedication: 'Pour les architectes et bibliophiles qui voient le mur comme une page.',
+        sub_a_title: 'Coins littéraires',
+        sub_a_body:
+          'Nous transformons les zones d’attente et les recoins négligés —dans les hôtels, les boutiques, les cliniques— en oasis de pause : la marque se perçoit cultivée et accueillante.',
+        sub_b_title: 'Bibliothèques d’auteur',
+        sub_b_body:
+          'Pour les particuliers ou les entreprises, nous concevons des collections au sens narratif profond, miroir du monde intérieur de celui qui habite l’espace.'
       },
       cultural: {
         number: 'III',
         title: 'Animation culturelle et community building',
-        dedication: 'Pour les entreprises qui confondent équipe et tribu — et veulent viser juste.'
+        dedication: 'Pour les entreprises qui confondent équipe et tribu — et veulent viser juste.',
+        sub_a_title: 'Clubs de lecture · «Book of the Week»',
+        sub_a_body:
+          'Des programmes périodiques de livre du mois pour les marques, les hôtels et les restaurants. En recommandant une lecture, la marque cesse de vendre un produit et commence à offrir une vision du monde.',
+        sub_b_title: 'Contenu numérique',
+        sub_b_body:
+          'Nous produisons photographies, vidéos et reels où le livre est le protagoniste esthétique, nourrissant la présence numérique de discours et de substance.'
       },
       eventos: {
         number: 'IV',
@@ -204,7 +216,25 @@ const dict: PartialDictionary = {
     page_title: 'Histoires',
     intro:
       'Une petite collection. Chaque cas, un livre ouvert — lu par la personne, la marque ou le lieu qui l’a commandé.',
-    case_label: 'Cas'
+    case_label: 'Cas',
+    cases: {
+      casa_filomena: {
+        slug: 'casa-filomena',
+        eyebrow: 'I · Curation d’identité',
+        title: 'Casa Filomena',
+        location: 'Maison d’hôtes',
+        excerpt:
+          'Collaboration avec la maison d’hôtes pour transformer son offre d’hébergement en une expérience culturelle immersive. Conception d’une bibliothèque d’auteur et de coins littéraires dans les espaces communs, avec une sélection de titres qui reflètent l’esprit de la maison et un guide de lecture de courtoisie pour les hôtes.'
+      },
+      hey_chabbela: {
+        slug: 'hey-chabbela',
+        eyebrow: 'II · The Literary Pop-Up',
+        title: 'Hey Chabbela',
+        location: 'Lancement de collection capsule',
+        excerpt:
+          'Pour le lancement d’une collection capsule d’une marque de mode, création d’un événement éphémère où la collection se présente intégrée dans une bibliothèque thématique. Conception de l’invitation en forme de livre-objet —dans le sillage du cas Etro— et sélection des it-books qui accompagnent la campagne sur les réseaux sociaux.'
+      }
+    }
   },
 
   historia_detail: {
@@ -220,6 +250,18 @@ const dict: PartialDictionary = {
   nota: {
     page_title: 'La Note de l’Auteure',
     eyebrow: 'Une note à qui lit',
+    body_1:
+      'Le stylisme littéraire est l’art de commissarier et de doter de sens esthétique et culturel les espaces, les marques et les personnalités publiques à travers l’univers du livre. Il ne s’agit pas d’organiser l’information, comme le fait la bibliothéconomie : il s’agit de construire une narration visuelle et aspirationnelle qui projette sophistication, valeurs et profondeur intellectuelle.',
+    body_2:
+      'Je travaille à partir de trois convictions. La première est l’intemporalité : dans un marché de modes immédiates, le livre apporte un sentiment de permanence —un luxe qui ne se périme pas avec le temps.',
+    body_3:
+      'La deuxième est l’intellectualité. L’objectif n’est pas de décorer, mais de doter chaque projet d’une charge narrative profonde et d’une voix cultivée —transformer la culture en un actif stratégique qui communique l’exclusivité.',
+    body_4:
+      'La troisième est la personnalité. Chaque sélection agit comme un miroir du monde intérieur du client. Non la pose ; l’authenticité curatée. C’est ainsi seulement que se construit un récit qui touche émotionnellement, de manière unique.',
+    body_5:
+      'Au lieu de voir le livre comme une chose qu’on range sur une étagère, je le traite comme un connecteur culturel : un pont qui unit l’esthétique et l’intellect, transformant un lieu commun en une expérience avec une histoire.',
+    body_6:
+      'À l’ère de l’image rapide, la profondeur d’un bon livre demeure le plus grand des luxes.',
     signature_credit: '— Mireia',
     portrait_caption: 'Atelier. Barcelone, 2026.'
   },
