@@ -48,9 +48,9 @@ const dict: PartialDictionary = {
         'Four pillars: identity curation, narrative interior design, cultural programming, author events.'
     },
     publishers: {
-      title: 'Clients—Atelier de Libros',
+      title: 'For publishers—Atelier de Libros',
       description:
-        'A selection of those who have trusted us with their stories: brands, spaces, authors and imprints.'
+        'Editorial integration and brand collaborations: we place books in boutique hotels, retail spaces, film sets and campaigns—where they had never reached before.'
     },
     historias: {
       title: 'Stories—Atelier de Libros',

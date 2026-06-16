@@ -63,7 +63,7 @@ const dict = {
     publishers: {
       title: 'Para editoriales — El Atelier de Libros',
       description:
-        'Product placement intelectual: activación de catálogo, contextualización estética y acceso a nuevos gatekeepers fuera del circuito convencional.'
+        'Integración editorial y colaboraciones de marca: integramos libros en hoteles boutique, espacios comerciales, sets de rodaje y campañas, y los llevamos donde nunca habían llegado.'
     },
     historias: {
       title: 'Historias — Atelier de Libros',

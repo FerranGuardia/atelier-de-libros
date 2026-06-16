@@ -48,9 +48,9 @@ const dict: PartialDictionary = {
         'Quattro pilastri: curatela d’identità, interior design narrativo, animazione culturale, eventi d’autore.'
     },
     publishers: {
-      title: 'Clienti — Atelier de Libros',
+      title: 'Per le case editrici — Atelier de Libros',
       description:
-        'Una selezione di chi ci ha affidato le proprie storie: marchi, spazi, autori e case editrici.'
+        'Integrazione editoriale e collaborazioni di marca: integriamo libri in hotel boutique, spazi commerciali, set cinematografici e campagne, dove non erano mai arrivati.'
     },
     historias: {
       title: 'Storie — Atelier de Libros',

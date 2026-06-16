@@ -48,9 +48,9 @@ const dict: PartialDictionary = {
         'Quatre pilars: curadoria d’identitat, interiorisme narratiu, dinamització cultural, esdeveniments d’autor.'
     },
     publishers: {
-      title: 'Clients — Atelier de Libros',
+      title: 'Per a editorials — Atelier de Libros',
       description:
-        'Una selecció de qui ens ha confiat les seves històries: marques, espais, autors i segells.'
+        'Integració editorial i col·laboracions de marca: integrem llibres en hotels boutique, espais comercials, sets de rodatge i campanyes, i els portem on mai no havien arribat.'
     },
     historias: {
       title: 'Històries — Atelier de Libros',
